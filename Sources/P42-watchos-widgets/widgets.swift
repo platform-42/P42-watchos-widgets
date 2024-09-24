@@ -74,7 +74,6 @@ public struct HeaderView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 40)  // Increased height for better proportions
         .background(background)
-        .cornerRadius(8)
     }
 }
 
