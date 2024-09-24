@@ -7,7 +7,7 @@ let package = Package(
     name: "P42-watchos-wdigets",
     platforms: [
         .iOS(.v15),
-        .watchOS(.v6)
+        .watchOS(.v9)
     ],
     products: [
         .library(
