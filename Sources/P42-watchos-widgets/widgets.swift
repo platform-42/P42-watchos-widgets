@@ -91,13 +91,13 @@ public struct NumberAndStatView: View {
                 primaryColor: Color,
                 secondaryLabel: String? = nil,
                 secondaryValue: String,
-                secondaryStatus: WidgetStatus) {
+                widgetStatus: WidgetStatus) {
         self.period = period
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.secondaryLabel = secondaryLabel
         self.secondaryValue = secondaryValue
-        self.widgetStatus = secondaryStatus
+        self.widgetStatus = widgetStatus
     }
 
     public var body: some View {
@@ -144,13 +144,13 @@ public struct NumberAndStateView: View {
                 primaryColor: Color,
                 secondaryValue: String,
                 secondaryColor: Color,
-                stateLogic: WidgetState) {
+                widgetState: WidgetState) {
         self.period = period
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.secondaryValue = secondaryValue
         self.secondaryColor = secondaryColor
-        self.widgetState = stateLogic
+        self.widgetState = widgetState
     }
 
     public var body: some View {
