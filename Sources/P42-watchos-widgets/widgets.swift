@@ -78,46 +78,58 @@ public struct HeaderView: View {
 }
 
 @available(iOS 13.0, *)
-public struct NumberAndStatView: View {
+struct NumberAndStatView: View {
     var period: String
     var primaryValue: String
     var primaryColor: Color
     var secondaryLabel: String? = nil
     var secondaryValue: String
     var secondaryStatus: StatusLogic
-    public var body: some View {
+
+    public init(period: String,
+                primaryValue: String,
+                primaryColor: Color,
+                secondaryLabel: String? = nil,
+                secondaryValue: String,
+                secondaryStatus: StatusLogic) {
+        self.period = period
+        self.primaryValue = primaryValue
+        self.primaryColor = primaryColor
+        self.secondaryLabel = secondaryLabel
+        self.secondaryValue = secondaryValue
+        self.secondaryStatus = secondaryStatus
+    }
+
+    var body: some View {
         VStack(spacing: 5) {
             Text(period.capitalized)
+                .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
-            /*
-             * Primary value
-             */
             Text(primaryValue)
                 .foregroundColor(primaryColor)
                 .font(.largeTitle)
+                .accessibilityLabel("Primary value: \(primaryValue)")
             HStack {
-                /*
-                 *  Secondary label
-                 */
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
-                        .padding([.bottom, .top, .trailing, .leading], 5)
+                        .padding(5)
+                        .accessibilityLabel("Secondary label: \(label)")
                 }
-                /*
-                 *  Secondary value with clipshape badge
-                 */
                 BadgedLabel(
-                    labelColor: WidgetStatus.statusFieldColor(secondaryStatus),
-                    backgroundColor: WidgetStatus.statusFieldBackgroundColor(secondaryStatus),
+                    labelColor: Utils.statusFieldColor(secondaryStatus),
+                    backgroundColor: Utils.statusFieldBackgroundColor(secondaryStatus),
                     labelValue: secondaryValue,
                     padding: 5
                 )
+                .accessibilityLabel("Secondary value: \(secondaryValue)")
             }
             Divider()
         }
+        .padding(.horizontal, 10)
     }
 }
+
 
 
 @available(iOS 13.0, *)
