@@ -135,37 +135,49 @@ public struct NumberAndStateView: View {
     var period: String
     var primaryValue: String
     var primaryColor: Color
-    var secundaryValue: String
-    var secundaryColor: Color
+    var secondaryValue: String
+    var secondaryColor: Color
     var stateLogic: StateLogic
+
+    public init(period: String,
+                primaryValue: String,
+                primaryColor: Color,
+                secondaryValue: String,
+                secondaryColor: Color,
+                stateLogic: StateLogic) {
+        self.period = period
+        self.primaryValue = primaryValue
+        self.primaryColor = primaryColor
+        self.secondaryValue = secondaryValue
+        self.secondaryColor = secondaryColor
+        self.stateLogic = stateLogic
+    }
+
     public var body: some View {
         VStack(spacing: 5) {
             Text(period.capitalized)
+                .accessibilityLabel("Period: \(period.capitalized)")
+            
             Divider()
-            /*
-             *  Primary value
-             */
             Text(primaryValue)
                 .font(.largeTitle)
                 .foregroundColor(primaryColor)
+                .accessibilityLabel("Primary value: \(primaryValue)")
             HStack {
-                /*
-                 *  Indicator
-                 */
-                if (stateLogic != .none) {
+                if stateLogic != .none {
                     Image(systemName: WidgetStatus.stateFieldImage(stateLogic))
                         .foregroundColor(WidgetStatus.stateFieldColor(stateLogic))
-                        .padding([.bottom, .top, .trailing, .leading], 5)
+                        .padding(5)
+                        .accessibilityLabel("State logic: \(WidgetStatus.stateFieldImage(stateLogic))")
                 }
-                /*
-                 *  Secundary value
-                 */
-                Text(secundaryValue)
-                    .foregroundColor(secundaryColor)
-                    .padding([.bottom, .top, .trailing, .leading], 5)
+                Text(secondaryValue)
+                    .foregroundColor(secondaryColor)
+                    .padding(5)
+                    .accessibilityLabel("Secondary value: \(secondaryValue)")
             }
             Divider()
         }
+        .padding(.horizontal, 10)
     }
 }
 
