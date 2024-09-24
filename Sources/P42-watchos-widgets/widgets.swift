@@ -184,23 +184,23 @@ public struct NumberAndStateView: View {
 
 @available(iOS 13.0.0, *)
 public struct FooterView: View {
-    var shop: String
+    var topic: String
     var font: Font
     var fontWeight: Font.Weight
     var labelColor: Color
 
-    public init(shop: String,
+    public init(topic: String,
                 font: Font = .body,
                 fontWeight: Font.Weight = .light,
                 labelColor: Color = .secondary) {
-        self.shop = shop
+        self.topic = topic
         self.font = font
         self.fontWeight = fontWeight
         self.labelColor = labelColor
     }
 
     public var body: some View {
-        Text(shop)
+        Text(topic)
             .font(font)
             .fontWeight(fontWeight)
             .foregroundColor(labelColor)
