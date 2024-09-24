@@ -100,7 +100,7 @@ struct NumberAndStatView: View {
         self.secondaryStatus = secondaryStatus
     }
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 5) {
             Text(period.capitalized)
                 .accessibilityLabel("Period: \(period.capitalized)")
