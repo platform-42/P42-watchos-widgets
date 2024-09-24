@@ -1,0 +1,116 @@
+//
+//  Utils.swift
+//  shops24 Watch App
+//
+//  Created by Diederick de Buck on 23/04/2023.
+//
+
+import Foundation
+import SwiftUI
+
+
+/*
+ *  state model and colors
+ */
+public enum StateIndicator: String {
+    case up = "arrowtriangle.up.fill"
+    case down = "arrowtriangle.down.fill"
+    case neutral = "arrowtriangle.right.fill"
+    case none
+}
+
+public enum StateLogic: String {
+    case up
+    case down
+    case neutral
+    case none
+}
+
+public enum StateColor: Int {
+    case up = 0x008E00
+    case down = 0xFF2500
+    case neutral = 0xFDC209
+    case none
+}
+
+
+/*
+ *  status model and colors
+ */
+public enum StatusLogic: String {
+    case alert
+    case warning
+    case normal
+    case none
+}
+
+public enum StatusColor: Int {
+    case alert = 0xFF2500
+    case warning = 0xFDC209
+    case normal = 0x008E00
+    case none
+}
+
+public class WidgetStatus {
+
+    public static func stateFieldImage(_ stateLogic: StateLogic) -> String {
+        switch (stateLogic) {
+            case .up: return StateIndicator.up.rawValue
+            case .down: return StateIndicator.down.rawValue
+            case .neutral: return StateIndicator.neutral.rawValue
+            case .none: return StateIndicator.neutral.rawValue
+        }
+    }
+    
+    @available(macOS 10.15, *)
+    public static func stateFieldColor(_ stateLogic: StateLogic) -> Color {
+        switch (stateLogic) {
+            case .up: return Color(hex: StateColor.up.rawValue)
+            case .down: return Color(hex: StateColor.down.rawValue)
+            case .neutral: return Color(hex: StateColor.neutral.rawValue)
+            case .none: return Color.clear
+        }
+    }
+    
+    @available(macOS 10.15, *)
+    public static func statusFieldColor(_ statusLogic: StatusLogic) -> Color {
+        switch (statusLogic) {
+            case .alert: return .white
+            case .warning: return .black
+            case .normal: return .primary
+            case .none: return .primary
+        }
+    }
+    
+    @available(macOS 10.15, *)
+    public static func statusFieldBackgroundColor(_ statusLogic: StatusLogic) -> Color {
+        switch (statusLogic) {
+            case .alert: return Color(hex: StatusColor.alert.rawValue)
+            case .warning: return Color(hex: StatusColor.warning.rawValue)
+            case .normal: return Color(hex: StatusColor.normal.rawValue)
+            case .none: return Color.clear
+        }
+    }
+        
+    public static func iosVersion() -> String {
+        let os = ProcessInfo.processInfo.operatingSystemVersion
+        return "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
+    }
+    
+    public static func showBadge(_ syncState: Bool) -> String? {
+        return syncState ? "s" : nil
+    }
+
+    
+    public static func formatDate(from isoDateString: String) -> String {
+        let formatter = ISO8601DateFormatter()
+        if let date = formatter.date(from: isoDateString) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            return dateFormatter.string(from: date)
+        } else {
+            return "Invalid Date"
+        }
+    }
+}
