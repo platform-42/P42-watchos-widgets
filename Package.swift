@@ -5,15 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "P42-watchos-wdigets",
+    platforms: [
+        .iOS(.v15),
+        .watchOS(.v6)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "P42-watchos-wdigets",
             targets: ["P42-watchos-wdigets"]),
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "P42-watchos-wdigets"),
         .testTarget(
