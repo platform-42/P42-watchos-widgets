@@ -1,7 +1,7 @@
 import XCTest
-@testable import P42_watchos_wdigets
+@testable import P42_watchos_widgets
 
-final class P42_watchos_wdigetsTests: XCTestCase {
+final class P42_watchos_widgetsTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "P42-watchos-wdigets",
+    name: "P42-watchos-widgets",
     platforms: [
         .iOS(.v15),
         .watchOS(.v9)
     ],
     products: [
         .library(
-            name: "P42-watchos-wdigets",
-            targets: ["P42-watchos-wdigets"]),
+            name: "P42-watchos-widgets",
+            targets: ["P42-watchos-widgets"]),
     ],
     targets: [
         .target(
-            name: "P42-watchos-wdigets"),
+            name: "P42-watchos-widgets"),
         .testTarget(
-            name: "P42-watchos-wdigetsTests",
-            dependencies: ["P42-watchos-wdigets"]),
+            name: "P42-watchos-widgetsTests",
+            dependencies: ["P42-watchos-widgets"]),
     ]
 )
