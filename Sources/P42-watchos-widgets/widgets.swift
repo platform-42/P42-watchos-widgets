@@ -78,7 +78,7 @@ public struct HeaderView: View {
 }
 
 @available(iOS 13.0, *)
-struct NumberAndStatView: View {
+public struct NumberAndStatView: View {
     var period: String
     var primaryValue: String
     var primaryColor: Color
@@ -129,8 +129,6 @@ struct NumberAndStatView: View {
         .padding(.horizontal, 10)
     }
 }
-
-
 
 @available(iOS 13.0, *)
 public struct NumberAndStateView: View {
