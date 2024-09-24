@@ -72,7 +72,7 @@ public struct HeaderView: View {
                 .padding(4)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 40)  // Increased height for better proportions
+        .frame(height: 30)  // Increased height for better proportions
         .background(background)
     }
 }
