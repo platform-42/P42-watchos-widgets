@@ -10,14 +10,28 @@ public struct BadgedLabel: View {
     var backgroundColor: Color
     var labelValue: String
     var padding: CGFloat
+
+    // Public initializer for easier external use
+    public init(labelColor: Color = .white,
+                backgroundColor: Color = .blue,
+                labelValue: String,
+                padding: CGFloat = 10) {
+        self.labelColor = labelColor
+        self.backgroundColor = backgroundColor
+        self.labelValue = labelValue
+        self.padding = padding
+    }
+
     public var body: some View {
-            Text(labelValue)
-                .foregroundColor(labelColor)
-                .padding([.bottom, .top, .trailing, .leading], padding)
-                .background(backgroundColor)
-                .clipShape(Capsule())
-        }
+        Text(labelValue)
+            .foregroundColor(labelColor)
+            .padding(padding)
+            .background(backgroundColor)
+            .clipShape(Capsule())
+            .accessibilityLabel(Text(labelValue))
+    }
 }
+
 
 @available(iOS 16.0, *)
 public struct HeaderView: View {
@@ -125,9 +139,25 @@ public struct NumberAndStateView: View {
 @available(iOS 13.0.0, *)
 public struct FooterView: View {
     var shop: String
+    var font: Font
+    var fontWeight: Font.Weight
+    var labelColor: Color
+
+    public init(shop: String,
+                font: Font = .body,
+                fontWeight: Font.Weight = .light,
+                labelColor: Color = .secondary) {
+        self.shop = shop
+        self.font = font
+        self.fontWeight = fontWeight
+        self.labelColor = labelColor
+    }
+
     public var body: some View {
         Text(shop)
-            .fontWeight(.light)
-            .foregroundColor(.secondary)
+            .font(font)
+            .fontWeight(fontWeight)
+            .foregroundColor(labelColor)
+            .padding(.vertical, 4)
     }
 }
