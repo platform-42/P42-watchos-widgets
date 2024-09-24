@@ -84,14 +84,14 @@ public struct NumberAndStatView: View {
     var primaryColor: Color
     var secondaryLabel: String? = nil
     var secondaryValue: String
-    var secondaryStatus: StatusLogic
+    var secondaryStatus: WidgetStatus
 
     public init(period: String,
                 primaryValue: String,
                 primaryColor: Color,
                 secondaryLabel: String? = nil,
                 secondaryValue: String,
-                secondaryStatus: StatusLogic) {
+                secondaryStatus: WidgetStatus) {
         self.period = period
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
@@ -117,8 +117,8 @@ public struct NumberAndStatView: View {
                         .accessibilityLabel("Secondary label: \(label)")
                 }
                 BadgedLabel(
-                    labelColor: WidgetStatus.statusFieldColor(secondaryStatus),
-                    backgroundColor: WidgetStatus.statusFieldBackgroundColor(secondaryStatus),
+                    labelColor: Widget.statusFieldColor(secondaryStatus),
+                    backgroundColor: Widget.statusFieldBackgroundColor(secondaryStatus),
                     labelValue: secondaryValue,
                     padding: 5
                 )
@@ -137,14 +137,14 @@ public struct NumberAndStateView: View {
     var primaryColor: Color
     var secondaryValue: String
     var secondaryColor: Color
-    var stateLogic: StateLogic
+    var stateLogic: WidgetState
 
     public init(period: String,
                 primaryValue: String,
                 primaryColor: Color,
                 secondaryValue: String,
                 secondaryColor: Color,
-                stateLogic: StateLogic) {
+                stateLogic: WidgetState) {
         self.period = period
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
@@ -165,10 +165,10 @@ public struct NumberAndStateView: View {
                 .accessibilityLabel("Primary value: \(primaryValue)")
             HStack {
                 if stateLogic != .none {
-                    Image(systemName: WidgetStatus.stateFieldImage(stateLogic))
-                        .foregroundColor(WidgetStatus.stateFieldColor(stateLogic))
+                    Image(systemName: Widget.stateFieldImage(stateLogic))
+                        .foregroundColor(Widget.stateFieldColor(stateLogic))
                         .padding(5)
-                        .accessibilityLabel("State logic: \(WidgetStatus.stateFieldImage(stateLogic))")
+                        .accessibilityLabel("State logic: \(Widget.stateFieldImage(stateLogic))")
                 }
                 Text(secondaryValue)
                     .foregroundColor(secondaryColor)
