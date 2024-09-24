@@ -11,7 +11,6 @@ public struct BadgedLabel: View {
     var labelValue: String
     var padding: CGFloat
 
-    // Public initializer for easier external use
     public init(labelColor: Color = .white,
                 backgroundColor: Color = .blue,
                 labelValue: String,
@@ -38,18 +37,44 @@ public struct HeaderView: View {
     var icon: String
     var title: String
     var background: Color
+    var font: Font
+    var labelColor: Color
+    var iconSize: CGFloat
+
+    public init(icon: String,
+                title: String,
+                background: Color = .blue,
+                font: Font = .headline,
+                labelColor: Color = .white,
+                iconSize: CGFloat = 16) {
+        self.icon = icon
+        self.title = title
+        self.background = background
+        self.font = font
+        self.labelColor = labelColor
+        self.iconSize = iconSize
+    }
+
     public var body: some View {
         HStack {
             Image(systemName: icon)
-                .padding([.bottom, .top, .trailing, .leading], 2)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: iconSize, height: iconSize)
+                .padding(4)
+
             Divider()
+
             Text(title.capitalized)
-                .padding([.bottom, .top, .trailing, .leading], 2)
+                .font(font)
                 .fontWeight(.semibold)
+                .foregroundColor(labelColor)
+                .padding(4)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 30)
+        .frame(height: 40)  // Increased height for better proportions
         .background(background)
+        .cornerRadius(8)
     }
 }
 
