@@ -117,8 +117,8 @@ struct NumberAndStatView: View {
                         .accessibilityLabel("Secondary label: \(label)")
                 }
                 BadgedLabel(
-                    labelColor: Utils.statusFieldColor(secondaryStatus),
-                    backgroundColor: Utils.statusFieldBackgroundColor(secondaryStatus),
+                    labelColor: WidgetStatus.statusFieldColor(secondaryStatus),
+                    backgroundColor: WidgetStatus.statusFieldBackgroundColor(secondaryStatus),
                     labelValue: secondaryValue,
                     padding: 5
                 )
