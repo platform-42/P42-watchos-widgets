@@ -19,9 +19,11 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "P42-watchos-widgets"),
-        .testTarget(
-            name: "P42-watchos-widgetsTests",
-            dependencies: ["P42-watchos-widgets"]),
+            name: "P42-watchos-widgets",
+            dependencies: [
+                "P42-extensions"
+            ],
+            path: "Sources/P42-watchos-widgets"
+        )
     ]
 )
