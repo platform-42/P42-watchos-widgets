@@ -212,8 +212,8 @@ public struct FooterView: View {
             
             if let lastUpdate = lastUpdate {
                 Text(lastUpdate)
-                    .font(.caption2)
-                    .foregroundColor(labelColor.opacity(0.7))
+                    .font(font)
+                    .foregroundColor(labelColor.opacity(0.8))
             }
         }
         .padding(.vertical, 4)
