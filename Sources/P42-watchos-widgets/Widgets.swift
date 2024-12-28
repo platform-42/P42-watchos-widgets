@@ -203,7 +203,7 @@ public struct FooterView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading) {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
