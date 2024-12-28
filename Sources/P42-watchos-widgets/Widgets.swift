@@ -211,7 +211,7 @@ public struct FooterView: View {
             
             if let lastUpdate = lastUpdate {
                 Text(lastUpdate)
-                    .font(.footnote)
+                    .font(.caption2)
                     .foregroundColor(labelColor.opacity(0.7))
             }
         }
