@@ -60,6 +60,7 @@ public struct HeaderView: View {
             Image(systemName: icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .foregroundColor(labelColor)
                 .frame(width: iconSize, height: iconSize)
                 .padding(4)
 
