@@ -208,7 +208,7 @@ public struct FooterView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
@@ -220,6 +220,5 @@ public struct FooterView: View {
                     .foregroundColor(labelColor.opacity(0.6))
             }
         }
-        .padding(.vertical, 4)
     }
 }
