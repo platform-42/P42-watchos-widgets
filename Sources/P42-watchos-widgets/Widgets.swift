@@ -40,19 +40,23 @@ public struct HeaderView: View {
     var font: Font
     var labelColor: Color
     var iconSize: CGFloat
+    var height: CGFloat
 
     public init(icon: String,
                 title: String,
                 background: Color = .blue,
                 font: Font = .headline,
                 labelColor: Color = .white,
-                iconSize: CGFloat = 16) {
+                iconSize: CGFloat = 16,
+                height: CGFloat = 30
+    ) {
         self.icon = icon
         self.title = title
         self.background = background
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
+        self.height = height
     }
 
     public var body: some View {
@@ -73,7 +77,7 @@ public struct HeaderView: View {
                 .padding(4)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 15)  // Increased height for better proportions
+        .frame(maxHeight: height)  // Increased height for better proportions
         .background(background)
     }
 }
