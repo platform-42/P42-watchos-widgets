@@ -188,22 +188,33 @@ public struct FooterView: View {
     var font: Font
     var fontWeight: Font.Weight
     var labelColor: Color
+    var lastUpdate: String?
 
     public init(topic: String,
                 font: Font = .body,
                 fontWeight: Font.Weight = .light,
-                labelColor: Color = .secondary) {
+                labelColor: Color = .secondary,
+                lastUpdate: String? = nil) {
         self.topic = topic
         self.font = font
         self.fontWeight = fontWeight
         self.labelColor = labelColor
+        self.lastUpdate = lastUpdate
     }
 
     public var body: some View {
-        Text(topic)
-            .font(font)
-            .fontWeight(fontWeight)
-            .foregroundColor(labelColor)
-            .padding(.vertical, 4)
+        VStack(alignment: .leading, spacing: 4) {
+            Text(topic)
+                .font(font)
+                .fontWeight(fontWeight)
+                .foregroundColor(labelColor)
+            
+            if let lastUpdate = lastUpdate {
+                Text(lastUpdate)
+                    .font(.footnote)
+                    .foregroundColor(labelColor.opacity(0.7))
+            }
+        }
+        .padding(.vertical, 4)
     }
 }
