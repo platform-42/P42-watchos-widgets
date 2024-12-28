@@ -192,7 +192,7 @@ public struct FooterView: View {
     var lastUpdate: String?
 
     public init(topic: String,
-                font: Font = .body,
+                font: Font = .footnote,
                 fontWeight: Font.Weight = .light,
                 labelColor: Color = .secondary,
                 lastUpdate: String? = nil) {
