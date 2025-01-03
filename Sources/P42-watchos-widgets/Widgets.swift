@@ -192,18 +192,15 @@ public struct FooterView: View {
     var topic: String
     var font: Font
     var fontWeight: Font.Weight
-    var labelColor: Color
     var lastUpdate: String?
 
     public init(topic: String,
                 font: Font = .footnote,
                 fontWeight: Font.Weight = .light,
-                labelColor: Color = .secondary,
                 lastUpdate: String? = nil) {
         self.topic = topic
         self.font = font
         self.fontWeight = fontWeight
-        self.labelColor = labelColor
         self.lastUpdate = lastUpdate
     }
 
@@ -212,12 +209,12 @@ public struct FooterView: View {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
-                .foregroundColor(labelColor)
+                .foregroundColor(.primary)
             
             if let lastUpdate = lastUpdate {
                 Text(lastUpdate)
                     .font(font)
-                    .foregroundColor(labelColor.opacity(0.6))
+                    .foregroundColor(.secondary)
             }
         }
     }
