@@ -218,7 +218,7 @@ public struct NumberAndStateView2: View {
                 .accessibilityLabel("Period: \(period.capitalized)")
             
             Divider()
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 Text(primaryValue)
                     .font(.largeTitle)
                     .foregroundColor(primaryColor)
