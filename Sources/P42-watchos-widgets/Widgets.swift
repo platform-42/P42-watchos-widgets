@@ -186,6 +186,67 @@ public struct NumberAndStateView: View {
     }
 }
 
+@available(iOS 13.0, *)
+public struct NumberAndStateView2: View {
+    var period: String
+    var primaryValue: String
+    var primaryColor: Color
+    var annotation: String
+    var secondaryValue: String
+    var secondaryColor: Color
+    var widgetState: WidgetState
+
+    public init(period: String,
+                primaryValue: String,
+                primaryColor: Color,
+                annotation: String,
+                secondaryValue: String,
+                secondaryColor: Color,
+                widgetState: WidgetState) {
+        self.period = period
+        self.primaryValue = primaryValue
+        self.primaryColor = primaryColor
+        self.annotation = annotation
+        self.secondaryValue = secondaryValue
+        self.secondaryColor = secondaryColor
+        self.widgetState = widgetState
+    }
+
+    public var body: some View {
+        VStack(spacing: 5) {
+            Text(period.capitalized)
+                .accessibilityLabel("Period: \(period.capitalized)")
+            
+            Divider()
+            HStack {
+                Text(primaryValue)
+                    .font(.largeTitle)
+                    .foregroundColor(primaryColor)
+                    .accessibilityLabel("Primary value: \(primaryValue)")
+                Text(annotation)
+                    .font(.caption)
+                    .foregroundColor(secondaryColor)
+                    .accessibilityLabel("Annotation: \(annotation)")
+            }
+            HStack {
+                if widgetState != .none {
+                    Image(systemName: Widget.stateFieldImage(widgetState))
+                        .foregroundColor(Widget.stateFieldColor(widgetState))
+                        .padding(5)
+                        .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
+                }
+                Text(secondaryValue)
+                    .foregroundColor(secondaryColor)
+                    .padding(5)
+                    .accessibilityLabel("Secondary value: \(secondaryValue)")
+            }
+            Divider()
+        }
+        .padding(.horizontal, 10)
+    }
+}
+
+
 
 @available(iOS 13.0.0, *)
 public struct FooterView: View {
