@@ -60,7 +60,7 @@ public struct HeaderView: View {
     }
 
     public var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Image(systemName: icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
