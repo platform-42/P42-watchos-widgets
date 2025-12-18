@@ -85,6 +85,7 @@ public struct HeaderView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStatView: View {
     var period: String
+    var periodBG: Color
     var primaryValue: String
     var primaryColor: Color
     var secondaryLabel: String? = nil
@@ -92,12 +93,14 @@ public struct NumberAndStatView: View {
     var widgetStatus: WidgetStatus
 
     public init(period: String,
+                periodBG: Color,
                 primaryValue: String,
                 primaryColor: Color,
                 secondaryLabel: String? = nil,
                 secondaryValue: String,
                 widgetStatus: WidgetStatus) {
         self.period = period
+        self.periodBG = periodBG
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.secondaryLabel = secondaryLabel
@@ -107,8 +110,20 @@ public struct NumberAndStatView: View {
 
     public var body: some View {
         VStack {
-            Text(period.capitalized)
-                .accessibilityLabel("Period: \(period.capitalized)")
+            HStack(spacing: 8) {
+                Image(systemName: "calendar")
+                    .accessibilityHidden(true)
+
+                Text(period.capitalized)
+                    .accessibilityLabel("Period: \(period.capitalized)")
+
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
+            .background(periodBG)
+            
             Divider()
             Text(primaryValue)
                 .foregroundColor(primaryColor)
