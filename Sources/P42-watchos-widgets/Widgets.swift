@@ -10,7 +10,7 @@ public struct BadgedLabel: View {
     var backgroundColor: Color
     var labelValue: String
     var padding: CGFloat
-
+    
     public init(labelColor: Color = .white,
                 backgroundColor: Color = .blue,
                 labelValue: String,
@@ -20,7 +20,7 @@ public struct BadgedLabel: View {
         self.labelValue = labelValue
         self.padding = padding
     }
-
+    
     public var body: some View {
         Text(labelValue)
             .foregroundColor(labelColor)
@@ -41,7 +41,7 @@ public struct HeaderView: View {
     var labelColor: Color
     var iconSize: CGFloat
     var height: CGFloat
-
+    
     public init(icon: String,
                 title: String,
                 background: Color = .blue,
@@ -58,7 +58,7 @@ public struct HeaderView: View {
         self.iconSize = iconSize
         self.height = height
     }
-
+    
     public var body: some View {
         HStack {
             Image(systemName: icon)
@@ -67,9 +67,9 @@ public struct HeaderView: View {
                 .foregroundColor(labelColor)
                 .frame(width: iconSize, height: iconSize)
                 .padding(4)
-
+            
             Divider()
-
+            
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
@@ -89,7 +89,7 @@ public struct NumberAndStatView: View {
     var secondaryLabel: String? = nil
     var secondaryValue: String
     var widgetStatus: WidgetStatus
-
+    
     public init(period: String,
                 primaryValue: String,
                 primaryColor: Color,
@@ -103,19 +103,13 @@ public struct NumberAndStatView: View {
         self.secondaryValue = secondaryValue
         self.widgetStatus = widgetStatus
     }
-
+    
     public var body: some View {
         VStack {
             Divider()
             HStack {
-                ZStack {
-                    Text(period.capitalized)
-                        .accessibilityLabel("Period: \(period.capitalized)")
-                    HStack {
-                        Spacer()
-                        Image(systemName: "circle.circle.fill")
-                    }
-                }
+                Text(period.capitalized)
+                    .accessibilityLabel("Period: \(period.capitalized)")
             }
             .frame(maxWidth: .infinity)
             
@@ -154,7 +148,7 @@ public struct NumberAndStateView: View {
     var secondaryValue: String
     var secondaryColor: Color
     var widgetState: WidgetState
-
+    
     public init(period: String,
                 primaryValue: String,
                 primaryColor: Color,
@@ -170,49 +164,43 @@ public struct NumberAndStateView: View {
         self.secondaryColor = secondaryColor
         self.widgetState = widgetState
     }
-
+    
     public var body: some View {
         VStack {
             Divider()
             HStack {
-                ZStack {
-                    Text(period.capitalized)
-                        .accessibilityLabel("Period: \(period.capitalized)")
-                    HStack {
-                        Spacer()
-                        Image(systemName: "circle.circle.fill")
-                            .foregroundColor(.red)
-                    }
-                }
+                Text(period.capitalized)
+                    .accessibilityLabel("Period: \(period.capitalized)")
             }
-            .frame(maxWidth: .infinity)
-            
-            Divider()
-            HStack(alignment: .firstTextBaseline) {
-                Text(primaryValue)
-                    .font(.largeTitle)
-                    .foregroundColor(primaryColor)
-                    .accessibilityLabel("Primary value: \(primaryValue)")
-                Text(annotation)
-                    .font(.caption)
-                    .foregroundColor(secondaryColor)
-                    .accessibilityLabel("Annotation: \(annotation)")
-            }
-            HStack {
-                if widgetState != .none {
-                    Image(systemName: Widget.stateFieldImage(widgetState))
-                        .foregroundColor(Widget.stateFieldColor(widgetState))
-                        .padding(5)
-                        .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
-                }
-                Text(secondaryValue)
-                    .foregroundColor(secondaryColor)
-                    .padding(5)
-                    .accessibilityLabel("Secondary value: \(secondaryValue)")
-            }
-            Divider()
         }
+        .frame(maxWidth: .infinity)
+        
+        Divider()
+        HStack(alignment: .firstTextBaseline) {
+            Text(primaryValue)
+                .font(.largeTitle)
+                .foregroundColor(primaryColor)
+                .accessibilityLabel("Primary value: \(primaryValue)")
+            Text(annotation)
+                .font(.caption)
+                .foregroundColor(secondaryColor)
+                .accessibilityLabel("Annotation: \(annotation)")
+        }
+        HStack {
+            if widgetState != .none {
+                Image(systemName: Widget.stateFieldImage(widgetState))
+                    .foregroundColor(Widget.stateFieldColor(widgetState))
+                    .padding(5)
+                    .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
+            }
+            Text(secondaryValue)
+                .foregroundColor(secondaryColor)
+                .padding(5)
+                .accessibilityLabel("Secondary value: \(secondaryValue)")
+        }
+        Divider()
     }
+}
 }
 
 
@@ -223,7 +211,7 @@ public struct FooterView: View {
     var font: Font
     var fontWeight: Font.Weight
     var lastUpdate: String?
-
+    
     public init(topic: String,
                 font: Font = .footnote,
                 fontWeight: Font.Weight = .light,
@@ -233,7 +221,7 @@ public struct FooterView: View {
         self.fontWeight = fontWeight
         self.lastUpdate = lastUpdate
     }
-
+    
     public var body: some View {
         VStack {
             Text(topic)
@@ -242,9 +230,16 @@ public struct FooterView: View {
                 .foregroundColor(.primary)
             
             if let lastUpdate = lastUpdate {
-                Text(lastUpdate)
-                    .font(font)
-                    .foregroundColor(.secondary)
+                ZStack {
+                    Text(lastUpdate)
+                        .font(font)
+                        .foregroundColor(.secondary)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "circle.circle.fill")
+                            .foregroundColor(.red)
+                    }
+                }
             }
         }
     }
