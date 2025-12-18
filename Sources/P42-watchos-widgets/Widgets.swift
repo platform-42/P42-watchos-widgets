@@ -173,8 +173,11 @@ public struct NumberAndStateView: View {
         VStack {
             Divider()
             HStack {
-                Text(period.capitalized)
-                    .accessibilityLabel("Period: \(period.capitalized)")
+                ZStack {
+                    Text(period.capitalized)
+                        .accessibilityLabel("Period: \(period.capitalized)")
+                    Image(systemName: "chevron.right")
+                }
             }
             .frame(maxWidth: .infinity)
             
