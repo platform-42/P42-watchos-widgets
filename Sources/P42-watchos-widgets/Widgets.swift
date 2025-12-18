@@ -228,17 +228,16 @@ public struct FooterView: View {
                 .foregroundColor(.primary)
             
             if let lastUpdate = lastUpdate {
-                ZStack {
+                HStack {
+                    Image(systemName: "circle.circle.fill")
+                        .foregroundColor(.red)
+                    Divider()
                     Text(lastUpdate)
                         .font(font)
                         .foregroundColor(.secondary)
-                    HStack {
-                        Spacer()
-                        Image(systemName: "circle.circle.fill")
-                            .foregroundColor(.red)
-                    }
                 }
             }
         }
     }
 }
+
