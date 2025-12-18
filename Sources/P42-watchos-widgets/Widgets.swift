@@ -140,7 +140,7 @@ public struct NumberAndStatView: View {
             }
             Divider()
         }
-        .padding(.horizontal, 10)
+//        .padding(.horizontal, 10)
     }
 }
 
@@ -209,7 +209,6 @@ public struct NumberAndStateView: View {
             }
             Divider()
         }
-        .padding(.horizontal, 10)
     }
 }
 
