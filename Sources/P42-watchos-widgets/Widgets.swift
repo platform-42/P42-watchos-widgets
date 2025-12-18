@@ -60,7 +60,7 @@ public struct HeaderView: View {
     }
 
     public var body: some View {
-        HStack(spacing: 0) {
+        HStack {
             Image(systemName: icon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -77,7 +77,6 @@ public struct HeaderView: View {
                 .padding(4)
         }
         .frame(maxWidth: .infinity)
-//        .frame(height: height)
         .background(background)
     }
 }
@@ -106,16 +105,15 @@ public struct NumberAndStatView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             Divider()
-            HStack(spacing: 0) {
+            HStack {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
-                    HStack(spacing: 0) {
+                    HStack {
                         Spacer()
                         Image(systemName: "circle.circle.fill")
-                            .foregroundColor(.red)
                     }
                 }
             }
@@ -126,7 +124,7 @@ public struct NumberAndStatView: View {
                 .foregroundColor(primaryColor)
                 .font(.largeTitle)
                 .accessibilityLabel("Primary value: \(primaryValue)")
-            HStack(spacing: 0) {
+            HStack {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
@@ -174,13 +172,13 @@ public struct NumberAndStateView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             Divider()
-            HStack(spacing: 0) {
+            HStack {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
-                    HStack(spacing: 0) {
+                    HStack {
                         Spacer()
                         Image(systemName: "circle.circle.fill")
                             .foregroundColor(.red)
@@ -237,7 +235,7 @@ public struct FooterView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
