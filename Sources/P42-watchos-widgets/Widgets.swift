@@ -106,9 +106,9 @@ public struct NumberAndStatView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Divider()
-            HStack {
+            HStack(spacing: 0) {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
@@ -126,7 +126,7 @@ public struct NumberAndStatView: View {
                 .foregroundColor(primaryColor)
                 .font(.largeTitle)
                 .accessibilityLabel("Primary value: \(primaryValue)")
-            HStack {
+            HStack(spacing: 0) {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
@@ -174,9 +174,9 @@ public struct NumberAndStateView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Divider()
-            HStack {
+            HStack(spacing: 0) {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
@@ -237,7 +237,7 @@ public struct FooterView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
