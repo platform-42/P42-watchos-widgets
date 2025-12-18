@@ -185,14 +185,11 @@ public struct NumberAndStateView: View {
             HStack(spacing: 8) {
                 Image(systemName: "calendar")
                     .accessibilityHidden(true)
-
+                    .frame(maxWidth: .infinity)
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
-
-                Spacer()
+                    .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 8)
             .frame(maxWidth: .infinity)
             .background(periodBG)
             
