@@ -113,6 +113,7 @@ public struct NumberAndStatView: View {
             HStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
+                    .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity)
             .background(periodBG)
@@ -178,6 +179,7 @@ public struct NumberAndStateView: View {
             HStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
+                    .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity)
             .background(periodBG)
