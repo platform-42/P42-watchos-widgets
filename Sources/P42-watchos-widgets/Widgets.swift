@@ -111,13 +111,8 @@ public struct NumberAndStatView: View {
     public var body: some View {
         VStack {
             HStack(spacing: 8) {
-                Image(systemName: "calendar")
-                    .accessibilityHidden(true)
-                    .frame(maxWidth: .infinity)
-
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
-                    .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity)
             .background(periodBG)
@@ -181,12 +176,8 @@ public struct NumberAndStateView: View {
     public var body: some View {
         VStack {
             HStack(spacing: 8) {
-                Image(systemName: "calendar")
-                    .accessibilityHidden(true)
-                    .frame(maxWidth: .infinity)
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
-                    .frame(maxWidth: .infinity)
             }
             .frame(maxWidth: .infinity)
             .background(periodBG)
