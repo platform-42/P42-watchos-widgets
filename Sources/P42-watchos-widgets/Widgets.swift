@@ -135,7 +135,6 @@ public struct NumberAndStatView: View {
             }
             Divider()
         }
-//        .padding(.horizontal, 10)
     }
 }
 
