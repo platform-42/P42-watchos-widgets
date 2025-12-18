@@ -112,7 +112,11 @@ public struct NumberAndStatView: View {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
-                    Image(systemName: "chevron.right")
+                    HStack(spacing: 0) {
+                        Spacer()
+                        Image(systemName: "circle.circle.fill")
+                            .foregroundColor(.red)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
@@ -176,7 +180,11 @@ public struct NumberAndStateView: View {
                 ZStack {
                     Text(period.capitalized)
                         .accessibilityLabel("Period: \(period.capitalized)")
-                    Image(systemName: "chevron.right")
+                    HStack(spacing: 0) {
+                        Spacer()
+                        Image(systemName: "circle.circle.fill")
+                            .foregroundColor(.red)
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
