@@ -171,6 +171,7 @@ public struct NumberAndStateView: View {
                 secondaryColor: Color,
                 widgetState: WidgetState) {
         self.period = period
+        self.periodBG = periodBG
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.annotation = annotation
