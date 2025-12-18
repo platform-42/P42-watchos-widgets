@@ -154,6 +154,7 @@ public struct NumberAndStatView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStateView: View {
     var period: String
+    var periodBG: Color
     var primaryValue: String
     var primaryColor: Color
     var annotation: String
@@ -162,6 +163,7 @@ public struct NumberAndStateView: View {
     var widgetState: WidgetState
 
     public init(period: String,
+                periodBG: Color,
                 primaryValue: String,
                 primaryColor: Color,
                 annotation: String,
@@ -179,8 +181,19 @@ public struct NumberAndStateView: View {
 
     public var body: some View {
         VStack {
-            Text(period.capitalized)
-                .accessibilityLabel("Period: \(period.capitalized)")
+            HStack(spacing: 8) {
+                Image(systemName: "calendar")
+                    .accessibilityHidden(true)
+
+                Text(period.capitalized)
+                    .accessibilityLabel("Period: \(period.capitalized)")
+
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity)
+            .background(periodBG)
             
             Divider()
             HStack(alignment: .firstTextBaseline) {
