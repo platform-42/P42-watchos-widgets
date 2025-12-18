@@ -106,7 +106,7 @@ public struct NumberAndStatView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack {
             Text(period.capitalized)
                 .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
@@ -163,7 +163,7 @@ public struct NumberAndStateView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack {
             Text(period.capitalized)
                 .accessibilityLabel("Period: \(period.capitalized)")
             
