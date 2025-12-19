@@ -229,7 +229,7 @@ public struct FooterView: View {
             
             if let lastUpdate = lastUpdate {
                 HStack {
-                    Image(systemName: "circle.circle.fill")
+                    Image(systemName: "circlebadge.fill")
                         .foregroundColor(.red)
                     Divider()
                     Text(lastUpdate)
