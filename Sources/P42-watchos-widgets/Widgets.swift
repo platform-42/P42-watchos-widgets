@@ -107,11 +107,13 @@ public struct NumberAndStatView: View {
     public var body: some View {
         VStack {
             Divider()
-            HStack {
+            ZStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
+                Image(systemName: "circlebadge.fill")
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity)
             
             Divider()
             Text(primaryValue)
@@ -168,37 +170,39 @@ public struct NumberAndStateView: View {
     public var body: some View {
         VStack {
             Divider()
-            HStack {
+            ZStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
+                Image(systemName: "circlebadge.fill")
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-        }
-        .frame(maxWidth: .infinity)
-        
-        Divider()
-        HStack(alignment: .firstTextBaseline) {
-            Text(primaryValue)
-                .font(.largeTitle)
-                .foregroundColor(primaryColor)
-                .accessibilityLabel("Primary value: \(primaryValue)")
-            Text(annotation)
-                .font(.caption)
-                .foregroundColor(secondaryColor)
-                .accessibilityLabel("Annotation: \(annotation)")
-        }
-        HStack {
-            if widgetState != .none {
-                Image(systemName: Widget.stateFieldImage(widgetState))
-                    .foregroundColor(Widget.stateFieldColor(widgetState))
+            
+            Divider()
+            HStack(alignment: .firstTextBaseline) {
+                Text(primaryValue)
+                    .font(.largeTitle)
+                    .foregroundColor(primaryColor)
+                    .accessibilityLabel("Primary value: \(primaryValue)")
+                Text(annotation)
+                    .font(.caption)
+                    .foregroundColor(secondaryColor)
+                    .accessibilityLabel("Annotation: \(annotation)")
+            }
+            HStack {
+                if widgetState != .none {
+                    Image(systemName: Widget.stateFieldImage(widgetState))
+                        .foregroundColor(Widget.stateFieldColor(widgetState))
+                        .padding(5)
+                        .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
+                }
+                Text(secondaryValue)
+                    .foregroundColor(secondaryColor)
                     .padding(5)
-                    .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
+                    .accessibilityLabel("Secondary value: \(secondaryValue)")
             }
-            Text(secondaryValue)
-                .foregroundColor(secondaryColor)
-                .padding(5)
-                .accessibilityLabel("Secondary value: \(secondaryValue)")
+            Divider()
         }
-        Divider()
     }
 }
 
@@ -232,9 +236,9 @@ public struct FooterView: View {
                     Text(lastUpdate)
                         .font(font)
                         .foregroundColor(.secondary)
-                    Divider()
-                    Image(systemName: "circlebadge.fill")
-                        .foregroundColor(.red)
+ //                   Divider()
+ //                   Image(systemName: "circlebadge.fill")
+ //                       .foregroundColor(.red)
                 }
             }
         }
