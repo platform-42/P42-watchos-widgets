@@ -150,7 +150,7 @@ public struct NumberAndStateView: View {
     var statusColor: Color
     var primaryValue: String
     var primaryColor: Color
-    var annotation: String
+    var primaryAnnotation: String? = nil
     var secondaryValue: String
     var secondaryColor: Color
     var widgetState: WidgetState
@@ -159,7 +159,7 @@ public struct NumberAndStateView: View {
                 statusColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
-                annotation: String,
+                primaryAnnotation: String? = nil,
                 secondaryValue: String,
                 secondaryColor: Color,
                 widgetState: WidgetState) {
@@ -167,7 +167,7 @@ public struct NumberAndStateView: View {
         self.statusColor = statusColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
-        self.annotation = annotation
+        self.primaryAnnotation = primaryAnnotation
         self.secondaryValue = secondaryValue
         self.secondaryColor = secondaryColor
         self.widgetState = widgetState
@@ -190,10 +190,12 @@ public struct NumberAndStateView: View {
                     .font(.largeTitle)
                     .foregroundColor(primaryColor)
                     .accessibilityLabel("Primary value: \(primaryValue)")
-                Text(annotation)
-                    .font(.caption)
-                    .foregroundColor(secondaryColor)
-                    .accessibilityLabel("Annotation: \(annotation)")
+                if let annotation = primaryAnnotation {
+                    Text(annotation)
+                        .font(.caption)
+                        .foregroundColor(secondaryColor)
+                        .accessibilityLabel("Annotation: \(annotation)")
+                }
             }
             HStack {
                 if widgetState != .none {
