@@ -84,7 +84,7 @@ public struct HeaderView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStatView: View {
     var period: String
-    var statusColor: Color
+    var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
     var secondaryLabel: String? = nil
@@ -92,14 +92,14 @@ public struct NumberAndStatView: View {
     var widgetStatus: WidgetStatus
     
     public init(period: String,
-                statusColor: Color,
+                connectionColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
                 secondaryLabel: String? = nil,
                 secondaryValue: String,
                 widgetStatus: WidgetStatus) {
         self.period = period
-        self.statusColor = statusColor
+        self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.secondaryLabel = secondaryLabel
@@ -114,7 +114,7 @@ public struct NumberAndStatView: View {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
                 Image(systemName: "circlebadge.fill")
-                    .foregroundColor(statusColor)
+                    .foregroundColor(connectionColor)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
@@ -147,7 +147,7 @@ public struct NumberAndStatView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStateView: View {
     var period: String
-    var statusColor: Color
+    var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
     var primaryAnnotation: String? = nil
@@ -156,7 +156,7 @@ public struct NumberAndStateView: View {
     var widgetState: WidgetState
     
     public init(period: String,
-                statusColor: Color,
+                connectionColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
                 primaryAnnotation: String? = nil,
@@ -164,7 +164,7 @@ public struct NumberAndStateView: View {
                 secondaryColor: Color,
                 widgetState: WidgetState) {
         self.period = period
-        self.statusColor = statusColor
+        self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.primaryAnnotation = primaryAnnotation
@@ -180,7 +180,7 @@ public struct NumberAndStateView: View {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
                 Image(systemName: "circlebadge.fill")
-                    .foregroundColor(statusColor)
+                    .foregroundColor(connectionColor)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
@@ -244,9 +244,6 @@ public struct FooterView: View {
                     Text(lastUpdate)
                         .font(font)
                         .foregroundColor(.secondary)
- //                   Divider()
- //                   Image(systemName: "circlebadge.fill")
- //                       .foregroundColor(.red)
                 }
             }
         }
