@@ -60,26 +60,30 @@ public struct HeaderView: View {
     }
     
     public var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(labelColor)
-                .frame(width: iconSize, height: iconSize)
-                .padding(4)
-            
-            Divider()
+        ZStack {
+            //            Image(systemName: icon)
+            //                .resizable()
+            //                .aspectRatio(contentMode: .fit)
+            //                .foregroundColor(labelColor)
+            //                .frame(width: iconSize, height: iconSize)
+            //                .padding(4)
+            //
+            //            Divider()
             
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
                 .padding(4)
+            Image(systemName: "circlebadge.fill")
+                .foregroundColor(.red)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .frame(maxWidth: .infinity)
         .background(background)
     }
 }
+
 
 @available(iOS 13.0, *)
 public struct NumberAndStatView: View {
