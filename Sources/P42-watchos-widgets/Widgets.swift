@@ -69,7 +69,6 @@ public struct HeaderView: View {
             //                .padding(4)
             //
             //            Divider()
-            
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
@@ -77,7 +76,7 @@ public struct HeaderView: View {
                 .padding(4)
             Image(systemName: "circlebadge.fill")
                 .foregroundColor(.red)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(maxWidth: .infinity)
         .background(background)
@@ -117,9 +116,9 @@ public struct NumberAndStatView: View {
             ZStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
-                Image(systemName: "circlebadge.fill")
-                    .foregroundColor(connectionColor)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+//                Image(systemName: "circlebadge.fill")
+//                    .foregroundColor(connectionColor)
+//                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
             Divider()
@@ -183,9 +182,9 @@ public struct NumberAndStateView: View {
             ZStack {
                 Text(period.capitalized)
                     .accessibilityLabel("Period: \(period.capitalized)")
-                Image(systemName: "circlebadge.fill")
-                    .foregroundColor(connectionColor)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+//                Image(systemName: "circlebadge.fill")
+//                    .foregroundColor(connectionColor)
+//                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
             
             Divider()
