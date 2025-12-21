@@ -69,7 +69,7 @@ public struct HeaderView: View {
             Image(systemName: "circlebadge.fill")
                 .foregroundColor(connectionColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: +15)
+                .offset(x: +20)
         }
         .frame(maxWidth: .infinity)
         .background(background)
