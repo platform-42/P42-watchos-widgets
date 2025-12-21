@@ -34,7 +34,7 @@ public struct BadgedLabel: View {
 
 @available(iOS 16.0, *)
 public struct HeaderView: View {
-    var icon: String
+    var connectionColor: Color
     var title: String
     var background: Color
     var font: Font
@@ -42,7 +42,7 @@ public struct HeaderView: View {
     var iconSize: CGFloat
     var height: CGFloat
     
-    public init(icon: String,
+    public init(connectionColor: Color,
                 title: String,
                 background: Color = .blue,
                 font: Font = .headline,
@@ -50,7 +50,7 @@ public struct HeaderView: View {
                 iconSize: CGFloat = 16,
                 height: CGFloat = 30
     ) {
-        self.icon = icon
+        self.connectionColor = connectionColor
         self.title = title
         self.background = background
         self.font = font
@@ -61,23 +61,15 @@ public struct HeaderView: View {
     
     public var body: some View {
         ZStack {
-            //            Image(systemName: icon)
-            //                .resizable()
-            //                .aspectRatio(contentMode: .fit)
-            //                .foregroundColor(labelColor)
-            //                .frame(width: iconSize, height: iconSize)
-            //                .padding(4)
-            //
-            //            Divider()
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
                 .padding(4)
             Image(systemName: "circlebadge.fill")
-                .foregroundColor(.red)
+                .foregroundColor(connectionColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: +10)
+                .offset(x: +15)
         }
         .frame(maxWidth: .infinity)
         .background(background)
