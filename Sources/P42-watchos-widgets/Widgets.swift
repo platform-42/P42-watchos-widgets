@@ -106,14 +106,8 @@ public struct NumberAndStatView: View {
     public var body: some View {
         VStack {
             Divider()
-            ZStack {
-                Text(period.capitalized)
-                    .accessibilityLabel("Period: \(period.capitalized)")
-//                Image(systemName: "circlebadge.fill")
-//                    .foregroundColor(connectionColor)
-//                    .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            
+            Text(period.capitalized)
+                .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
             Text(primaryValue)
                 .foregroundColor(primaryColor)
@@ -172,14 +166,8 @@ public struct NumberAndStateView: View {
     public var body: some View {
         VStack {
             Divider()
-            ZStack {
-                Text(period.capitalized)
-                    .accessibilityLabel("Period: \(period.capitalized)")
-//                Image(systemName: "circlebadge.fill")
-//                    .foregroundColor(connectionColor)
-//                    .frame(maxWidth: .infinity, alignment: .trailing)
-            }
-            
+            Text(period.capitalized)
+                .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
             HStack(alignment: .firstTextBaseline) {
                 Text(primaryValue)
