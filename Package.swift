@@ -23,7 +23,6 @@ let package = Package(
             dependencies: [
                 "P42-extensions"
             ],
-            path: "Sources/P42-watchos-widgets"
         )
     ]
 )
