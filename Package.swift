@@ -22,7 +22,7 @@ let package = Package(
             name: "P42-watchos-widgets",
             dependencies: [
                 "P42-extensions"
-            ],
+            ]
         )
     ]
 )
