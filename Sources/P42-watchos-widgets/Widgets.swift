@@ -27,7 +27,6 @@ public struct BadgedLabel: View {
             .padding(padding)
             .background(backgroundColor)
             .clipShape(Capsule())
-            .accessibilityLabel(Text(labelValue))
     }
 }
 
@@ -107,18 +106,15 @@ public struct NumberAndStatView: View {
         VStack {
             Divider()
             Text(period.capitalized)
-                .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
             Text(primaryValue)
                 .foregroundColor(primaryColor)
                 .font(.largeTitle)
-                .accessibilityLabel("Primary value: \(primaryValue)")
             HStack {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
                         .padding(5)
-                        .accessibilityLabel("Secondary label: \(label)")
                 }
                 BadgedLabel(
                     labelColor: Widget.statusFieldColor(widgetStatus),
@@ -126,7 +122,6 @@ public struct NumberAndStatView: View {
                     labelValue: secondaryValue,
                     padding: 5
                 )
-                .accessibilityLabel("Secondary value: \(secondaryValue)")
             }
             Divider()
         }
@@ -167,18 +162,15 @@ public struct NumberAndStateView: View {
         VStack {
             Divider()
             Text(period.capitalized)
-                .accessibilityLabel("Period: \(period.capitalized)")
             Divider()
             HStack(alignment: .firstTextBaseline) {
                 Text(primaryValue)
                     .font(.largeTitle)
                     .foregroundColor(primaryColor)
-                    .accessibilityLabel("Primary value: \(primaryValue)")
                 if let annotation = primaryAnnotation {
                     Text(annotation)
                         .font(.caption)
                         .foregroundColor(secondaryColor)
-                        .accessibilityLabel("Annotation: \(annotation)")
                 }
             }
             HStack {
@@ -186,12 +178,10 @@ public struct NumberAndStateView: View {
                     Image(systemName: Widget.stateFieldImage(widgetState))
                         .foregroundColor(Widget.stateFieldColor(widgetState))
                         .padding(5)
-                        .accessibilityLabel("State logic: \(Widget.stateFieldImage(widgetState))")
                 }
                 Text(secondaryValue)
                     .foregroundColor(secondaryColor)
                     .padding(5)
-                    .accessibilityLabel("Secondary value: \(secondaryValue)")
             }
             Divider()
         }
@@ -232,74 +222,41 @@ public struct FooterView: View {
             }
         }
     }
-    
-    @available(iOS 13.0.0, *)
-    public struct FooterView3: View {
-        var topic: String
-        var font: Font
-        var fontWeight: Font.Weight
-        var lastUpdate: String?
-        
-        public init(topic: String,
-                    font: Font = .footnote,
-                    fontWeight: Font.Weight = .light,
-                    lastUpdate: String? = nil) {
-            self.topic = topic
-            self.font = font
-            self.fontWeight = fontWeight
-            self.lastUpdate = lastUpdate
-        }
-        
-        public var body: some View {
-            VStack {
-                Text(topic)
-                    .font(font)
-                    .fontWeight(fontWeight)
-                    .foregroundColor(.primary)
-                
-                if let lastUpdate = lastUpdate {
-                    HStack {
-                        Text(lastUpdate)
-                            .font(font)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    
-    
-    @available(iOS 13.0.0, *)
-    public struct FooterView2<LastUpdateView: View>: View {
-        let topic: String
-        let font: Font
-        let fontWeight: Font.Weight
-        let lastUpdateView: LastUpdateView?
+}
 
-        public init(
-            topic: String,
-            font: Font = .footnote,
-            fontWeight: Font.Weight = .light,
-            @ViewBuilder lastUpdateView: () -> LastUpdateView?
-        ) {
-            self.topic = topic
-            self.font = font
-            self.fontWeight = fontWeight
-            self.lastUpdateView = lastUpdateView()
-        }
 
-        public var body: some View {
-            VStack(spacing: 4) {
-                Text(topic)
-                    .font(font)
-                    .fontWeight(fontWeight)
-                    .foregroundColor(.primary)
-
-                if let lastUpdateView {
-                    lastUpdateView
-                }
+@available(iOS 13.0.0, *)
+public struct FooterView2<LastUpdateView: View>: View {
+    let topic: String
+    let font: Font
+    let fontWeight: Font.Weight
+    let lastUpdateView: LastUpdateView?
+    
+    public init(
+        topic: String,
+        font: Font = .footnote,
+        fontWeight: Font.Weight = .light,
+        @ViewBuilder lastUpdateView: () -> LastUpdateView?
+    ) {
+        self.topic = topic
+        self.font = font
+        self.fontWeight = fontWeight
+        self.lastUpdateView = lastUpdateView()
+    }
+    
+    public var body: some View {
+        VStack(spacing: 4) {
+            Text(topic)
+                .font(font)
+                .fontWeight(fontWeight)
+                .foregroundColor(.primary)
+            
+            if let lastUpdateView {
+                lastUpdateView
             }
         }
     }
-    
 }
+
+
 
