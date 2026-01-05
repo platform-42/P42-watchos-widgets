@@ -269,7 +269,7 @@ public struct FooterView: View {
         }
     }
     
-    
+    /*
     @available(iOS 13.0.0, *)
     public struct FooterView2<LastUpdateView: View>: View {
         let topic: String
@@ -302,6 +302,7 @@ public struct FooterView: View {
             }
         }
     }
+     */
     
 }
 
