@@ -267,6 +267,7 @@ public struct FooterView: View {
                 }
             }
         }
+    }
     
     
     @available(iOS 13.0.0, *)
