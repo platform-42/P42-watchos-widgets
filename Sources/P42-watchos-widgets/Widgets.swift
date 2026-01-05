@@ -232,5 +232,40 @@ public struct FooterView: View {
             }
         }
     }
+    
+    
+    @available(iOS 13.0.0, *)
+    public struct FooterView<LastUpdateView: View>: View {
+        let topic: String
+        let font: Font
+        let fontWeight: Font.Weight
+        let lastUpdateView: LastUpdateView?
+
+        public init(
+            topic: String,
+            font: Font = .footnote,
+            fontWeight: Font.Weight = .light,
+            @ViewBuilder lastUpdateView: () -> LastUpdateView?
+        ) {
+            self.topic = topic
+            self.font = font
+            self.fontWeight = fontWeight
+            self.lastUpdateView = lastUpdateView()
+        }
+
+        public var body: some View {
+            VStack(spacing: 4) {
+                Text(topic)
+                    .font(font)
+                    .fontWeight(fontWeight)
+                    .foregroundColor(.primary)
+
+                if let lastUpdateView {
+                    lastUpdateView
+                }
+            }
+        }
+    }
+    
 }
 
