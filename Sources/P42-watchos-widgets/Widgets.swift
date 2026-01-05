@@ -235,7 +235,7 @@ public struct FooterView: View {
     
     
     @available(iOS 13.0.0, *)
-    public struct FooterView2<LastUpdateView: View>: View {
+    public struct Mozes<LastUpdateView: View>: View {
         let topic: String
         let font: Font
         let fontWeight: Font.Weight
