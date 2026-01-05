@@ -7,15 +7,18 @@ import Foundation
 @available(iOS 13.0, *)
 public struct BadgedLabel: View {
     var labelColor: Color
+    var font: Font
     var backgroundColor: Color
     var labelValue: String
     var padding: CGFloat
     
     public init(labelColor: Color = .white,
+                font: Font = .footnote,
                 backgroundColor: Color = .blue,
                 labelValue: String,
                 padding: CGFloat = 10) {
         self.labelColor = labelColor
+        self.font = font
         self.backgroundColor = backgroundColor
         self.labelValue = labelValue
         self.padding = padding
@@ -23,6 +26,7 @@ public struct BadgedLabel: View {
     
     public var body: some View {
         Text(labelValue)
+            .font(font)
             .foregroundColor(labelColor)
             .padding(padding)
             .background(backgroundColor)
