@@ -235,42 +235,6 @@ public struct FooterView: View {
     
     
     @available(iOS 13.0.0, *)
-    public struct FooterView3: View {
-        var topic: String
-        var font: Font
-        var fontWeight: Font.Weight
-        var lastUpdate: String?
-        
-        public init(topic: String,
-                    font: Font = .footnote,
-                    fontWeight: Font.Weight = .light,
-                    lastUpdate: String? = nil) {
-            self.topic = topic
-            self.font = font
-            self.fontWeight = fontWeight
-            self.lastUpdate = lastUpdate
-        }
-        
-        public var body: some View {
-            VStack {
-                Text(topic)
-                    .font(font)
-                    .fontWeight(fontWeight)
-                    .foregroundColor(.primary)
-                
-                if let lastUpdate = lastUpdate {
-                    HStack {
-                        Text(lastUpdate)
-                            .font(font)
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-        }
-    }
-    
-    /*
-    @available(iOS 13.0.0, *)
     public struct FooterView2<LastUpdateView: View>: View {
         let topic: String
         let font: Font
@@ -302,7 +266,6 @@ public struct FooterView: View {
             }
         }
     }
-     */
     
 }
 
