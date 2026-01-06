@@ -130,7 +130,7 @@ public struct NumberAndStatView: View {
                     labelColor: Widget.statusFieldColor(widgetStatus),
                     backgroundColor: Widget.statusFieldBackgroundColor(widgetStatus),
                     labelValue: secondaryValue,
-                    padding: 5
+                    padding: EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
                 )
             }
             Divider()
