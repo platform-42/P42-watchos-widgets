@@ -10,13 +10,19 @@ public struct BadgedLabel: View {
     var font: Font
     var backgroundColor: Color
     var labelValue: String
-    var padding: CGFloat
-    
+    var padding: EdgeInsets
+
     public init(labelColor: Color = .white,
                 font: Font = .footnote,
                 backgroundColor: Color = .blue,
                 labelValue: String,
-                padding: CGFloat = 10) {
+                padding: EdgeInsets = EdgeInsets(
+                    top: 2,
+                    leading: 4,
+                    bottom: 2,
+                    trailing: 4
+                )
+    ) {
         self.labelColor = labelColor
         self.font = font
         self.backgroundColor = backgroundColor
