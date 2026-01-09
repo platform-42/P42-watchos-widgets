@@ -113,8 +113,7 @@ public struct NumberAndStatView: View {
     }
     
     public var body: some View {
-        VStack {
-            Divider()
+        VStack(spacing: 4) {
             Text(period.capitalized)
             Divider()
             Text(primaryValue)
@@ -124,13 +123,13 @@ public struct NumberAndStatView: View {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
-                        .padding(5)
+                        .padding(.horizontal, 5)
                 }
                 BadgedLabel(
                     labelColor: Widget.statusFieldColor(widgetStatus),
                     backgroundColor: Widget.statusFieldBackgroundColor(widgetStatus),
                     labelValue: secondaryValue,
-                    padding: EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                    padding: EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5)
                 )
             }
             Divider()
@@ -169,8 +168,7 @@ public struct NumberAndStateView: View {
     }
     
     public var body: some View {
-        VStack {
-            Divider()
+        VStack(spacing: 4) {
             Text(period.capitalized)
             Divider()
             HStack(alignment: .firstTextBaseline) {
@@ -187,11 +185,11 @@ public struct NumberAndStateView: View {
                 if widgetState != .none {
                     Image(systemName: Widget.stateFieldImage(widgetState))
                         .foregroundColor(Widget.stateFieldColor(widgetState))
-                        .padding(5)
+                        .padding(.horizontal, 5)
                 }
                 Text(secondaryValue)
                     .foregroundColor(secondaryColor)
-                    .padding(5)
+                    .padding(.horizontal, 5)
             }
             Divider()
         }
