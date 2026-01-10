@@ -49,15 +49,13 @@ public struct HeaderView: View {
     var font: Font
     var labelColor: Color
     var iconSize: CGFloat
-    var height: CGFloat
     
     public init(connectionColor: Color,
                 title: String,
                 background: Color = .blue,
                 font: Font = .headline,
                 labelColor: Color = .white,
-                iconSize: CGFloat = 16,
-                height: CGFloat = 30
+                iconSize: CGFloat = 16
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -65,7 +63,6 @@ public struct HeaderView: View {
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
-        self.height = height
     }
     
     public var body: some View {
@@ -79,6 +76,7 @@ public struct HeaderView: View {
                 .foregroundColor(connectionColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .offset(x: +20)
+            
         }
         .frame(maxWidth: .infinity)
         .background(background)
@@ -212,18 +210,15 @@ public struct NumberAndStateView: View {
 public struct FooterView<LastUpdateView: View>: View {
     let topic: String
     let font: Font
-    let fontWeight: Font.Weight
     let lastUpdateView: LastUpdateView?
     
     public init(
         topic: String,
         font: Font = .footnote,
-        fontWeight: Font.Weight = .light,
         @ViewBuilder lastUpdateView: () -> LastUpdateView?
     ) {
         self.topic = topic
         self.font = font
-        self.fontWeight = fontWeight
         self.lastUpdateView = lastUpdateView()
     }
     
@@ -231,7 +226,7 @@ public struct FooterView<LastUpdateView: View>: View {
         VStack(spacing: 2) {
             Text(topic)
                 .font(font)
-                .fontWeight(fontWeight)
+                .fontWeight(.light)
                 .foregroundColor(.primary)
             
             if let lastUpdateView {
