@@ -113,7 +113,8 @@ public struct NumberAndStatView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
+            Divider()
             Text(period.capitalized)
             Divider()
             Text(primaryValue)
@@ -168,7 +169,8 @@ public struct NumberAndStateView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
+            Divider()
             Text(period.capitalized)
             Divider()
             HStack(alignment: .firstTextBaseline) {
@@ -217,7 +219,7 @@ public struct FooterView<LastUpdateView: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 2) {
             Text(topic)
                 .font(font)
                 .fontWeight(fontWeight)
