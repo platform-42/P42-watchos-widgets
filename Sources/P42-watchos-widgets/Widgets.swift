@@ -42,20 +42,22 @@ public struct BadgedLabel: View {
 
 
 @available(iOS 16.0, *)
-public struct HeaderView: View {
+public struct HeaderView<LastUpdateView: View>: View {
     var connectionColor: Color
     var title: String
     var background: Color
     var font: Font
     var labelColor: Color
     var iconSize: CGFloat
-    
+    let lastUpdateView: LastUpdateView?
+
     public init(connectionColor: Color,
                 title: String,
                 background: Color = .blue,
                 font: Font = .headline,
                 labelColor: Color = .white,
-                iconSize: CGFloat = 16
+                iconSize: CGFloat = 16,
+                @ViewBuilder lastUpdateView: () -> LastUpdateView?
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -63,6 +65,7 @@ public struct HeaderView: View {
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
+        self.lastUpdateView = lastUpdateView()
     }
     
     public var body: some View {
@@ -76,6 +79,9 @@ public struct HeaderView: View {
                 .foregroundColor(connectionColor)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .offset(x: +20)
+            if let lastUpdateView {
+                lastUpdateView
+            }
             
         }
         .frame(maxWidth: .infinity)
