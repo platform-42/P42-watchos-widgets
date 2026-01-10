@@ -89,6 +89,7 @@ public struct HeaderView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStatView: View {
     var period: String
+    var periodColor: Color = .secondary
     var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
@@ -97,6 +98,7 @@ public struct NumberAndStatView: View {
     var widgetStatus: WidgetStatus
     
     public init(period: String,
+                periodColor: Color = .secondary,
                 connectionColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
@@ -104,6 +106,7 @@ public struct NumberAndStatView: View {
                 secondaryValue: String,
                 widgetStatus: WidgetStatus) {
         self.period = period
+        self.periodColor = periodColor
         self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
@@ -116,6 +119,7 @@ public struct NumberAndStatView: View {
         VStack(spacing: 2) {
             Divider()
             Text(period.capitalized)
+                .foregroundColor(periodColor)
             Divider()
             Text(primaryValue)
                 .foregroundColor(primaryColor)
@@ -124,6 +128,7 @@ public struct NumberAndStatView: View {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
+                        .padding(.vertical, 2)
                         .padding(.horizontal, 5)
                 }
                 BadgedLabel(
@@ -142,6 +147,7 @@ public struct NumberAndStatView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStateView: View {
     var period: String
+    var periodColor: Color = .secondary
     var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
@@ -151,6 +157,7 @@ public struct NumberAndStateView: View {
     var widgetState: WidgetState
     
     public init(period: String,
+                periodColor: Color = .secondary,
                 connectionColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
@@ -159,6 +166,7 @@ public struct NumberAndStateView: View {
                 secondaryColor: Color,
                 widgetState: WidgetState) {
         self.period = period
+        self.periodColor = periodColor
         self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
@@ -172,6 +180,7 @@ public struct NumberAndStateView: View {
         VStack(spacing: 2) {
             Divider()
             Text(period.capitalized)
+                .foregroundColor(periodColor)
             Divider()
             HStack(alignment: .firstTextBaseline) {
                 Text(primaryValue)
