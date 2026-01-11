@@ -87,9 +87,9 @@ public struct HeaderView<LastUpdateView: View>: View {
                     .foregroundColor(connectionColor)
                     .font(.system(size: iconSize))
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 10)
         }
-        .frame(maxWidth: .infinity, minHeight: 44)
+        .frame(maxWidth: .infinity, minHeight: 38)
         .background(background)
     }
 }
