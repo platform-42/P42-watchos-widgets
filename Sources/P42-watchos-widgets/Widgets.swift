@@ -4,7 +4,7 @@ import SwiftUI
 import Foundation
 
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 public struct BadgedLabel: View {
     var labelColor: Color
     var font: Font
@@ -38,7 +38,7 @@ public struct BadgedLabel: View {
 
 
 @available(iOS 16.0, *)
-public struct HeaderView<LastUpdateView: View>: View {
+public struct HeaderView: View {
 
     var connectionColor: Color
     var title: String
