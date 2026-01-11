@@ -47,16 +47,13 @@ public struct HeaderView<LastUpdateView: View>: View {
     var labelColor: Color
     var iconSize: CGFloat
 
-    let lastUpdateView: LastUpdateView?
-
     public init(
         connectionColor: Color,
         title: String,
         background: Color = .blue,
         font: Font = .headline,
         labelColor: Color = .white,
-        iconSize: CGFloat = 16,
-        @ViewBuilder lastUpdateView: () -> LastUpdateView?
+        iconSize: CGFloat = 16
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -64,7 +61,6 @@ public struct HeaderView<LastUpdateView: View>: View {
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
-        self.lastUpdateView = lastUpdateView()
     }
 
     public var body: some View {
@@ -77,15 +73,10 @@ public struct HeaderView<LastUpdateView: View>: View {
 
             // MARK: - Badge (left) + Status (right)
             HStack {
-                if let lastUpdateView {
-                    lastUpdateView
-                }
-
-                Spacer()
-
                 Image(systemName: "circlebadge.fill")
                     .foregroundColor(connectionColor)
                     .font(.system(size: iconSize))
+                Spacer()
             }
             .padding(.horizontal, 10)
         }
