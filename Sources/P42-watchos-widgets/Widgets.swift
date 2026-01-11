@@ -3,17 +3,6 @@
 import SwiftUI
 import Foundation
 
-public enum BadgeAlignment {
-    case left, center, right
-
-    var swiftUI: Alignment {
-        switch self {
-        case .left: .leading
-        case .center: .center
-        case .right: .trailing
-        }
-    }
-}
 
 @available(iOS 13.0, *)
 public struct BadgedLabel: View {
@@ -47,24 +36,39 @@ public struct BadgedLabel: View {
 
     public var body: some View {
         if let alignment {
-            Text(labelValue)
-                .font(font)
-                .foregroundColor(labelColor)
-                .padding(padding)
-                .frame(maxWidth: .infinity, alignment: alignment)
-                .background(backgroundColor)
-                .clipShape(Capsule())
+            alignedBadge(alignment)
         } else {
-            Text(labelValue)
-                .font(font)
-                .foregroundColor(labelColor)
-                .padding(padding)
-                .background(backgroundColor)
-                .clipShape(Capsule())
+            badge
+        }
+    }
+
+    private var badge: some View {
+        Text(labelValue)
+            .font(font)
+            .foregroundColor(labelColor)
+            .padding(padding)
+            .background(backgroundColor)
+            .clipShape(Capsule())
+    }
+
+    @ViewBuilder
+    private func alignedBadge(_ alignment: Alignment) -> some View {
+        HStack {
+            switch alignment {
+            case .leading:
+                badge
+                Spacer()
+            case .trailing:
+                Spacer()
+                badge
+            default: // center
+                Spacer()
+                badge
+                Spacer()
+            }
         }
     }
 }
-
 
 
 @available(iOS 16.0, *)
