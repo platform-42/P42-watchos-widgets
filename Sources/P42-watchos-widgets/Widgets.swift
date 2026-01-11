@@ -57,10 +57,12 @@ public struct BadgedLabel: View {
             switch alignment {
             case .leading:
                 badge
+                    .offset(x: +20)
                 Spacer()
             case .trailing:
                 Spacer()
                 badge
+                    .offset(x: -20)
             default: // center
                 Spacer()
                 badge
@@ -108,8 +110,8 @@ public struct HeaderView<LastUpdateView: View>: View {
                 .padding(4)
             Image(systemName: "circlebadge.fill")
                 .foregroundColor(connectionColor)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .offset(x: +20)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .offset(x: -20)
             if let lastUpdateView {
                 lastUpdateView
             }
