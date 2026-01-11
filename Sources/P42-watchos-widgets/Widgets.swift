@@ -3,6 +3,17 @@
 import SwiftUI
 import Foundation
 
+public enum BadgeAlignment {
+    case left, center, right
+
+    var swiftUI: Alignment {
+        switch self {
+        case .left: .leading
+        case .center: .center
+        case .right: .trailing
+        }
+    }
+}
 
 @available(iOS 13.0, *)
 public struct BadgedLabel: View {
