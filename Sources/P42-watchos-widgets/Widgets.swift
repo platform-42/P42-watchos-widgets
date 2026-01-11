@@ -116,7 +116,7 @@ public struct NumberAndStatView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -128,7 +128,7 @@ public struct NumberAndStatView: View {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
-                        .padding(.vertical, 2)
+                        .padding(.vertical, 5)
                         .padding(.horizontal, 5)
                 }
                 BadgedLabel(
@@ -178,7 +178,7 @@ public struct NumberAndStateView: View {
         }
     
     public var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -226,7 +226,7 @@ public struct FooterView<LastUpdateView: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 4) {
             Text(topic)
                 .font(font)
                 .fontWeight(.light)
