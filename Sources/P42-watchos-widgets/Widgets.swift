@@ -11,34 +11,49 @@ public struct BadgedLabel: View {
     var backgroundColor: Color
     var labelValue: String
     var padding: EdgeInsets
+    var alignment: Alignment?
 
-    public init(labelColor: Color = .white,
-                font: Font = .footnote,
-                backgroundColor: Color = .blue,
-                labelValue: String,
-                padding: EdgeInsets = EdgeInsets(
-                    top: 2,
-                    leading: 4,
-                    bottom: 2,
-                    trailing: 4
-                )
+    public init(
+        labelColor: Color = .white,
+        font: Font = .footnote,
+        backgroundColor: Color = .blue,
+        labelValue: String,
+        padding: EdgeInsets = EdgeInsets(
+            top: 2,
+            leading: 4,
+            bottom: 2,
+            trailing: 4
+        ),
+        alignment: Alignment? = nil
     ) {
         self.labelColor = labelColor
         self.font = font
         self.backgroundColor = backgroundColor
         self.labelValue = labelValue
         self.padding = padding
+        self.alignment = alignment
     }
-    
+
     public var body: some View {
-        Text(labelValue)
-            .font(font)
-            .foregroundColor(labelColor)
-            .padding(padding)
-            .background(backgroundColor)
-            .clipShape(Capsule())
+        if let alignment {
+            Text(labelValue)
+                .font(font)
+                .foregroundColor(labelColor)
+                .padding(padding)
+                .frame(maxWidth: .infinity, alignment: alignment)
+                .background(backgroundColor)
+                .clipShape(Capsule())
+        } else {
+            Text(labelValue)
+                .font(font)
+                .foregroundColor(labelColor)
+                .padding(padding)
+                .background(backgroundColor)
+                .clipShape(Capsule())
+        }
     }
 }
+
 
 
 @available(iOS 16.0, *)
