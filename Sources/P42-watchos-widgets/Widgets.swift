@@ -12,7 +12,7 @@ public struct BadgedLabel: View {
     var labelValue: String
     var padding: EdgeInsets
     var alignment: Alignment?
-
+    
     public init(
         labelColor: Color = .white,
         font: Font = .footnote,
@@ -33,7 +33,7 @@ public struct BadgedLabel: View {
         self.padding = padding
         self.alignment = alignment
     }
-
+    
     public var body: some View {
         if let alignment {
             alignedBadge(alignment)
@@ -41,7 +41,7 @@ public struct BadgedLabel: View {
             badge
         }
     }
-
+    
     private var badge: some View {
         Text(labelValue)
             .font(font)
@@ -50,7 +50,7 @@ public struct BadgedLabel: View {
             .background(backgroundColor)
             .clipShape(Capsule())
     }
-
+    
     @ViewBuilder
     private func alignedBadge(_ alignment: Alignment) -> some View {
         HStack {
@@ -80,14 +80,15 @@ public struct HeaderView<LastUpdateView: View>: View {
     var labelColor: Color
     var iconSize: CGFloat
     let lastUpdateView: LastUpdateView?
-
-    public init(connectionColor: Color,
-                title: String,
-                background: Color = .blue,
-                font: Font = .headline,
-                labelColor: Color = .white,
-                iconSize: CGFloat = 16,
-                @ViewBuilder lastUpdateView: () -> LastUpdateView?
+    
+    public init(
+        connectionColor: Color,
+        title: String,
+        background: Color = .blue,
+        font: Font = .headline,
+        labelColor: Color = .white,
+        iconSize: CGFloat = 16,
+        @ViewBuilder lastUpdateView: () -> LastUpdateView?
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -190,25 +191,26 @@ public struct NumberAndStateView: View {
     var secondaryColor: Color
     var widgetState: WidgetState
     
-    public init(period: String,
-                periodColor: Color = .secondary,
-                connectionColor: Color,
-                primaryValue: String,
-                primaryColor: Color,
-                primaryAnnotation: String? = nil,
-                secondaryValue: String,
-                secondaryColor: Color,
-                widgetState: WidgetState) {
-        self.period = period
-        self.periodColor = periodColor
-        self.connectionColor = connectionColor
-        self.primaryValue = primaryValue
-        self.primaryColor = primaryColor
-        self.primaryAnnotation = primaryAnnotation
-        self.secondaryValue = secondaryValue
-        self.secondaryColor = secondaryColor
-        self.widgetState = widgetState
-    }
+    public init(
+        period: String,
+        periodColor: Color = .secondary,
+        connectionColor: Color,
+        primaryValue: String,
+        primaryColor: Color,
+        primaryAnnotation: String? = nil,
+        secondaryValue: String,
+        secondaryColor: Color,
+        widgetState: WidgetState) {
+            self.period = period
+            self.periodColor = periodColor
+            self.connectionColor = connectionColor
+            self.primaryValue = primaryValue
+            self.primaryColor = primaryColor
+            self.primaryAnnotation = primaryAnnotation
+            self.secondaryValue = secondaryValue
+            self.secondaryColor = secondaryColor
+            self.widgetState = widgetState
+        }
     
     public var body: some View {
         VStack(spacing: 2) {
