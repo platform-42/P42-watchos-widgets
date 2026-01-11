@@ -80,7 +80,7 @@ public struct HeaderView: View {
             }
             .padding(.horizontal, 10)
         }
-        .frame(maxWidth: .infinity, minHeight: 38)
+        .frame(maxWidth: .infinity)
         .background(background)
     }
 }
