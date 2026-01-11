@@ -11,38 +11,22 @@ public struct BadgedLabel: View {
     var backgroundColor: Color
     var labelValue: String
     var padding: EdgeInsets
-    var alignment: Alignment?
-    
+
     public init(
         labelColor: Color = .white,
         font: Font = .footnote,
         backgroundColor: Color = .blue,
         labelValue: String,
-        padding: EdgeInsets = EdgeInsets(
-            top: 2,
-            leading: 4,
-            bottom: 2,
-            trailing: 4
-        ),
-        alignment: Alignment? = nil
+        padding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
     ) {
         self.labelColor = labelColor
         self.font = font
         self.backgroundColor = backgroundColor
         self.labelValue = labelValue
         self.padding = padding
-        self.alignment = alignment
     }
-    
+
     public var body: some View {
-        if let alignment {
-            alignedBadge(alignment)
-        } else {
-            badge
-        }
-    }
-    
-    private var badge: some View {
         Text(labelValue)
             .font(font)
             .foregroundColor(labelColor)
@@ -50,39 +34,21 @@ public struct BadgedLabel: View {
             .background(backgroundColor)
             .clipShape(Capsule())
     }
-    
-    @ViewBuilder
-    private func alignedBadge(_ alignment: Alignment) -> some View {
-        HStack {
-            switch alignment {
-            case .leading:
-                badge
-                    .offset(x: +20)
-                Spacer()
-            case .trailing:
-                Spacer()
-                badge
-                    .offset(x: -20)
-            default: // center
-                Spacer()
-                badge
-                Spacer()
-            }
-        }
-    }
 }
 
 
 @available(iOS 16.0, *)
 public struct HeaderView<LastUpdateView: View>: View {
+
     var connectionColor: Color
     var title: String
     var background: Color
     var font: Font
     var labelColor: Color
     var iconSize: CGFloat
+
     let lastUpdateView: LastUpdateView?
-    
+
     public init(
         connectionColor: Color,
         title: String,
@@ -100,24 +66,30 @@ public struct HeaderView<LastUpdateView: View>: View {
         self.iconSize = iconSize
         self.lastUpdateView = lastUpdateView()
     }
-    
+
     public var body: some View {
         ZStack {
+            // MARK: - Title (centered, independent)
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
-                .padding(4)
-            Image(systemName: "circlebadge.fill")
-                .foregroundColor(connectionColor)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .offset(x: -20)
-            if let lastUpdateView {
-                lastUpdateView
+
+            // MARK: - Badge (left) + Status (right)
+            HStack {
+                if let lastUpdateView {
+                    lastUpdateView
+                }
+
+                Spacer()
+
+                Image(systemName: "circlebadge.fill")
+                    .foregroundColor(connectionColor)
+                    .font(.system(size: iconSize))
             }
-            
+            .padding(.horizontal, 16)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, minHeight: 44)
         .background(background)
     }
 }
