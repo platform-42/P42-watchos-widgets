@@ -14,7 +14,7 @@ public struct BadgedLabel: View {
 
     public init(
         labelColor: Color = .white,
-        font: Font = .footnote,
+        font: Font = .caption2,
         backgroundColor: Color = .blue,
         labelValue: String,
         padding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
