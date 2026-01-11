@@ -70,6 +70,7 @@ public struct HeaderView: View {
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
+                .padding(.vertical, 10)
 
             // MARK: - Badge (left) + Status (right)
             HStack {
