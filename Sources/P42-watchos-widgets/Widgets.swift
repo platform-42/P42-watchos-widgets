@@ -79,8 +79,8 @@ public struct HeaderView: View {
                     .font(.system(size: iconSize))
                 Spacer()
             }
-            padding(.vertical, 5)
-                .padding(.horizontal, 15)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 15)
         }
         .frame(maxWidth: .infinity)
         .background(background)
