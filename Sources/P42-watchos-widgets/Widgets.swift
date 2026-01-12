@@ -11,7 +11,7 @@ public struct BadgedLabel: View {
     var backgroundColor: Color
     var labelValue: String
     var padding: EdgeInsets
-
+    
     public init(
         labelColor: Color = .white,
         font: Font = .caption2,
@@ -25,7 +25,7 @@ public struct BadgedLabel: View {
         self.labelValue = labelValue
         self.padding = padding
     }
-
+    
     public var body: some View {
         Text(labelValue)
             .font(font)
@@ -39,14 +39,14 @@ public struct BadgedLabel: View {
 
 @available(iOS 16.0, *)
 public struct HeaderView: View {
-
+    
     var connectionColor: Color
     var title: String
     var background: Color
     var font: Font
     var labelColor: Color
     var iconSize: CGFloat
-
+    
     public init(
         connectionColor: Color,
         title: String,
@@ -62,7 +62,7 @@ public struct HeaderView: View {
         self.labelColor = labelColor
         self.iconSize = iconSize
     }
-
+    
     public var body: some View {
         ZStack {
             // MARK: - Title (centered, independent)
@@ -71,7 +71,7 @@ public struct HeaderView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
                 .padding(.vertical, 5)
-
+            
             // MARK: - Badge (left) + Status (right)
             HStack {
                 Image(systemName: "circlebadge.fill")
@@ -80,7 +80,7 @@ public struct HeaderView: View {
                 Spacer()
             }
             padding(.vertical, 5)
-           .padding(.horizontal, 15)
+                .padding(.horizontal, 15)
         }
         .frame(maxWidth: .infinity)
         .background(background)
@@ -167,17 +167,18 @@ public struct NumberAndStateView: View {
         primaryAnnotation: String? = nil,
         secondaryValue: String,
         secondaryColor: Color,
-        widgetState: WidgetState) {
-            self.period = period
-            self.periodColor = periodColor
-            self.connectionColor = connectionColor
-            self.primaryValue = primaryValue
-            self.primaryColor = primaryColor
-            self.primaryAnnotation = primaryAnnotation
-            self.secondaryValue = secondaryValue
-            self.secondaryColor = secondaryColor
-            self.widgetState = widgetState
-        }
+        widgetState: WidgetState
+    ) {
+        self.period = period
+        self.periodColor = periodColor
+        self.connectionColor = connectionColor
+        self.primaryValue = primaryValue
+        self.primaryColor = primaryColor
+        self.primaryAnnotation = primaryAnnotation
+        self.secondaryValue = secondaryValue
+        self.secondaryColor = secondaryColor
+        self.widgetState = widgetState
+    }
     
     public var body: some View {
         VStack(spacing: 5) {
