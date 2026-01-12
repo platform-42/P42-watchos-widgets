@@ -79,7 +79,8 @@ public struct HeaderView: View {
                     .font(.system(size: iconSize))
                 Spacer()
             }
-            .padding(.horizontal, 15)
+            padding(.vertical, 5)
+           .padding(.horizontal, 15)
         }
         .frame(maxWidth: .infinity)
         .background(background)
@@ -117,7 +118,7 @@ public struct NumberAndStatView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 5) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -179,7 +180,7 @@ public struct NumberAndStateView: View {
         }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 5) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -227,7 +228,7 @@ public struct FooterView<LastUpdateView: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 5) {
             Text(topic)
                 .font(font)
                 .fontWeight(.light)
