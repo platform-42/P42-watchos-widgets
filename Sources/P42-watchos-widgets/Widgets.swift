@@ -70,7 +70,7 @@ public struct HeaderView: View {
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
-                .padding(.vertical, 5)
+                .padding(.vertical, 4)
             
             // MARK: - Badge (left) + Status (right)
             HStack {
@@ -79,7 +79,7 @@ public struct HeaderView: View {
                     .font(.system(size: iconSize))
                 Spacer()
             }
-            .padding(.vertical, 5)
+            .padding(.vertical, 4)
             .padding(.horizontal, 15)
         }
         .frame(maxWidth: .infinity)
