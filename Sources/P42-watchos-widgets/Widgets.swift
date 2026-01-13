@@ -118,7 +118,7 @@ public struct NumberAndStatView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 4) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -130,14 +130,14 @@ public struct NumberAndStatView: View {
                 if let label = secondaryLabel {
                     Text(label)
                         .foregroundColor(.secondary)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 5)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 4)
                 }
                 BadgedLabel(
                     labelColor: Widget.statusFieldColor(widgetStatus),
                     backgroundColor: Widget.statusFieldBackgroundColor(widgetStatus),
                     labelValue: secondaryValue,
-                    padding: EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5)
+                    padding: EdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
                 )
             }
             Divider()
@@ -181,7 +181,7 @@ public struct NumberAndStateView: View {
     }
     
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 4) {
             Divider()
             Text(period.capitalized)
                 .foregroundColor(periodColor)
@@ -200,11 +200,11 @@ public struct NumberAndStateView: View {
                 if widgetState != .none {
                     Image(systemName: Widget.stateFieldImage(widgetState))
                         .foregroundColor(Widget.stateFieldColor(widgetState))
-                        .padding(.horizontal, 5)
+                        .padding(.horizontal, 4)
                 }
                 Text(secondaryValue)
                     .foregroundColor(secondaryColor)
-                    .padding(.horizontal, 5)
+                    .padding(.horizontal, 4)
             }
             Divider()
         }
@@ -229,7 +229,7 @@ public struct FooterView<LastUpdateView: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 4) {
             Text(topic)
                 .font(font)
                 .fontWeight(.light)
