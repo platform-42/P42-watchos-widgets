@@ -154,6 +154,7 @@ public struct NumberAndStateView: View {
     var primaryValue: String
     var primaryColor: Color
     var primaryAnnotation: String? = nil
+    var primaryAnnotationColor: Color? = .secondary
     var secondaryValue: String
     var secondaryColor: Color
     var widgetState: WidgetState
@@ -165,6 +166,7 @@ public struct NumberAndStateView: View {
         primaryValue: String,
         primaryColor: Color,
         primaryAnnotation: String? = nil,
+        primaryAnnotationColor: Color? = .secondary,
         secondaryValue: String,
         secondaryColor: Color,
         widgetState: WidgetState
@@ -175,6 +177,7 @@ public struct NumberAndStateView: View {
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.primaryAnnotation = primaryAnnotation
+        self.primaryAnnotationColor = primaryAnnotationColor
         self.secondaryValue = secondaryValue
         self.secondaryColor = secondaryColor
         self.widgetState = widgetState
@@ -193,7 +196,7 @@ public struct NumberAndStateView: View {
                 if let annotation = primaryAnnotation {
                     Text(annotation)
                         .font(.caption)
-                        .foregroundColor(secondaryColor)
+                        .foregroundColor(primaryAnnotationColor)
                 }
             }
             HStack {
