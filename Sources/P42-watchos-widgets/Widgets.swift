@@ -6,11 +6,11 @@ import Foundation
 
 @available(iOS 14.0, *)
 public struct BadgedLabel: View {
-    var labelColor: Color
-    var font: Font
-    var backgroundColor: Color
-    var labelValue: String
-    var padding: EdgeInsets
+    let labelColor: Color
+    let font: Font
+    let backgroundColor: Color
+    let labelValue: String
+    let padding: EdgeInsets
     
     public init(
         labelColor: Color = .white,
@@ -40,12 +40,12 @@ public struct BadgedLabel: View {
 @available(iOS 16.0, *)
 public struct HeaderView: View {
     
-    var connectionColor: Color
-    var title: String
-    var background: Color
-    var font: Font
-    var labelColor: Color
-    var iconSize: CGFloat
+    let connectionColor: Color
+    let title: String
+    let background: Color
+    let font: Font
+    let labelColor: Color
+    let iconSize: CGFloat
     
     public init(
         connectionColor: Color,
@@ -91,11 +91,11 @@ public struct HeaderView: View {
 @available(iOS 13.0, *)
 public struct NumberAndStatView: View {
     var period: String
-    var periodColor: Color = .secondary
+    var periodColor: Color
     var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
-    var secondaryLabel: String? = nil
+    var secondaryLabel: String?
     var secondaryValue: String
     var widgetStatus: WidgetStatus
     
@@ -148,16 +148,16 @@ public struct NumberAndStatView: View {
 
 @available(iOS 13.0, *)
 public struct NumberAndStateView: View {
-    var period: String
-    var periodColor: Color = .secondary
-    var connectionColor: Color
-    var primaryValue: String
-    var primaryColor: Color
-    var primaryAnnotation: String? = nil
-    var primaryAnnotationColor: Color? = .secondary
-    var secondaryValue: String
-    var secondaryColor: Color
-    var widgetState: WidgetState
+    let period: String
+    let periodColor: Color
+    let connectionColor: Color
+    let primaryValue: String
+    let primaryColor: Color
+    let primaryAnnotation: String?
+    let primaryAnnotationColor: Color?
+    let secondaryValue: String
+    let secondaryColor: Color
+    let widgetState: WidgetState
     
     public init(
         period: String,
@@ -218,15 +218,18 @@ public struct NumberAndStateView: View {
 @available(iOS 13.0.0, *)
 public struct FooterView<LastUpdateView: View>: View {
     let topic: String
+    let topicColor: Color?
     let font: Font
     let lastUpdateView: LastUpdateView?
     
     public init(
         topic: String,
+        topicColor: Color? = .primary,
         font: Font = .footnote,
         @ViewBuilder lastUpdateView: () -> LastUpdateView?
     ) {
         self.topic = topic
+        self.topicColor = topicColor
         self.font = font
         self.lastUpdateView = lastUpdateView()
     }
@@ -236,7 +239,7 @@ public struct FooterView<LastUpdateView: View>: View {
             Text(topic)
                 .font(font)
                 .fontWeight(.light)
-                .foregroundColor(.primary)
+                .foregroundColor(topicColor)
             
             if let lastUpdateView {
                 lastUpdateView
