@@ -83,7 +83,7 @@ public struct HeaderView<Tooltip: View>: View {
                 Spacer()
                 ZStack(alignment: .topTrailing) {
 
-                    Image(systemName: "info.circle")
+                    Image(systemName: "info.circle.fill")
                         .foregroundColor(labelColor)
                         .font(.system(size: iconSize))
                         .contentShape(Rectangle())
@@ -100,6 +100,15 @@ public struct HeaderView<Tooltip: View>: View {
                             .offset(y: -8)
                             .transition(.opacity.combined(with: .scale))
                             .zIndex(1)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(.ultraThinMaterial)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(Color.primary.opacity(0.15))
+                                    )
+                            )
+
                     }
                 }
             }
