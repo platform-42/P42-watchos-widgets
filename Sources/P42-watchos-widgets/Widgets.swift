@@ -89,7 +89,7 @@ public struct HeaderView<Tooltip: View>: View {
                     .font(.system(size: iconSize))
                 Spacer()
                 ZStack(alignment: .topTrailing) {
-                    Image(systemName: "info.circle")
+                    Image(systemName: "info.circle.fill")
                         .foregroundColor(labelColor)
                         .font(.system(size: iconSize))
                         .contentShape(Rectangle())
