@@ -100,6 +100,12 @@ public struct HeaderView<Tooltip: View>: View {
                             .offset(y: -8)
                             .transition(.opacity.combined(with: .scale))
                             .zIndex(1)
+                            .font(.caption2)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(8)
                             .background(
                                 RoundedRectangle(cornerRadius: 8)
                                     .fill(.ultraThinMaterial)
