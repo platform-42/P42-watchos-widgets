@@ -48,7 +48,6 @@ public struct HeaderView<Tooltip: View>: View {
     let iconSize: CGFloat
 
     private let tooltip: Tooltip?
-
     @State private var showTooltip = false
 
     public init(
@@ -77,9 +76,15 @@ public struct HeaderView<Tooltip: View>: View {
                 .foregroundColor(labelColor)
                 .padding(.vertical, 4)
             HStack {
-                ZStack(alignment: .topLeading) {
-                    Image(systemName: "circlebadge.fill")
-                        .foregroundColor(connectionColor)
+                Image(systemName: "circlebadge.fill")
+                    .foregroundColor(connectionColor)
+                    .font(.system(size: iconSize))
+
+                Spacer()
+                ZStack(alignment: .topTrailing) {
+
+                    Image(systemName: "info.circle")
+                        .foregroundColor(labelColor)
                         .font(.system(size: iconSize))
                         .contentShape(Rectangle())
                         .onTapGesture {
@@ -97,8 +102,6 @@ public struct HeaderView<Tooltip: View>: View {
                             .zIndex(1)
                     }
                 }
-
-                Spacer()
             }
             .padding(.vertical, 4)
             .padding(.horizontal, 15)
@@ -109,9 +112,6 @@ public struct HeaderView<Tooltip: View>: View {
 }
 
 
-
-
-@available(iOS 13.0, *)
 public struct NumberAndStatView: View {
     var period: String
     var periodColor: Color
