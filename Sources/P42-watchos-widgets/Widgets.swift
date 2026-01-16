@@ -92,7 +92,6 @@ public struct HeaderView: View {
 public struct NumberAndStatView: View {
     var period: String
     var periodColor: Color
-    var connectionColor: Color
     var primaryValue: String
     var primaryColor: Color
     var secondaryLabel: String?
@@ -101,7 +100,6 @@ public struct NumberAndStatView: View {
     
     public init(period: String,
                 periodColor: Color = .secondary,
-                connectionColor: Color,
                 primaryValue: String,
                 primaryColor: Color,
                 secondaryLabel: String? = nil,
@@ -109,7 +107,6 @@ public struct NumberAndStatView: View {
                 widgetStatus: WidgetStatus) {
         self.period = period
         self.periodColor = periodColor
-        self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.secondaryLabel = secondaryLabel
@@ -150,7 +147,6 @@ public struct NumberAndStatView: View {
 public struct NumberAndStateView: View {
     let period: String
     let periodColor: Color
-    let connectionColor: Color
     let primaryValue: String
     let primaryColor: Color
     let primaryAnnotation: String?
@@ -162,7 +158,6 @@ public struct NumberAndStateView: View {
     public init(
         period: String,
         periodColor: Color = .secondary,
-        connectionColor: Color,
         primaryValue: String,
         primaryColor: Color,
         primaryAnnotation: String? = nil,
@@ -173,7 +168,6 @@ public struct NumberAndStateView: View {
     ) {
         self.period = period
         self.periodColor = periodColor
-        self.connectionColor = connectionColor
         self.primaryValue = primaryValue
         self.primaryColor = primaryColor
         self.primaryAnnotation = primaryAnnotation
