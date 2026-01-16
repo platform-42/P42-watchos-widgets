@@ -38,22 +38,27 @@ public struct BadgedLabel: View {
 
 
 @available(iOS 16.0, *)
-public struct HeaderView: View {
-    
+public struct HeaderView<Tooltip: View>: View {
+
     let connectionColor: Color
     let title: String
     let background: Color
     let font: Font
     let labelColor: Color
     let iconSize: CGFloat
-    
+
+    private let tooltip: Tooltip?
+
+    @State private var showTooltip = false
+
     public init(
         connectionColor: Color,
         title: String,
         background: Color = .blue,
         font: Font = .headline,
         labelColor: Color = .white,
-        iconSize: CGFloat = 16
+        iconSize: CGFloat = 16,
+        @ViewBuilder tooltip: () -> Tooltip? = { nil }
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -61,22 +66,38 @@ public struct HeaderView: View {
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
+        self.tooltip = tooltip()
     }
-    
+
     public var body: some View {
         ZStack {
-            // MARK: - Title (centered, independent)
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
                 .padding(.vertical, 4)
-            
-            // MARK: - Badge (left) + Status (right)
             HStack {
-                Image(systemName: "circlebadge.fill")
-                    .foregroundColor(connectionColor)
-                    .font(.system(size: iconSize))
+                ZStack(alignment: .topLeading) {
+                    Image(systemName: "circlebadge.fill")
+                        .foregroundColor(connectionColor)
+                        .font(.system(size: iconSize))
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            if tooltip != nil {
+                                withAnimation(.easeInOut(duration: 0.15)) {
+                                    showTooltip.toggle()
+                                }
+                            }
+                        }
+
+                    if showTooltip, let tooltip {
+                        tooltip
+                            .offset(y: -8)
+                            .transition(.opacity.combined(with: .scale))
+                            .zIndex(1)
+                    }
+                }
+
                 Spacer()
             }
             .padding(.vertical, 4)
@@ -86,6 +107,8 @@ public struct HeaderView: View {
         .background(background)
     }
 }
+
+
 
 
 @available(iOS 13.0, *)
