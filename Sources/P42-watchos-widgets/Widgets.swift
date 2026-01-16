@@ -46,7 +46,6 @@ public struct HeaderView<Tooltip: View>: View {
     let font: Font
     let labelColor: Color
     let iconSize: CGFloat
-
     private let tooltip: Tooltip?
     @State private var showTooltip = false
 
@@ -70,6 +69,15 @@ public struct HeaderView<Tooltip: View>: View {
 
     public var body: some View {
         ZStack {
+            if showTooltip {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            showTooltip = false
+                        }
+                    }
+            }
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
@@ -79,11 +87,9 @@ public struct HeaderView<Tooltip: View>: View {
                 Image(systemName: "circlebadge.fill")
                     .foregroundColor(connectionColor)
                     .font(.system(size: iconSize))
-
                 Spacer()
                 ZStack(alignment: .topTrailing) {
-
-                    Image(systemName: "info.circle.fill")
+                    Image(systemName: "info.circle")
                         .foregroundColor(labelColor)
                         .font(.system(size: iconSize))
                         .contentShape(Rectangle())
@@ -94,27 +100,22 @@ public struct HeaderView<Tooltip: View>: View {
                                 }
                             }
                         }
-
                     if showTooltip, let tooltip {
                         tooltip
-                            .offset(y: -8)
-                            .transition(.opacity.combined(with: .scale))
-                            .zIndex(1)
                             .font(.caption2)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
-                            .padding(8)
+                            .frame(maxWidth: WKInterfaceDevice.current().screenBounds.width * 0.6)
+                            .padding(6)
                             .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(.ultraThinMaterial)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.primary.opacity(0.15))
-                                    )
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(Color.black.opacity(0.85))
                             )
-
+                            .offset(y: -8)
+                            .transition(.opacity.combined(with: .scale))
+                            .zIndex(1)
                     }
                 }
             }
@@ -125,6 +126,7 @@ public struct HeaderView<Tooltip: View>: View {
         .background(background)
     }
 }
+
 
 
 public struct NumberAndStatView: View {
