@@ -4,41 +4,60 @@ import SwiftUI
 import Foundation
 
 
+public enum BadgedLabelContent {
+    case text(String)
+    case systemImage(name: String)
+}
+
 @available(iOS 14.0, *)
 public struct BadgedLabel: View {
-    let labelColor: Color
+
+    let content: BadgedLabelContent
+    let foregroundColor: Color
     let font: Font
     let backgroundColor: Color
-    let labelValue: String
     let padding: EdgeInsets
-    
+
     public init(
-        labelColor: Color = .white,
+        content: BadgedLabelContent,
+        foregroundColor: Color = .white,
         font: Font = .caption2,
         backgroundColor: Color = .blue,
-        labelValue: String,
         padding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
     ) {
-        self.labelColor = labelColor
+        self.content = content
+        self.foregroundColor = foregroundColor
         self.font = font
         self.backgroundColor = backgroundColor
-        self.labelValue = labelValue
         self.padding = padding
     }
-    
+
     public var body: some View {
-        Text(labelValue)
-            .font(font)
-            .foregroundColor(labelColor)
+        label
             .padding(padding)
             .background(backgroundColor)
             .clipShape(Capsule())
+    }
+
+    @ViewBuilder
+    private var label: some View {
+        switch content {
+        case .text(let value):
+            Text(value)
+                .font(font)
+                .foregroundColor(foregroundColor)
+
+        case .systemImage(let name):
+            Image(systemName: name)
+                .font(font)
+                .foregroundColor(foregroundColor)
+        }
     }
 }
 
 
 @available(iOS 16.0, *)
-public struct HeaderView<Tooltip: View>: View {
+public struct HeaderView<Accessory: View>: View {
 
     let connectionColor: Color
     let title: String
@@ -46,8 +65,7 @@ public struct HeaderView<Tooltip: View>: View {
     let font: Font
     let labelColor: Color
     let iconSize: CGFloat
-    private let tooltip: Tooltip?
-    @State private var showTooltip = false
+    private let accessory: Accessory?
 
     public init(
         connectionColor: Color,
@@ -56,7 +74,7 @@ public struct HeaderView<Tooltip: View>: View {
         font: Font = .headline,
         labelColor: Color = .white,
         iconSize: CGFloat = 16,
-        @ViewBuilder tooltip: () -> Tooltip? = { nil }
+        @ViewBuilder accessory: () -> Accessory? = { nil }
     ) {
         self.connectionColor = connectionColor
         self.title = title
@@ -64,59 +82,26 @@ public struct HeaderView<Tooltip: View>: View {
         self.font = font
         self.labelColor = labelColor
         self.iconSize = iconSize
-        self.tooltip = tooltip()
+        self.accessory = accessory()
     }
 
     public var body: some View {
         ZStack {
-            if showTooltip {
-                Color.clear
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.15)) {
-                            showTooltip = false
-                        }
-                    }
-            }
             Text(title.capitalized)
                 .font(font)
                 .fontWeight(.semibold)
                 .foregroundColor(labelColor)
                 .padding(.vertical, 4)
+
             HStack {
                 Image(systemName: "circlebadge.fill")
                     .foregroundColor(connectionColor)
                     .font(.system(size: iconSize))
+
                 Spacer()
-                ZStack(alignment: .topTrailing) {
-                    Image(systemName: "info.circle.fill")
-                        .foregroundColor(labelColor)
-                        .font(.system(size: iconSize))
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            if tooltip != nil {
-                                withAnimation(.easeInOut(duration: 0.15)) {
-                                    showTooltip.toggle()
-                                }
-                            }
-                        }
-                    if showTooltip, let tooltip {
-                        tooltip
-                            .font(.caption2)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(maxWidth: WKInterfaceDevice.current().screenBounds.width * 0.6)
-                            .padding(6)
-                            .background(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .fill(Color.black.opacity(0.85))
-                            )
-                            .offset(y: -8)
-                            .transition(.opacity.combined(with: .scale))
-                            .zIndex(1)
-                    }
+
+                if let accessory {
+                    accessory
                 }
             }
             .padding(.vertical, 4)
@@ -126,8 +111,6 @@ public struct HeaderView<Tooltip: View>: View {
         .background(background)
     }
 }
-
-
 
 public struct NumberAndStatView: View {
     var period: String
@@ -171,9 +154,10 @@ public struct NumberAndStatView: View {
                         .padding(.horizontal, 4)
                 }
                 BadgedLabel(
-                    labelColor: Widget.statusFieldColor(widgetStatus),
+                    content: BadgedLabelContent.text(String(secondaryValue)),
+                    foregroundColor: Widget.statusFieldColor(widgetStatus),
+                    font: .caption2,
                     backgroundColor: Widget.statusFieldBackgroundColor(widgetStatus),
-                    labelValue: secondaryValue,
                     padding: EdgeInsets(top: 2, leading: 4, bottom: 2, trailing: 4)
                 )
             }
