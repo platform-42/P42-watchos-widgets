@@ -154,7 +154,7 @@ public struct NumberAndStatView: View {
                         .padding(.horizontal, 4)
                 }
                 BadgedLabel(
-                    content: BadgedLabelContent.text(String(secondaryValue)),
+                    content: .text(String(secondaryValue)),
                     foregroundColor: Widget.statusFieldColor(widgetStatus),
                     font: .caption2,
                     backgroundColor: Widget.statusFieldBackgroundColor(widgetStatus),
