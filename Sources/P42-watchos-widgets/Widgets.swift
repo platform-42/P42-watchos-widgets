@@ -130,7 +130,7 @@ private extension HeaderView {
             Button {
                 showInfo.toggle()
             } label: {
-                Image(systemName: "info.circle")
+                Image(systemName: "info.circle.fill")
                     .foregroundColor(Widget.stateFieldColor(.neutral))
                     .font(.system(size: iconSize))
             }
