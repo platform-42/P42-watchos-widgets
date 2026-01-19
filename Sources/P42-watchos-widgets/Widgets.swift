@@ -134,6 +134,7 @@ private extension HeaderView {
                     .foregroundColor(.yellow)
                     .font(.system(size: iconSize))
             }
+            .buttonStyle(.plain)
         }
     }
 }
