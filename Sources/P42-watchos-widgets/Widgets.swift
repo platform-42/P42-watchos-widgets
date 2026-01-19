@@ -95,6 +95,7 @@ public struct HeaderView: View {
     }
 }
 
+@available(iOS 16.0, *)
 private extension HeaderView {
 
     var titleView: some View {
@@ -123,7 +124,7 @@ private extension HeaderView {
 
     @ViewBuilder
     var infoBadge: some View {
-        if let infoText {
+        if let _ = infoText {
             BadgedLabel(
                 content: .systemImage( name: "info.circle"),
                 foregroundColor: .black,
