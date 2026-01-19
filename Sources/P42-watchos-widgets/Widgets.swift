@@ -85,6 +85,8 @@ public struct HeaderView: View {
         self.infoText = infoText
     }
 
+    @State private var showInfo = false
+
     public var body: some View {
         ZStack {
             titleView
@@ -110,7 +112,7 @@ private extension HeaderView {
         HStack {
             statusIndicator
             Spacer()
-            infoBadge
+            infoButton
         }
         .padding(.vertical, 4)
         .padding(.horizontal, 15)
@@ -123,14 +125,15 @@ private extension HeaderView {
     }
 
     @ViewBuilder
-    var infoBadge: some View {
+    var infoButton: some View {
         if let _ = infoText {
-            BadgedLabel(
-                content: .systemImage( name: "info.circle"),
-                foregroundColor: .black,
-                font: .caption2,
-                backgroundColor: .yellow
-            )
+            Button {
+                showInfo.toggle()
+            } label: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.yellow)
+                    .font(.system(size: iconSize))
+            }
         }
     }
 }
