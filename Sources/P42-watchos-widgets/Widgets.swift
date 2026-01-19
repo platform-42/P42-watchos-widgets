@@ -57,6 +57,84 @@ public struct BadgedLabel: View {
 
 
 @available(iOS 16.0, *)
+public struct HeaderView: View {
+
+    let connectionColor: Color
+    let title: String
+    let background: Color
+    let font: Font
+    let labelColor: Color
+    let iconSize: CGFloat
+    let infoText: String?
+
+    public init(
+        connectionColor: Color,
+        title: String,
+        background: Color = .blue,
+        font: Font = .headline,
+        labelColor: Color = .white,
+        iconSize: CGFloat = 16,
+        infoText: String? = nil
+    ) {
+        self.connectionColor = connectionColor
+        self.title = title
+        self.background = background
+        self.font = font
+        self.labelColor = labelColor
+        self.iconSize = iconSize
+        self.infoText = infoText
+    }
+
+    public var body: some View {
+        ZStack {
+            titleView
+            contentRow
+        }
+        .frame(maxWidth: .infinity)
+        .background(background)
+    }
+}
+
+private extension HeaderView {
+
+    var titleView: some View {
+        Text(title.capitalized)
+            .font(font)
+            .fontWeight(.semibold)
+            .foregroundColor(labelColor)
+            .padding(.vertical, 4)
+    }
+
+    var contentRow: some View {
+        HStack {
+            statusIndicator
+            Spacer()
+            infoBadge
+        }
+        .padding(.vertical, 4)
+        .padding(.horizontal, 15)
+    }
+
+    var statusIndicator: some View {
+        Image(systemName: "circlebadge.fill")
+            .foregroundColor(connectionColor)
+            .font(.system(size: iconSize))
+    }
+
+    @ViewBuilder
+    var infoBadge: some View {
+        if let infoText {
+            BadgedLabel(
+                content: .systemImage( name: "info.circle"),
+                foregroundColor: .black,
+                font: .caption2,
+                backgroundColor: .yellow
+            )
+        }
+    }
+}
+
+/*
 public struct HeaderView<Accessory: View>: View {
 
     let connectionColor: Color
@@ -111,6 +189,7 @@ public struct HeaderView<Accessory: View>: View {
         .background(background)
     }
 }
+ */
 
 public struct NumberAndStatView: View {
     var period: String
