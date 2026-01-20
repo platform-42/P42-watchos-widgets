@@ -139,62 +139,6 @@ private extension HeaderView {
     }
 }
 
-/*
-public struct HeaderView<Accessory: View>: View {
-
-    let connectionColor: Color
-    let title: String
-    let background: Color
-    let font: Font
-    let labelColor: Color
-    let iconSize: CGFloat
-    private let accessory: Accessory?
-
-    public init(
-        connectionColor: Color,
-        title: String,
-        background: Color = .blue,
-        font: Font = .headline,
-        labelColor: Color = .white,
-        iconSize: CGFloat = 16,
-        @ViewBuilder accessory: () -> Accessory? = { nil }
-    ) {
-        self.connectionColor = connectionColor
-        self.title = title
-        self.background = background
-        self.font = font
-        self.labelColor = labelColor
-        self.iconSize = iconSize
-        self.accessory = accessory()
-    }
-
-    public var body: some View {
-        ZStack {
-            Text(title.capitalized)
-                .font(font)
-                .fontWeight(.semibold)
-                .foregroundColor(labelColor)
-                .padding(.vertical, 4)
-
-            HStack {
-                Image(systemName: "circlebadge.fill")
-                    .foregroundColor(connectionColor)
-                    .font(.system(size: iconSize))
-
-                Spacer()
-
-                if let accessory {
-                    accessory
-                }
-            }
-            .padding(.vertical, 4)
-            .padding(.horizontal, 15)
-        }
-        .frame(maxWidth: .infinity)
-        .background(background)
-    }
-}
- */
 
 public struct NumberAndStatView: View {
     var period: String
@@ -351,4 +295,205 @@ public struct FooterView<LastUpdateView: View>: View {
 }
 
 
+public struct MetricSummary: View {
+
+    // MARK: - Public Inputs
+    public let todayValue: Int
+    public let yesterdayValue: Int
+    public let averageValue: Int
+    public let averageDelayMinutes: Int
+    public let delayThresholdMinutes: Int
+
+    // MARK: - Initializer
+    public init(
+        todayValue: Int,
+        yesterdayValue: Int,
+        averageValue: Int,
+        averageDelayMinutes: Int = 0,
+        delayThresholdMinutes: Int = 15
+    ) {
+        self.todayValue = todayValue
+        self.yesterdayValue = yesterdayValue
+        self.averageValue = averageValue
+        self.averageDelayMinutes = averageDelayMinutes
+        self.delayThresholdMinutes = delayThresholdMinutes
+    }
+
+    // MARK: - Body
+    public var body: some View {
+        VStack(spacing: 8) {
+
+            // Inline title
+            Text("Page Hits")
+                .font(.headline)
+                .foregroundColor(Color.blue.opacity(0.8))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+
+            // Today (NOW)
+            dashboardRow(
+                value: todayValue,
+                label: "NOW",
+                showArrow: true,
+                isUp: todayValue >= averageValue,
+                showClock: false
+            )
+
+            // Yesterday (YTD)
+            dashboardRow(
+                value: yesterdayValue,
+                label: "YTD",
+                showArrow: true,
+                isUp: yesterdayValue >= averageValue,
+                showClock: false
+            )
+
+            // Average (AVG)
+            dashboardRow(
+                value: averageValue,
+                label: "AVG",
+                showArrow: false,
+                isUp: true,
+                showClock: averageDelayMinutes >= delayThresholdMinutes
+            )
+        }
+        .padding(.vertical)
+    }
+}
+
+// MARK: - Internal DashboardRow
+
+extension MetricSummary {
+
+    private func dashboardRow(
+        value: Int,
+        label: String,
+        showArrow: Bool,
+        isUp: Bool,
+        showClock: Bool
+    ) -> some View {
+        HStack(spacing: 0) {
+
+            // Status badge
+            statusBadge(
+                showArrow: showArrow,
+                isUp: isUp,
+                showClock: showClock
+            )
+
+            Spacer(minLength: 8)
+
+            // Number
+            Text("\(value)")
+                .font(.system(size: 28, weight: .bold))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 8)
+
+            // Label
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(.gray)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 6)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                // Base neutral gradient
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.gray.opacity(0.28),
+                            Color.gray.opacity(0.12)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                // Semantic wash for arrow rows
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(
+                            semanticCellOverlay(
+                                isUp: isUp,
+                                enabled: showArrow
+                            )
+                        )
+                )
+        )
+    }
+}
+
+// MARK: - Badge & Gradients
+
+extension MetricSummary {
+
+    @ViewBuilder
+    private func statusBadge(
+        showArrow: Bool,
+        isUp: Bool,
+        showClock: Bool
+    ) -> some View {
+        if showArrow {
+            ZStack {
+                Circle()
+                    .fill(arrowBadgeBackground(isUp: isUp))
+                    .frame(width: 28, height: 28)
+
+                Image(systemName: isUp ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                    .foregroundColor(isUp ? .green : .red)
+                    .font(.system(size: 14, weight: .bold))
+            }
+        } else if showClock {
+            ZStack {
+                Circle()
+                    .fill(clockBadgeBackground())
+                    .frame(width: 28, height: 28)
+
+                Image(systemName: "clock.fill")
+                    .foregroundColor(Color.blue.opacity(0.9))
+                    .font(.system(size: 13, weight: .semibold))
+            }
+        } else {
+            Spacer()
+                .frame(width: 28)
+        }
+    }
+
+    private func arrowBadgeBackground(isUp: Bool) -> RadialGradient {
+        RadialGradient(
+            gradient: Gradient(colors: [
+                (isUp ? Color.green : Color.red).opacity(0.30),
+                Color.gray.opacity(0.15)
+            ]),
+            center: .center,
+            startRadius: 2,
+            endRadius: 16
+        )
+    }
+
+    private func clockBadgeBackground() -> RadialGradient {
+        RadialGradient(
+            gradient: Gradient(colors: [
+                Color.blue.opacity(0.25),
+                Color.gray.opacity(0.15)
+            ]),
+            center: .center,
+            startRadius: 2,
+            endRadius: 16
+        )
+    }
+
+    private func semanticCellOverlay(isUp: Bool, enabled: Bool) -> LinearGradient {
+        LinearGradient(
+            gradient: Gradient(colors: [
+                enabled ? (isUp ? Color.green : Color.red).opacity(0.18) : Color.clear,
+                Color.clear
+            ]),
+            startPoint: .topLeading,
+            endPoint: .center
+        )
+    }
+}
 
