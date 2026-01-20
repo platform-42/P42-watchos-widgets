@@ -452,7 +452,7 @@ extension MetricSummary {
                     .frame(width: 28, height: 28)
 
                 Image(systemName: "clock.fill")
-                    .foregroundColor(Color.blue.opacity(0.9))
+                    .foregroundColor(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.9))
                     .font(.system(size: 13, weight: .semibold))
             }
         } else {
@@ -476,7 +476,7 @@ extension MetricSummary {
     private func clockBadgeBackground() -> RadialGradient {
         RadialGradient(
             gradient: Gradient(colors: [
-                Color.blue.opacity(0.25),
+                Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.25),
                 Color.gray.opacity(0.15)
             ]),
             center: .center,
