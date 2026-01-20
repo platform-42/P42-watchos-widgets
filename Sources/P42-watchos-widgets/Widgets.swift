@@ -11,13 +11,13 @@ public enum BadgedLabelContent {
 
 @available(iOS 14.0, *)
 public struct BadgedLabel: View {
-
+    
     let content: BadgedLabelContent
     let foregroundColor: Color
     let font: Font
     let backgroundColor: Color
     let padding: EdgeInsets
-
+    
     public init(
         content: BadgedLabelContent,
         foregroundColor: Color = .white,
@@ -31,14 +31,14 @@ public struct BadgedLabel: View {
         self.backgroundColor = backgroundColor
         self.padding = padding
     }
-
+    
     public var body: some View {
         label
             .padding(padding)
             .background(backgroundColor)
             .clipShape(Capsule())
     }
-
+    
     @ViewBuilder
     private var label: some View {
         switch content {
@@ -46,7 +46,7 @@ public struct BadgedLabel: View {
             Text(value)
                 .font(font)
                 .foregroundColor(foregroundColor)
-
+            
         case .systemImage(let name):
             Image(systemName: name)
                 .font(font)
@@ -58,7 +58,7 @@ public struct BadgedLabel: View {
 
 @available(iOS 16.0, *)
 public struct HeaderView: View {
-
+    
     let connectionColor: Color
     let title: String
     let background: Color
@@ -66,7 +66,7 @@ public struct HeaderView: View {
     let labelColor: Color
     let iconSize: CGFloat
     let infoText: String?
-
+    
     public init(
         connectionColor: Color,
         title: String,
@@ -84,9 +84,9 @@ public struct HeaderView: View {
         self.iconSize = iconSize
         self.infoText = infoText
     }
-
+    
     @State private var showInfo = false
-
+    
     public var body: some View {
         ZStack {
             titleView
@@ -99,7 +99,7 @@ public struct HeaderView: View {
 
 @available(iOS 16.0, *)
 private extension HeaderView {
-
+    
     var titleView: some View {
         Text(title.capitalized)
             .font(font)
@@ -107,7 +107,7 @@ private extension HeaderView {
             .foregroundColor(labelColor)
             .padding(.vertical, 4)
     }
-
+    
     var contentRow: some View {
         HStack {
             statusIndicator
@@ -117,13 +117,13 @@ private extension HeaderView {
         .padding(.vertical, 4)
         .padding(.horizontal, 15)
     }
-
+    
     var statusIndicator: some View {
         Image(systemName: "circlebadge.fill")
             .foregroundColor(connectionColor)
             .font(.system(size: iconSize))
     }
-
+    
     @ViewBuilder
     var infoButton: some View {
         if let _ = infoText {
@@ -296,41 +296,39 @@ public struct FooterView<LastUpdateView: View>: View {
 
 
 public struct MetricSummary: View {
-
-    // MARK: - Public Inputs
-    public let todayValue: Int
-    public let yesterdayValue: Int
-    public let averageValue: Int
+    
+    public let title: String
+    public let todayValue: String
+    public let yesterdayValue: String
+    public let averageValue: String
     public let averageDelayMinutes: Int
     public let delayThresholdMinutes: Int
-
-    // MARK: - Initializer
+    
     public init(
-        todayValue: Int,
-        yesterdayValue: Int,
-        averageValue: Int,
+        title: String,
+        todayValue: String,
+        yesterdayValue: String,
+        averageValue: String,
         averageDelayMinutes: Int = 0,
         delayThresholdMinutes: Int = 15
     ) {
+        self.title = title
         self.todayValue = todayValue
         self.yesterdayValue = yesterdayValue
         self.averageValue = averageValue
         self.averageDelayMinutes = averageDelayMinutes
         self.delayThresholdMinutes = delayThresholdMinutes
     }
-
-    // MARK: - Body
+    
     public var body: some View {
         VStack(spacing: 8) {
-
-            // Inline title
-            Text("Page Hits")
+            
+            Text(title)
                 .font(.headline)
                 .foregroundColor(Color.blue.opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-
-            // Today (NOW)
+            
             dashboardRow(
                 value: todayValue,
                 label: "NOW",
@@ -338,8 +336,7 @@ public struct MetricSummary: View {
                 isUp: todayValue >= averageValue,
                 showClock: false
             )
-
-            // Yesterday (YTD)
+            
             dashboardRow(
                 value: yesterdayValue,
                 label: "YTD",
@@ -347,8 +344,7 @@ public struct MetricSummary: View {
                 isUp: yesterdayValue >= averageValue,
                 showClock: false
             )
-
-            // Average (AVG)
+            
             dashboardRow(
                 value: averageValue,
                 label: "AVG",
@@ -361,35 +357,31 @@ public struct MetricSummary: View {
     }
 }
 
-// MARK: - Internal DashboardRow
 
 extension MetricSummary {
-
+    
     private func dashboardRow(
-        value: Int,
+        value: String,
         label: String,
         showArrow: Bool,
         isUp: Bool,
         showClock: Bool
     ) -> some View {
         HStack(spacing: 0) {
-
-            // Status badge
+            
             statusBadge(
                 showArrow: showArrow,
                 isUp: isUp,
                 showClock: showClock
             )
-
+            
             Spacer(minLength: 8)
-
-            // Number
-            Text("\(value)")
+            
+            Text(value)
                 .font(.system(size: 28, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
-
-            // Label
+            
             Text(label)
                 .font(.caption2)
                 .foregroundColor(.gray)
@@ -400,7 +392,6 @@ extension MetricSummary {
         .padding(.vertical, 6)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                // Base neutral gradient
                 .fill(
                     LinearGradient(
                         gradient: Gradient(colors: [
@@ -411,7 +402,6 @@ extension MetricSummary {
                         endPoint: .trailing
                     )
                 )
-                // Semantic wash for arrow rows
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .fill(
@@ -425,10 +415,9 @@ extension MetricSummary {
     }
 }
 
-// MARK: - Badge & Gradients
 
 extension MetricSummary {
-
+    
     @ViewBuilder
     private func statusBadge(
         showArrow: Bool,
@@ -440,7 +429,7 @@ extension MetricSummary {
                 Circle()
                     .fill(arrowBadgeBackground(isUp: isUp))
                     .frame(width: 28, height: 28)
-
+                
                 Image(systemName: isUp ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
                     .foregroundColor(isUp ? .green : .red)
                     .font(.system(size: 14, weight: .bold))
@@ -450,7 +439,7 @@ extension MetricSummary {
                 Circle()
                     .fill(clockBadgeBackground())
                     .frame(width: 28, height: 28)
-
+                
                 Image(systemName: "clock.fill")
                     .foregroundColor(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.9))
                     .font(.system(size: 13, weight: .semibold))
@@ -460,7 +449,7 @@ extension MetricSummary {
                 .frame(width: 28)
         }
     }
-
+    
     private func arrowBadgeBackground(isUp: Bool) -> RadialGradient {
         RadialGradient(
             gradient: Gradient(colors: [
@@ -472,7 +461,7 @@ extension MetricSummary {
             endRadius: 16
         )
     }
-
+    
     private func clockBadgeBackground() -> RadialGradient {
         RadialGradient(
             gradient: Gradient(colors: [
@@ -484,7 +473,7 @@ extension MetricSummary {
             endRadius: 16
         )
     }
-
+    
     private func semanticCellOverlay(isUp: Bool, enabled: Bool) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
