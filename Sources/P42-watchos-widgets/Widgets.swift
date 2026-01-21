@@ -377,7 +377,7 @@ public struct MetricSummary: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 6)
+                .padding(.top, 4)
                 .padding(.horizontal)
         }
         .padding(.vertical)
