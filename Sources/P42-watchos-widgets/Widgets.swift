@@ -298,12 +298,16 @@ public struct FooterView<LastUpdateView: View>: View {
 public struct MetricSummary: View {
     
     public let title: String
+    public let propertyName: String   // ← NEW (mandatory)
+
     public let todayValue: String
     public let todayLabel: String
     public let todayState: WidgetState
+
     public let yesterdayValue: String
     public let yesterdayLabel: String
     public let yesterdayState: WidgetState
+
     public let averageValue: String
     public let averageLabel: String
     public let averageDelayMinutes: Int
@@ -311,6 +315,7 @@ public struct MetricSummary: View {
     
     public init(
         title: String,
+        propertyName: String,
         todayValue: String,
         todayLabel: String = "Today",
         todayState: WidgetState = .neutral,
@@ -323,6 +328,7 @@ public struct MetricSummary: View {
         delayThresholdMinutes: Int = 15
     ) {
         self.title = title
+        self.propertyName = propertyName
         self.todayValue = todayValue
         self.todayLabel = todayLabel
         self.todayState = todayState
@@ -367,6 +373,12 @@ public struct MetricSummary: View {
                 state: .neutral,
                 showClock: averageDelayMinutes >= delayThresholdMinutes
             )
+            Text(propertyName)
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, 6)
+                .padding(.horizontal)
         }
         .padding(.vertical)
     }
