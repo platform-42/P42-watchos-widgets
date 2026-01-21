@@ -299,23 +299,38 @@ public struct MetricSummary: View {
     
     public let title: String
     public let todayValue: String
+    public let todayLabel: String
+    public let todayState: WidgetState
     public let yesterdayValue: String
+    public let yesterdayLabel: String
+    public let yesterdayState: WidgetState
     public let averageValue: String
+    public let averageLabel: String
     public let averageDelayMinutes: Int
     public let delayThresholdMinutes: Int
     
     public init(
         title: String,
         todayValue: String,
+        todayLabel: String = "Today",
+        todayState: WidgetState = .neutral,
         yesterdayValue: String,
+        yesterdayLabel: String = "Yesterday",
+        yesterdayState: WidgetState = .neutral,
         averageValue: String,
+        averageLabel: String = "Average",
         averageDelayMinutes: Int = 0,
         delayThresholdMinutes: Int = 15
     ) {
         self.title = title
         self.todayValue = todayValue
+        self.todayLabel = todayLabel
+        self.todayState = todayState
         self.yesterdayValue = yesterdayValue
+        self.yesterdayLabel = yesterdayLabel
+        self.yesterdayState = yesterdayState
         self.averageValue = averageValue
+        self.averageLabel = averageLabel
         self.averageDelayMinutes = averageDelayMinutes
         self.delayThresholdMinutes = delayThresholdMinutes
     }
@@ -331,25 +346,25 @@ public struct MetricSummary: View {
             
             dashboardRow(
                 value: todayValue,
-                label: "NOW",
+                label: todayLabel,
                 showArrow: true,
-                isUp: todayValue >= averageValue,
+                state: todayState,
                 showClock: false
             )
             
             dashboardRow(
                 value: yesterdayValue,
-                label: "YTD",
+                label: yesterdayLabel,
                 showArrow: true,
-                isUp: yesterdayValue >= averageValue,
+                state: yesterdayState,
                 showClock: false
             )
             
             dashboardRow(
                 value: averageValue,
-                label: "AVG",
+                label: averageLabel,
                 showArrow: false,
-                isUp: true,
+                state: .neutral,
                 showClock: averageDelayMinutes >= delayThresholdMinutes
             )
         }
@@ -364,14 +379,14 @@ extension MetricSummary {
         value: String,
         label: String,
         showArrow: Bool,
-        isUp: Bool,
+        state: WidgetState,
         showClock: Bool
     ) -> some View {
         HStack(spacing: 0) {
             
             statusBadge(
                 showArrow: showArrow,
-                isUp: isUp,
+                state: state,
                 showClock: showClock
             )
             
@@ -407,7 +422,7 @@ extension MetricSummary {
                     RoundedRectangle(cornerRadius: 12)
                         .fill(
                             semanticCellOverlay(
-                                isUp: isUp,
+                                state: state,
                                 enabled: showArrow
                             )
                         )
@@ -422,17 +437,17 @@ extension MetricSummary {
     @ViewBuilder
     private func statusBadge(
         showArrow: Bool,
-        isUp: Bool,
+        state: WidgetState,
         showClock: Bool
     ) -> some View {
         if showArrow {
             ZStack {
                 Circle()
-                    .fill(arrowBadgeBackground(isUp: isUp))
+                    .fill(arrowBadgeBackground(state: state))
                     .frame(width: 28, height: 28)
                 
-                Image(systemName: isUp ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
-                    .foregroundColor(isUp ? .green : .red)
+                Image(systemName: Widget.stateFieldImage(state))
+                    .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: 14, weight: .bold))
             }
         } else if showClock {
@@ -442,7 +457,7 @@ extension MetricSummary {
                     .frame(width: 28, height: 28)
                 
                 Image(systemName: "clock.fill")
-                    .foregroundColor(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.9))
+                    .foregroundColor(Widget.stateFieldColor(state).opacity(0.9))
                     .font(.system(size: 13, weight: .semibold))
             }
         } else {
@@ -451,10 +466,10 @@ extension MetricSummary {
         }
     }
     
-    private func arrowBadgeBackground(isUp: Bool) -> RadialGradient {
+    private func arrowBadgeBackground(state: WidgetState) -> RadialGradient {
         RadialGradient(
             gradient: Gradient(colors: [
-                (isUp ? Color.green : Color.red).opacity(0.30),
+                Widget.stateFieldColor(state).opacity(0.30),
                 Color.gray.opacity(0.15)
             ]),
             center: .center,
@@ -475,10 +490,10 @@ extension MetricSummary {
         )
     }
     
-    private func semanticCellOverlay(isUp: Bool, enabled: Bool) -> LinearGradient {
+    private func semanticCellOverlay(state: WidgetState, enabled: Bool) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
-                enabled ? (isUp ? Color.green : Color.red).opacity(0.18) : Color.clear,
+                enabled ? Widget.stateFieldColor(state).opacity(0.18) : Color.clear,
                 Color.clear
             ]),
             startPoint: .topLeading,
