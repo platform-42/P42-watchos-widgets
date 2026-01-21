@@ -311,7 +311,7 @@ public struct MetricSummary: View {
     public let averageValue: String
     public let averageLabel: String
     public let latencyReporting: Bool
-    public let delayThresholdMinutes: Int
+    public let latency: Int
     
     public init(
         title: String,
@@ -325,7 +325,7 @@ public struct MetricSummary: View {
         averageValue: String,
         averageLabel: String = "Average",
         latencyReporting: Bool = false,
-        delayThresholdMinutes: Int = 15
+        latency: Int
     ) {
         self.title = title
         self.propertyName = propertyName
@@ -338,7 +338,7 @@ public struct MetricSummary: View {
         self.averageValue = averageValue
         self.averageLabel = averageLabel
         self.latencyReporting = latencyReporting
-        self.delayThresholdMinutes = delayThresholdMinutes
+        self.latency = latency
     }
     
     public var body: some View {
