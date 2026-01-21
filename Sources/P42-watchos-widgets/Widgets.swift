@@ -310,8 +310,7 @@ public struct MetricSummary: View {
 
     public let averageValue: String
     public let averageLabel: String
-    public let latencyReporting: Bool
-    public let latency: Int
+    public let latency: String?
     
     public init(
         title: String,
@@ -324,8 +323,7 @@ public struct MetricSummary: View {
         yesterdayState: WidgetState = .neutral,
         averageValue: String,
         averageLabel: String = "Average",
-        latencyReporting: Bool = false,
-        latency: Int
+        latency: String? = nil
     ) {
         self.title = title
         self.propertyName = propertyName
@@ -337,7 +335,6 @@ public struct MetricSummary: View {
         self.yesterdayState = yesterdayState
         self.averageValue = averageValue
         self.averageLabel = averageLabel
-        self.latencyReporting = latencyReporting
         self.latency = latency
     }
     
@@ -353,22 +350,20 @@ public struct MetricSummary: View {
                 value: todayValue,
                 label: todayLabel,
                 showArrow: true,
-                state: todayState,
-                showClock: false
+                state: todayState
             )
             dashboardRow(
                 value: yesterdayValue,
                 label: yesterdayLabel,
                 showArrow: true,
-                state: yesterdayState,
-                showClock: false
+                state: yesterdayState
             )
             dashboardRow(
                 value: averageValue,
                 label: averageLabel,
                 showArrow: false,
                 state: .neutral,
-                showClock: latencyReporting
+                latency: latency
             )
             Text(propertyName)
                 .font(.footnote)
@@ -388,14 +383,14 @@ extension MetricSummary {
         label: String,
         showArrow: Bool,
         state: WidgetState,
-        showClock: Bool
+        latency: String? = nil
     ) -> some View {
         HStack(spacing: 0) {
             
             statusBadge(
                 showArrow: showArrow,
                 state: state,
-                showClock: showClock
+                latency: latency
             )
             
             Spacer(minLength: 8)
@@ -446,33 +441,45 @@ extension MetricSummary {
     private func statusBadge(
         showArrow: Bool,
         state: WidgetState,
-        showClock: Bool
+        latency: String?
     ) -> some View {
+
         if showArrow {
             ZStack {
                 Circle()
                     .fill(arrowBadgeBackground(state: state))
                     .frame(width: 28, height: 28)
-                
+
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: 14, weight: .bold))
             }
-        } else if showClock {
+
+        } else if let latency {
             ZStack {
                 Circle()
                     .fill(clockBadgeBackground())
                     .frame(width: 28, height: 28)
-                
-                Image(systemName: "clock.fill")
-                    .foregroundColor(Widget.stateFieldColor(state).opacity(0.9))
-                    .font(.system(size: 13, weight: .semibold))
+
+                VStack(spacing: 1) {
+                    Image(systemName: "clock.fill")
+                        .font(.system(size: 10, weight: .semibold))
+
+                    Text(latency)
+                        .font(.system(size: 8, weight: .bold))
+                        .monospacedDigit()
+                }
+                .foregroundColor(
+                    Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.9)
+                )
             }
+
         } else {
             Spacer()
                 .frame(width: 28)
         }
     }
+
     
     private func arrowBadgeBackground(state: WidgetState) -> RadialGradient {
         RadialGradient(
