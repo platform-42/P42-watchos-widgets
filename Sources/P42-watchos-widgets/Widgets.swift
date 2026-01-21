@@ -310,7 +310,7 @@ public struct MetricSummary: View {
 
     public let averageValue: String
     public let averageLabel: String
-    public let averageDelayMinutes: Int
+    public let latencyReporting: Bool
     public let delayThresholdMinutes: Int
     
     public init(
@@ -324,7 +324,7 @@ public struct MetricSummary: View {
         yesterdayState: WidgetState = .neutral,
         averageValue: String,
         averageLabel: String = "Average",
-        averageDelayMinutes: Int = 0,
+        latencyReporting: Bool = false,
         delayThresholdMinutes: Int = 15
     ) {
         self.title = title
@@ -337,7 +337,7 @@ public struct MetricSummary: View {
         self.yesterdayState = yesterdayState
         self.averageValue = averageValue
         self.averageLabel = averageLabel
-        self.averageDelayMinutes = averageDelayMinutes
+        self.latencyReporting = latencyReporting
         self.delayThresholdMinutes = delayThresholdMinutes
     }
     
@@ -368,7 +368,7 @@ public struct MetricSummary: View {
                 label: averageLabel,
                 showArrow: false,
                 state: .neutral,
-                showClock: averageDelayMinutes >= delayThresholdMinutes
+                showClock: latencyReporting
             )
             Text(propertyName)
                 .font(.footnote)
