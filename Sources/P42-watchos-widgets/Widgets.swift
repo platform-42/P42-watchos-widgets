@@ -349,7 +349,6 @@ public struct MetricSummary: View {
                 .foregroundColor(Color.blue.opacity(0.8))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            
             dashboardRow(
                 value: todayValue,
                 label: todayLabel,
@@ -357,7 +356,6 @@ public struct MetricSummary: View {
                 state: todayState,
                 showClock: false
             )
-            
             dashboardRow(
                 value: yesterdayValue,
                 label: yesterdayLabel,
@@ -365,7 +363,6 @@ public struct MetricSummary: View {
                 state: yesterdayState,
                 showClock: false
             )
-            
             dashboardRow(
                 value: averageValue,
                 label: averageLabel,
@@ -377,7 +374,6 @@ public struct MetricSummary: View {
                 .font(.footnote)
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 4)
                 .padding(.horizontal)
         }
         .padding(.vertical)
