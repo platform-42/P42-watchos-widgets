@@ -379,6 +379,7 @@ extension MetricSummary {
             
             Text(value)
                 .font(.system(size: 28, weight: .bold))
+                .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
             
