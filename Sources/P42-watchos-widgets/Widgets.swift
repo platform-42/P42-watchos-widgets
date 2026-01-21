@@ -448,7 +448,7 @@ extension MetricSummary {
             ZStack {
                 Circle()
                     .fill(arrowBadgeBackground(state: state))
-                    .frame(width: 28, height: 28)
+                    .frame(width: 32, height: 32)
 
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
@@ -459,7 +459,7 @@ extension MetricSummary {
             ZStack {
                 Circle()
                     .fill(clockBadgeBackground())
-                    .frame(width: 28, height: 28)
+                    .frame(width: 32, height: 32)
 
                 VStack(spacing: 1) {
                     Image(systemName: "clock.fill")
