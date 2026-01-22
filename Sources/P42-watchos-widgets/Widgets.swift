@@ -343,8 +343,14 @@ public struct MetricSummary: View {
             
             Text(title)
                 .font(.headline)
-                .foregroundColor(Color.blue.opacity(0.8))
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.blue.opacity(0.85))
+                )
                 .padding(.horizontal)
             dashboardRow(
                 value: todayValue,
