@@ -374,7 +374,7 @@ public struct MetricSummary: View {
             )
             Text(propertyName)
  //               .font(.footnote)
-                .font(.system(size: 10, weight: .semibold, design: .rounded))
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundColor(Color.primary.opacity(0.65))
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal)
