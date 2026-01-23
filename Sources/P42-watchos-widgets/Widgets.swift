@@ -373,7 +373,8 @@ public struct MetricSummary: View {
                 latency: latency
             )
             Text(propertyName)
-                .font(.footnote)
+ //               .font(.footnote)
+                .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .foregroundColor(Color.primary.opacity(0.65))
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.horizontal)
