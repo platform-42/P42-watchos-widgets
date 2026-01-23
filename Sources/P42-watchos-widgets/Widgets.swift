@@ -342,7 +342,6 @@ public struct MetricSummary: View {
         VStack(spacing: 8) {
             
             Text(title)
-//                .font(.headline)
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)
@@ -352,6 +351,7 @@ public struct MetricSummary: View {
                         .fill(Color.blue.opacity(0.85))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
             dashboardRow(
                 value: todayValue,
                 label: todayLabel,
@@ -372,15 +372,10 @@ public struct MetricSummary: View {
                 latency: latency
             )
             Text(propertyName)
- //               .font(.footnote)
                 .font(.system(size: 12, weight: .semibold, design: .rounded))
                 .foregroundColor(Color.primary.opacity(0.65))
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal, 6)
-                .background(
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.gray.opacity(0.85))
-                )
+                .padding(.horizontal, 2)
         }
         .padding(.vertical)
     }
