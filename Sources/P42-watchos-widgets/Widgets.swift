@@ -455,11 +455,11 @@ extension MetricSummary {
             ZStack {
                 Circle()
                     .fill(arrowBadgeBackground(state: state))
-                    .frame(width: 30, height: 30)
+                    .frame(width: 28, height: 28)
 
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
-                    .font(.system(size: 13, weight: .bold))
+                    .font(.system(size: 14, weight: .bold))
             }
 
         } else if let latency {
@@ -467,11 +467,11 @@ extension MetricSummary {
                 ZStack {
                     Circle()
                         .fill(clockBadgeBackground())
-                        .frame(width: 30, height: 30)
+                        .frame(width: 28, height: 28)
                     
                     Image(systemName: "clock.fill")
                         .foregroundColor(Widget.stateFieldColor(state))
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold))
                 }
                 Text(latency)
                     .foregroundColor(Widget.stateFieldColor(state))
