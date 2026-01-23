@@ -459,7 +459,7 @@ extension MetricSummary {
 
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: 13, weight: .bold))
             }
 
         } else if let latency {
@@ -471,33 +471,13 @@ extension MetricSummary {
                     
                     Image(systemName: "clock.fill")
                         .foregroundColor(Widget.stateFieldColor(state))
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 13, weight: .semibold))
                 }
                 Text(latency)
                     .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: 8, weight: .bold))
                     .monospacedDigit()
             }
-            
-/* original
-            ZStack {
-                Circle()
-                    .fill(clockBadgeBackground())
-                    .frame(width: 32, height: 32)
-
-                VStack(spacing: 1) {
-                    Image(systemName: "clock.fill")
-                        .font(.system(size: 10, weight: .semibold))
-
-                    Text(latency)
-                        .font(.system(size: 8, weight: .bold))
-                        .monospacedDigit()
-                }
-                .foregroundColor(
-                    Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.9)
-                )
-            }
-*/
         } else {
             Spacer()
                 .frame(width: 28)
