@@ -342,7 +342,8 @@ public struct MetricSummary: View {
         VStack(spacing: 8) {
             
             Text(title)
-                .font(.headline)
+//                .font(.headline)
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
@@ -402,8 +403,7 @@ extension MetricSummary {
             Spacer(minLength: 8)
             
             Text(value)
-//                .font(.system(size: 28, weight: .bold))
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .font(.system(size: 28, weight: .bold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
