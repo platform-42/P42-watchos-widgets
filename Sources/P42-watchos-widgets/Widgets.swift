@@ -408,7 +408,8 @@ extension MetricSummary {
                 .padding(.trailing, 8)
             
             Text(label)
-                .font(.caption2)
+                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .textCase(.uppercase)
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 8)
