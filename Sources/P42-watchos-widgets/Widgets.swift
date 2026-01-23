@@ -402,7 +402,8 @@ extension MetricSummary {
             Spacer(minLength: 8)
             
             Text(value)
-                .font(.system(size: 28, weight: .bold))
+//                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
