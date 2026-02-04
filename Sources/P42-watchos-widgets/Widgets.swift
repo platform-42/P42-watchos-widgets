@@ -377,8 +377,8 @@ public struct MetricSummary: View {
                 Text(propertyName)
                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
                     .background(
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
