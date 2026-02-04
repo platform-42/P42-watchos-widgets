@@ -373,12 +373,11 @@ public struct MetricSummary: View {
             )
             HStack {
                 Spacer()
-                
                 Text(propertyName)
                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
+                    .padding(.vertical, 4)
                     .background(
                         RoundedRectangle(cornerRadius: 6)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
