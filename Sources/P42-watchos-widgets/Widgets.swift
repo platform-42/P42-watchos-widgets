@@ -371,11 +371,28 @@ public struct MetricSummary: View {
                 state: .neutral,
                 latency: latency
             )
-            Text(propertyName)
-                .font(.system(size: 12, weight: .semibold, design: .rounded))
-                .foregroundColor(Color.primary.opacity(0.65))
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.horizontal, 2)
+//
+            HStack {
+                Spacer()
+                
+                Text(propertyName)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.yellow.opacity(0.9))
+                    )
+                
+                Spacer()
+            }
+
+//            Text(propertyName)
+//                .font(.system(size: 12, weight: .semibold, design: .rounded))
+//                .foregroundColor(Color.primary.opacity(0.65))
+//                .frame(maxWidth: .infinity, alignment: .center)
+//                .padding(.horizontal, 2)
         }
         .padding(.vertical)
     }
