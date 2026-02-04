@@ -339,7 +339,7 @@ public struct MetricSummary: View {
     }
     
     public var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 6) {
             
             Text(title)
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
@@ -375,7 +375,7 @@ public struct MetricSummary: View {
                 Spacer()
                 
                 Text(propertyName)
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
