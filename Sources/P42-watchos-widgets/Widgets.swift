@@ -350,7 +350,7 @@ public struct MetricSummary: View {
                     RoundedRectangle(cornerRadius: 6)
                         .fill(Color.gray.opacity(0.3))
                 )
-                .frame(maxWidth: .infinity, alignment: .trailing)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             dashboardRow(
                 value: todayValue,
