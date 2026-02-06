@@ -580,27 +580,18 @@ public struct FunnelView: View {
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            /*
             dashboardRow(
-                value: todayValue,
-                label: todayLabel,
-                showArrow: true,
-                state: todayState
+                value: firstValue,
+                label: firstLabel
             )
             dashboardRow(
-                value: yesterdayValue,
-                label: yesterdayLabel,
-                showArrow: true,
-                state: yesterdayState
+                value: secondValue,
+                label: secondLabel
             )
             dashboardRow(
-                value: averageValue,
-                label: averageLabel,
-                showArrow: false,
-                state: .neutral,
-                latency: latency
+                value: thirdValue,
+                label: thirdLabel
             )
-             */
             HStack {
                 Spacer()
                 Text(propertyName)
@@ -616,5 +607,44 @@ public struct FunnelView: View {
             }
         }
         .padding(.vertical)
+    }
+}
+
+extension FunnelView {
+    
+    private func dashboardRow(
+        value: String,
+        label: String,
+        latency: String? = nil
+    ) -> some View {
+        HStack(spacing: 0) {
+            Text(value)
+                .font(.system(size: 26, weight: .bold))
+                .monospacedDigit()
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 8)
+            
+            Text(label)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .textCase(.uppercase)
+                .foregroundColor(.gray)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 8)
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 6)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color.gray.opacity(0.28),
+                            Color.gray.opacity(0.12)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+        )
     }
 }
