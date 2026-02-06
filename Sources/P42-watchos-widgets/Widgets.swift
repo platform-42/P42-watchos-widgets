@@ -348,7 +348,7 @@ public struct MetricSummary: View {
                 .padding(.vertical, 2)
                 .background(
                     RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.gray.opacity(0.3))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
