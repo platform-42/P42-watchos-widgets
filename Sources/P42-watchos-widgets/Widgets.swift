@@ -529,3 +529,92 @@ extension MetricSummary {
     }
 }
 
+public struct Funnel: View {
+    
+    public let title: String
+    public let propertyName: String   // ← NEW (mandatory)
+
+    public let firstValue: String
+    public let firstLabel: String
+
+    public let secondValue: String
+    public let secondLabel: String
+
+    public let thirdValue: String
+    public let thirdLabel: String
+    public let latency: String?
+    
+    public init(
+        title: String,
+        propertyName: String,
+        firstValue: String,
+        firstLabel: String,
+        secondValue: String,
+        secondLabel: String,
+        thirdValue: String,
+        thirdLabel: String,
+        latency: String? = nil
+    ) {
+        self.title = title
+        self.propertyName = propertyName
+        self.firstValue = firstValue
+        self.firstLabel = firstLabel
+        self.secondValue = secondValue
+        self.secondLabel = secondLabel
+        self.thirdValue = thirdValue
+        self.thirdLabel = thirdLabel
+        self.latency = latency
+    }
+    
+    public var body: some View {
+        VStack(spacing: 6) {
+            
+            Text(title)
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .foregroundColor(.white)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(.gray.opacity(0.25))
+                )
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+            /*
+            dashboardRow(
+                value: todayValue,
+                label: todayLabel,
+                showArrow: true,
+                state: todayState
+            )
+            dashboardRow(
+                value: yesterdayValue,
+                label: yesterdayLabel,
+                showArrow: true,
+                state: yesterdayState
+            )
+            dashboardRow(
+                value: averageValue,
+                label: averageLabel,
+                showArrow: false,
+                state: .neutral,
+                latency: latency
+            )
+             */
+            HStack {
+                Spacer()
+                Text(propertyName)
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .foregroundColor(.black)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color(hex: WidgetStatusColor.warning.rawValue))
+                    )
+                Spacer()
+            }
+        }
+        .padding(.vertical)
+    }
+}
