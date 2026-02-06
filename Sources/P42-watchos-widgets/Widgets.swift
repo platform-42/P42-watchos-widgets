@@ -9,6 +9,24 @@ public enum BadgedLabelContent {
     case systemImage(name: String)
 }
 
+public enum DeviceType: String {
+    case desktop
+    case mobile
+    case tablet
+    case unknown
+    
+    static func from(_ rawValue: String) -> DeviceType {
+        return DeviceType(rawValue: rawValue) ?? .unknown
+    }
+}
+
+public enum DeviceTypeIcon: String {
+    case desktop = "desktopcomputer"
+    case mobile = "smartphone"
+    case tablet = "ipad"
+    case unknown = "questionmark.circle.fill"
+}
+
 @available(iOS 14.0, *)
 public struct BadgedLabel: View {
     
@@ -299,15 +317,15 @@ public struct MetricSummaryView: View {
     
     public let title: String
     public let propertyName: String   // ← NEW (mandatory)
-
+    
     public let todayValue: String
     public let todayLabel: String
     public let todayState: WidgetState
-
+    
     public let yesterdayValue: String
     public let yesterdayLabel: String
     public let yesterdayState: WidgetState
-
+    
     public let averageValue: String
     public let averageLabel: String
     public let latency: String?
@@ -458,18 +476,18 @@ extension MetricSummaryView {
         state: WidgetState,
         latency: String?
     ) -> some View {
-
+        
         if showArrow {
             ZStack {
                 Circle()
                     .fill(arrowBadgeBackground(state: state))
                     .frame(width: 28, height: 28)
-
+                
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: 14, weight: .bold))
             }
-
+            
         } else if let latency {
             VStack(spacing: 1) {
                 ZStack {
@@ -491,7 +509,7 @@ extension MetricSummaryView {
                 .frame(width: 28)
         }
     }
-
+    
     
     private func arrowBadgeBackground(state: WidgetState) -> RadialGradient {
         RadialGradient(
@@ -533,13 +551,13 @@ public struct FunnelView: View {
     
     public let title: String
     public let propertyName: String   // ← NEW (mandatory)
-
+    
     public let firstValue: String
     public let firstLabel: String
-
+    
     public let secondValue: String
     public let secondLabel: String
-
+    
     public let thirdValue: String
     public let thirdLabel: String
     public let latency: String?
@@ -618,6 +636,11 @@ extension FunnelView {
         latency: String? = nil
     ) -> some View {
         HStack(spacing: 0) {
+            
+            deviceBadge(deviceType: DeviceType.from(label))
+            
+            Spacer(minLength: 8)
+            
             Text(value)
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
@@ -646,5 +669,26 @@ extension FunnelView {
                     )
                 )
         )
+    }
+}
+
+extension FunnelView {
+    
+    @ViewBuilder
+    private func deviceBadge(
+        deviceType: DeviceType
+    ) -> some View {
+        
+        ZStack {
+            Circle()
+                .fill(.blue)
+                .frame(width: 28, height: 28)
+            
+            Image(systemName: deviceType.rawValue)
+                .foregroundColor(.white)
+                .font(.system(size: 14, weight: .bold))
+        }
+        
+        
     }
 }
