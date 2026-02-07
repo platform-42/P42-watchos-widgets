@@ -10,17 +10,6 @@ public enum BadgedLabelContent {
 }
 
 
-public enum DeviceType: String {
-    case desktop
-    case mobile
-    case tablet
-    case unknown
-    
-    static func from(_ rawValue: String) -> DeviceType {
-        return DeviceType(rawValue: rawValue) ?? .unknown
-    }
-}
-
 public struct FunnelItem: Identifiable {
     public let id = UUID()
     public let label: String
@@ -42,14 +31,6 @@ public struct FunnelItem: Identifiable {
         self.icon = icon
         self.iconColor = iconColor
     }
-}
-
-
-public enum DeviceTypeIcon: String {
-    case desktop = "desktopcomputer"
-    case mobile = "smartphone"
-    case tablet = "ipad"
-    case unknown = "questionmark.circle.fill"
 }
 
 
@@ -633,7 +614,10 @@ extension FunnelView {
         funnelItem: FunnelItem
     ) -> some View {
         HStack(spacing: 8) {
-            deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
+            deviceBadge(
+                icon: funnelItem.icon,
+                iconColor: funnelItem.iconColor
+            )
             Text(
                 funnelItem.percentage
                     .formatted(.percent.precision(.fractionLength(0)))
@@ -675,16 +659,29 @@ extension FunnelView {
         icon: Image,
         iconColor: Color
     ) -> some View {
-        
         ZStack {
             Circle()
-                .fill(iconColor)
+                .fill(badgeBackground(iconColor: iconColor))
                 .frame(width: 28, height: 28)
             icon
                 .foregroundColor(.white)
                 .font(.system(size: 14, weight: .bold))
         }
         
-        
     }
+    
+    private func badgeBackground(iconColor: Color) -> RadialGradient {
+        RadialGradient(
+            gradient: Gradient(colors: [
+                iconColor.opacity(0.30),
+                Color.gray.opacity(0.15)
+            ]),
+            center: .center,
+            startRadius: 2,
+            endRadius: 16
+        )
+    }
+    
+    
+    
 }
