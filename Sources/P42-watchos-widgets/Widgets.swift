@@ -634,21 +634,18 @@ public struct FunnelView: View {
 extension FunnelView {
     
     private func dashboardRow(
-        funnelItem: FunnelItem,
-        value: String,
-        label: String,
-        latency: String? = nil
+        funnelItem: FunnelItem
     ) -> some View {
         HStack(spacing: 0) {
             deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
             Spacer(minLength: 8)
-            Text(value)
+            Text(funnelItem.percentage.formatted(.number.precision(.fractionLength(0))))
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
             
-            Text(label)
+            Text(funnelItem.label)
                 .font(.system(size: 12, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundColor(.gray)
