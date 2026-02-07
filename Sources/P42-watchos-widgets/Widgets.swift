@@ -635,7 +635,10 @@ extension FunnelView {
         HStack(spacing: 0) {
             deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
             Spacer(minLength: 8)
-            Text(funnelItem.percentage.formatted(.number.precision(.fractionLength(0))))
+            Text(
+                funnelItem.percentage
+                    .formatted(.percent.precision(.fractionLength(0)))
+                )
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
