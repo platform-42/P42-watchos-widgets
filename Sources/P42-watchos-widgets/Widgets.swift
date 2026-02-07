@@ -9,6 +9,7 @@ public enum BadgedLabelContent {
     case systemImage(name: String)
 }
 
+
 public enum DeviceType: String {
     case desktop
     case mobile
@@ -26,7 +27,20 @@ public struct FunnelItem: Identifiable {
     public let percentage: Double   // 0...100
     public let color: Color
     public let icon: Image
+
+    public init(
+        label: String,
+        percentage: Double,
+        color: Color,
+        icon: Image
+    ) {
+        self.label = label
+        self.percentage = percentage
+        self.color = color
+        self.icon = icon
+    }
 }
+
 
 public enum DeviceTypeIcon: String {
     case desktop = "desktopcomputer"
@@ -34,6 +48,7 @@ public enum DeviceTypeIcon: String {
     case tablet = "ipad"
     case unknown = "questionmark.circle.fill"
 }
+
 
 @available(iOS 14.0, *)
 public struct BadgedLabel: View {
