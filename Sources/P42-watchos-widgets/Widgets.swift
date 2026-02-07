@@ -607,11 +607,7 @@ public struct FunnelView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             ForEach(funnelItems) { item in
-                dashboardRow(
-                    funnelItem: item,
-                    value: String(item.percentage),
-                    label: item.label
-                )
+                dashboardRow(funnelItem: item)
             }
             HStack {
                 Spacer()
