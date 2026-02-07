@@ -27,17 +27,20 @@ public struct FunnelItem: Identifiable {
     public let percentage: Double   // 0...100
     public let color: Color
     public let icon: Image
+    public let iconColor: Color
 
     public init(
         label: String,
         percentage: Double,
         color: Color,
-        icon: Image
+        icon: Image,
+        iconColor: Color
     ) {
         self.label = label
         self.percentage = percentage
         self.color = color
         self.icon = icon
+        self.iconColor = iconColor
     }
 }
 
@@ -637,11 +640,8 @@ extension FunnelView {
         latency: String? = nil
     ) -> some View {
         HStack(spacing: 0) {
-            
-            deviceBadge(icon: funnelItem.icon)
-            
+            deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
             Spacer(minLength: 8)
-            
             Text(value)
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
@@ -677,12 +677,13 @@ extension FunnelView {
     
     @ViewBuilder
     private func deviceBadge(
-        icon: Image
+        icon: Image,
+        iconColor: Color
     ) -> some View {
         
         ZStack {
             Circle()
-                .fill(.blue)
+                .fill(iconColor)
                 .frame(width: 28, height: 28)
             icon
                 .foregroundColor(.white)
