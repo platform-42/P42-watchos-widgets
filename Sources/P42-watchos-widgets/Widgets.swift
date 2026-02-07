@@ -634,33 +634,6 @@ extension FunnelView {
     ) -> some View {
         HStack(spacing: 8) {
             deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
-
-            // Value + % attached
-            (
-                Text(funnelItem.percentage
-                    .formatted(.number.precision(.fractionLength(0)))
-                )
-                .font(.system(size: 18, weight: .semibold))
-                .monospacedDigit()
-                .foregroundColor(.primary) // emphasized
-
-                +
-                Text("%")
-                .font(.system(size: 18, weight: .semibold))
-                .monospacedDigit()
-                .foregroundColor(.secondary) // toned down
-            )
-
-            Text(funnelItem.label)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.secondary)
-
-            Spacer()
-        }
-        /*
-        HStack(spacing: 0) {
-            deviceBadge(icon: funnelItem.icon, iconColor: funnelItem.iconColor)
-            Spacer(minLength: 8)
             Text(
                 funnelItem.percentage
                     .formatted(.percent.precision(.fractionLength(0)))
@@ -677,7 +650,6 @@ extension FunnelView {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 8)
         }
-         */
         .padding(.horizontal)
         .padding(.vertical, 6)
         .background(
