@@ -20,6 +20,14 @@ public enum DeviceType: String {
     }
 }
 
+public struct FunnelItem: Identifiable {
+    public let id = UUID()
+    public let label: String
+    public let percentage: Double   // 0...100
+    public let color: Color
+    public let icon: Image
+}
+
 public enum DeviceTypeIcon: String {
     case desktop = "desktopcomputer"
     case mobile = "smartphone"
@@ -551,36 +559,18 @@ public struct FunnelView: View {
     
     public let title: String
     public let propertyName: String   // ← NEW (mandatory)
-    
-    public let firstValue: String
-    public let firstLabel: String
-    
-    public let secondValue: String
-    public let secondLabel: String
-    
-    public let thirdValue: String
-    public let thirdLabel: String
+    public let funnelItems: [FunnelItem]
     public let latency: String?
     
     public init(
         title: String,
         propertyName: String,
-        firstValue: String,
-        firstLabel: String,
-        secondValue: String,
-        secondLabel: String,
-        thirdValue: String,
-        thirdLabel: String,
+        funnelItems: [FunnelItem] = [],
         latency: String? = nil
     ) {
         self.title = title
         self.propertyName = propertyName
-        self.firstValue = firstValue
-        self.firstLabel = firstLabel
-        self.secondValue = secondValue
-        self.secondLabel = secondLabel
-        self.thirdValue = thirdValue
-        self.thirdLabel = thirdLabel
+        self.funnelItems = funnelItems
         self.latency = latency
     }
     
@@ -598,18 +588,13 @@ public struct FunnelView: View {
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            dashboardRow(
-                value: firstValue,
-                label: firstLabel
-            )
-            dashboardRow(
-                value: secondValue,
-                label: secondLabel
-            )
-            dashboardRow(
-                value: thirdValue,
-                label: thirdLabel
-            )
+            ForEach(funnelItems) { item in
+                dashboardRow(
+                    funnelItem: item,
+                    value: String(item.percentage),
+                    label: item.label
+                )
+            }
             HStack {
                 Spacer()
                 Text(propertyName)
@@ -631,13 +616,14 @@ public struct FunnelView: View {
 extension FunnelView {
     
     private func dashboardRow(
+        funnelItem: FunnelItem,
         value: String,
         label: String,
         latency: String? = nil
     ) -> some View {
         HStack(spacing: 0) {
             
-            deviceBadge(deviceType: DeviceType.from(label))
+            deviceBadge(icon: funnelItem.icon)
             
             Spacer(minLength: 8)
             
@@ -676,15 +662,14 @@ extension FunnelView {
     
     @ViewBuilder
     private func deviceBadge(
-        deviceType: DeviceType
+        icon: Image
     ) -> some View {
         
         ZStack {
             Circle()
                 .fill(.blue)
                 .frame(width: 28, height: 28)
-            
-            Image(systemName: deviceType.rawValue)
+            icon
                 .foregroundColor(.white)
                 .font(.system(size: 14, weight: .bold))
         }
