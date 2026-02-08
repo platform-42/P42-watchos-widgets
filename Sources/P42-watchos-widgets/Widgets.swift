@@ -648,7 +648,6 @@ extension FunnelView {
             }
         )
         .background(baseRowGradient)
-//        .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
         .clipShape(
             RoundedRectangle(
                 cornerRadius: FunnelDimension.cornerRadiusRow,
@@ -684,29 +683,6 @@ extension FunnelView {
                 .foregroundColor(.white)
                 .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
-    }
-    
-    private func badgeBackground(iconColor: Color) -> LinearGradient {
-        LinearGradient(
-            gradient: Gradient(colors: [
-                iconColor.opacity(0.95),
-                iconColor.opacity(0.65)
-            ]),
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
-    }
-    
-    private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
-        LinearGradient(
-            gradient: Gradient(colors: [
-                iconColor.opacity(0.14),
-                iconColor.opacity(0.05),
-                Color.clear
-            ]),
-            startPoint: .leading,
-            endPoint: .trailing
-        )
     }
     
 }
