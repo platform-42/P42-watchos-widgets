@@ -673,8 +673,8 @@ extension FunnelView {
     private func badgeBackground(iconColor: Color) -> RadialGradient {
         RadialGradient(
             gradient: Gradient(colors: [
-                iconColor.opacity(0.30),
-                Color.gray.opacity(0.15)
+                iconColor.opacity(0.60),
+                Color.gray.opacity(0.30)
             ]),
             center: .center,
             startRadius: 2,
