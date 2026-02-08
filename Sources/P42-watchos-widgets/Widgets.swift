@@ -648,6 +648,14 @@ extension FunnelView {
                         endPoint: .trailing
                     )
                 )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(
+                            semanticCellOverlay(
+                                iconColor: funnelItem.iconColor
+                            )
+                        )
+                )
         )
     }
 }
@@ -682,6 +690,15 @@ extension FunnelView {
         )
     }
     
-    
+    private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
+        LinearGradient(
+            gradient: Gradient(colors: [
+                iconColor.opacity(0.18),
+                Color.clear
+            ]),
+            startPoint: .topLeading,
+            endPoint: .center
+        )
+    }
     
 }
