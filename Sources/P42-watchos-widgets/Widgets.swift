@@ -12,6 +12,8 @@ enum HeaderDimension {
 enum FooterDimension {
     static let fontSize: CGFloat = 10
     static let cornerRadius: CGFloat = 4
+    static let hSpacing: CGFloat = 6
+    static let vSpacing: CGFloat = 4
 }
 
 enum MetricsDimension {
@@ -400,7 +402,7 @@ public struct MetricsView: View {
             
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
-                .foregroundColor(.blue)
+                .foregroundColor(.white)
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
                 .background(
@@ -433,8 +435,8 @@ public struct MetricsView: View {
                 Text(propertyName)
                     .font(.system(size: FooterDimension.fontSize, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, FooterDimension.hSpacing)
+                    .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
@@ -623,7 +625,7 @@ public struct FunnelView: View {
         VStack(spacing: 6) {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
-                .foregroundColor(.blue)
+                .foregroundColor(.white)
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
                 .background(
@@ -640,8 +642,8 @@ public struct FunnelView: View {
                 Text(propertyName)
                     .font(.system(size: FooterDimension.fontSize, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 4)
+                    .padding(.horizontal, FooterDimension.hSpacing)
+                    .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
