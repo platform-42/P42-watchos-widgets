@@ -22,6 +22,7 @@ enum MetricsDimension {
     static let iconSize: CGFloat = 28
     static let iconFontSize: CGFloat = 14
     static let valueFontSize: CGFloat = 26
+    static let labelFontSize: CGFloat = 12
 }
 
 enum FunnelDimension {
@@ -473,7 +474,7 @@ extension MetricsView {
                 .padding(.trailing, 8)
             
             Text(label)
-                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .font(.system(size: MetricsDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .leading)
