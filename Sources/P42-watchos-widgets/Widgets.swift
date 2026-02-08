@@ -4,6 +4,11 @@ import SwiftUI
 import Foundation
 
 
+enum WidgetColor {
+    static let antracite: Int = 0x21262B
+    static let blue: Int = 0x3A7BD5
+}
+
 enum HeaderDimension {
     static let fontSize: CGFloat = 14
     static let cornerRadius: CGFloat = 6
@@ -409,7 +414,7 @@ public struct MetricsView: View {
             
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: 0x3A7BD5))
+                .foregroundColor(Color(hex: WidgetColor.blue))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
   //              .background(
@@ -595,7 +600,7 @@ public struct FunnelView: View {
         VStack(spacing: 6) {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: 0x3A7BD5))
+                .foregroundColor(Color(hex: WidgetColor.blue))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
  //               .background(
@@ -719,7 +724,7 @@ extension FunnelView {
             endPoint: .trailing
         )
     }
-    
+    /*
     @ViewBuilder
     private func deviceBadge1(
         icon: Image,
@@ -734,6 +739,7 @@ extension FunnelView {
                 .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
+     */
     
     @ViewBuilder
     private func deviceBadge(
@@ -742,7 +748,7 @@ extension FunnelView {
     ) -> some View {
         ZStack {
             Circle()
-                .fill(.black)
+                .fill(Color(hex: WidgetColor.antracite))
                 .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
             icon
                 .foregroundColor(.white)
