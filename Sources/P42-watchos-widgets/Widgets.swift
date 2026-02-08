@@ -625,14 +625,14 @@ extension FunnelView {
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 8)
+                .padding(.trailing, 2)
             
             Text(funnelItem.label)
                 .font(.system(size: 12, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 8)
+                .padding(.leading, 2)
         }
         .padding(.horizontal)
         .padding(.vertical, 6)
