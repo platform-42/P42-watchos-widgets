@@ -414,7 +414,8 @@ public struct MetricsView: View {
                 .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                        .fill(Color(hex: 0x366eff))
+                        .fill(.gray.opacity(0.3))
+  //                      .fill(Color(hex: 0x366eff))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
