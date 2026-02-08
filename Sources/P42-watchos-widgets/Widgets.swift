@@ -613,15 +613,13 @@ extension FunnelView {
     private func dashboardRow(
         funnelItem: FunnelItem
     ) -> some View {
-        HStack(spacing: 12) {
-
-            // Icon
+        HStack(spacing: 12) { // keep original spacing for value → label
             deviceBadge(
                 icon: funnelItem.icon,
                 iconColor: funnelItem.iconColor
             )
+            .padding(.trailing, 8) // ← only this adds extra space after icon
 
-            // Value + %
             (
                 Text(funnelItem.percentage
                     .formatted(.number.precision(.fractionLength(0)))
@@ -634,9 +632,8 @@ extension FunnelView {
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.secondary)
             )
-            .frame(minWidth: 48, alignment: .trailing) // 👈 alignment restored
+            .frame(minWidth: 48, alignment: .trailing)
 
-            // Label
             Text(funnelItem.label)
                 .font(.system(size: 12, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
