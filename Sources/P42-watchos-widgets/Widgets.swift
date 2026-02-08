@@ -643,6 +643,12 @@ extension FunnelView {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
+        .background(
+            GeometryReader { geo in
+                Color.blue.opacity(0.08) // very faint
+                    .frame(width: geo.size.width * CGFloat(funnelItem.percentage / 100), alignment: .leading)
+            }
+        )
         .background(baseRowGradient)
         .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
     }
