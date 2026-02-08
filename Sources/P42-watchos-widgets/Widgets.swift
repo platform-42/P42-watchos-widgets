@@ -347,7 +347,7 @@ public struct FooterView<LastUpdateView: View>: View {
 }
 
 
-public struct MetricSummaryView: View {
+public struct MetricsView: View {
     
     public let title: String
     public let propertyName: String   // ← NEW (mandatory)
@@ -442,7 +442,7 @@ public struct MetricSummaryView: View {
 }
 
 
-extension MetricSummaryView {
+extension MetricsView {
     
     private func dashboardRow(
         value: String,
@@ -499,7 +499,7 @@ extension MetricSummaryView {
 }
 
 
-extension MetricSummaryView {
+extension MetricsView {
     
     @ViewBuilder
     private func statusBadge(
