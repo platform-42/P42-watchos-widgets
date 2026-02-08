@@ -610,13 +610,18 @@ public struct FunnelView: View {
 
 extension FunnelView {
     
-    private func dashboardRow(funnelItem: FunnelItem) -> some View {
-        HStack(spacing: 8) {
+    private func dashboardRow(
+        funnelItem: FunnelItem
+    ) -> some View {
+        HStack(spacing: 12) {
+
+            // Icon
             deviceBadge(
                 icon: funnelItem.icon,
                 iconColor: funnelItem.iconColor
             )
 
+            // Value + %
             (
                 Text(funnelItem.percentage
                     .formatted(.number.precision(.fractionLength(0)))
@@ -629,10 +634,13 @@ extension FunnelView {
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.secondary)
             )
+            .frame(minWidth: 48, alignment: .trailing) // 👈 alignment restored
 
+            // Label
             Text(funnelItem.label)
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.secondary)
+                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .textCase(.uppercase)
+                .foregroundStyle(.secondary)
 
             Spacer()
         }
