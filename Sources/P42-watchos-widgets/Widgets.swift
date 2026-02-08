@@ -409,14 +409,14 @@ public struct MetricsView: View {
             
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex: 0x366eff))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
-                .background(
-                    RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                        .fill(.gray.opacity(0.3))
+  //              .background(
+  //                  RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
+  //                      .fill(.gray.opacity(0.3))
   //                      .fill(Color(hex: 0x366eff))
-                )
+  //              )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             dashboardRow(
@@ -595,14 +595,14 @@ public struct FunnelView: View {
         VStack(spacing: 6) {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(.white)
+                .foregroundColor(Color(hex: 0x366eff))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
-                .background(
-                    RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                        .fill(Color(hex: 0x366eff))
-
-                )
+ //               .background(
+ //                   RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
+ //                       .fill(Color(hex: 0x366eff))
+//
+ //               )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             ForEach(funnelItems) { item in
