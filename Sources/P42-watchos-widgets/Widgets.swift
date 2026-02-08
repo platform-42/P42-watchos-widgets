@@ -60,20 +60,17 @@ public struct FunnelItem: Identifiable {
     public let id = UUID()
     public let label: String
     public let percentage: Double   // 0...100
-    public let color: Color
     public let icon: Image
     public let iconColor: Color
     
     public init(
         label: String,
         percentage: Double,
-        color: Color,
         icon: Image,
         iconColor: Color
     ) {
         self.label = label
         self.percentage = percentage
-        self.color = color
         self.icon = icon
         self.iconColor = iconColor
     }
