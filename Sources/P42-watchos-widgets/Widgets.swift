@@ -631,7 +631,7 @@ extension FunnelView {
                 .foregroundColor(.primary)
                 +
                 Text("%")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.secondary)
             )
             .frame(minWidth: 48, alignment: .trailing) // 👈 alignment restored
@@ -646,9 +646,8 @@ extension FunnelView {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
-        .background(
-            semanticCellOverlay(iconColor: funnelItem.iconColor)
-        )
+        .background(baseRowGradient)
+        .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
     }
 
     /*
@@ -704,6 +703,17 @@ extension FunnelView {
 }
 
 extension FunnelView {
+    
+    private var baseRowGradient: LinearGradient {
+        LinearGradient(
+            gradient: Gradient(colors: [
+                Color.gray.opacity(0.20),
+                Color.black.opacity(0.25)
+            ]),
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+    }
     
     @ViewBuilder
     private func deviceBadge(
