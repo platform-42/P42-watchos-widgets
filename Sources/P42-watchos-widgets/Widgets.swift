@@ -682,7 +682,7 @@ extension FunnelView {
          */
         .background(
             GeometryReader { geo in
-                funnelItem.iconColor.opacity(0.30)
+                funnelItem.iconColor.opacity(0.85)
                     .frame(
                         width: geo.size.width * CGFloat(funnelItem.percentage / 100),
                         alignment: .leading
