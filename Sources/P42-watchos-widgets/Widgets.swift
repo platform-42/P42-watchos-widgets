@@ -411,7 +411,7 @@ public struct MetricsView: View {
                 .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                        .fill(.gray.opacity(0.25))
+                        .fill(Color(hex: 0x366eff).opacity(0.25))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
@@ -596,7 +596,9 @@ public struct FunnelView: View {
                 .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                        .fill(.gray.opacity(0.25))
+//                        .fill(.gray.opacity(0.25))
+                        .fill(Color(hex: 0x366eff).opacity(0.25))
+
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
