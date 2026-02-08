@@ -408,7 +408,7 @@ public struct MetricsView: View {
         VStack(spacing: 6) {
             
             Text(title)
-                .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
+                .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
@@ -593,7 +593,7 @@ public struct FunnelView: View {
     public var body: some View {
         VStack(spacing: 6) {
             Text(title)
-                .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
+                .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
