@@ -459,8 +459,7 @@ extension MetricsView {
         HStack(spacing: 0) {
             statusBadge(
                 showArrow: showArrow,
-                state: state,
-                latency: latency
+                state: state
             )
             Spacer(minLength: 8)
             Text(value)
