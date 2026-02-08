@@ -613,7 +613,7 @@ extension FunnelView {
     private func dashboardRow(
         funnelItem: FunnelItem
     ) -> some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 4) {
             deviceBadge(
                 icon: funnelItem.icon,
                 iconColor: funnelItem.iconColor
