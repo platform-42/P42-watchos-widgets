@@ -703,13 +703,28 @@ extension FunnelView {
     }
     
     @ViewBuilder
-    private func deviceBadge(
+    private func deviceBadge1(
         icon: Image,
         iconColor: Color
     ) -> some View {
         ZStack {
             Circle()
                 .fill(badgeBackground(iconColor: iconColor))
+                .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
+            icon
+                .foregroundColor(.white)
+                .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
+        }
+    }
+    
+    @ViewBuilder
+    private func deviceBadge(
+        icon: Image,
+        iconColor: Color
+    ) -> some View {
+        ZStack {
+            Circle()
+                .fill(.black)
                 .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
             icon
                 .foregroundColor(.white)
