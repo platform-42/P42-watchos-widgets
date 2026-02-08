@@ -671,24 +671,25 @@ extension FunnelView {
             Circle()
                 .fill(badgeBackground(iconColor: iconColor))
                 .frame(width: 28, height: 28)
+
             icon
-                .foregroundColor(iconColor)
+                .foregroundColor(.white) // 👈 strong contrast
                 .font(.system(size: 14, weight: .bold))
         }
-        
     }
+
     
-    private func badgeBackground(iconColor: Color) -> RadialGradient {
-        RadialGradient(
+    private func badgeBackground(iconColor: Color) -> LinearGradient {
+        LinearGradient(
             gradient: Gradient(colors: [
-                iconColor.opacity(0.60),
-                Color.gray.opacity(0.30)
+                iconColor.opacity(0.95),
+                iconColor.opacity(0.65)
             ]),
-            center: .center,
-            startRadius: 2,
-            endRadius: 16
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
         )
     }
+
     
     private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
         LinearGradient(
