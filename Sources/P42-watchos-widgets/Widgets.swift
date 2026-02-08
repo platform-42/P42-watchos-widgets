@@ -5,7 +5,7 @@ import Foundation
 
 
 enum HeaderDimension {
-    static let fontSize: CGFloat = 16
+    static let fontSize: CGFloat = 14
     static let cornerRadius: CGFloat = 6
     static let hSpacing: CGFloat = 6
     static let vSpacing: CGFloat = 2
