@@ -38,15 +38,6 @@ enum FunnelDimension {
     static let percentFontSize: CGFloat = 14
     static let labelFontSize: CGFloat = 12
     static let cornerRadiusRow: CGFloat = 12
-    
-    //
-    static let spacingHStack: CGFloat = 12
-    static let iconToValuePadding: CGFloat = 8
-    static let rowPaddingVertical: CGFloat = 6
-    static let rowPaddingHorizontal: CGFloat = 8
-    static let cornerRadius: CGFloat = 6
-    static let funnelOverlayOpacity: CGFloat = 0.28
-    static let valueMinWidth: CGFloat = 48
 }
 
 
@@ -366,7 +357,7 @@ public struct FooterView<LastUpdateView: View>: View {
 public struct MetricsView: View {
     
     public let title: String
-    public let propertyName: String   // ← NEW (mandatory)
+    public let propertyName: String
     
     public let todayValue: String
     public let todayLabel: String
@@ -473,11 +464,11 @@ extension MetricsView {
             Text(label)
                 .font(.system(size: MetricsDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 8)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
         .padding(.vertical, 6)
         .background(
             RoundedRectangle(cornerRadius: MetricsDimension.cornerRadiusRow)
@@ -615,28 +606,27 @@ extension FunnelView {
     private func dashboardRow(
         funnelItem: FunnelItem
     ) -> some View {
-        HStack(spacing: 12) {
+        HStack(spacing: 0) {
             deviceBadge(
                 icon: funnelItem.icon,
                 iconColor: funnelItem.iconColor
             )
-            .padding(.trailing, 8)
-            
+            Spacer(minLength: 8)
             Text(
                 funnelItem.percentage
                     .formatted(.number.precision(.fractionLength(0)))
                 )
                 .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
                 .monospacedDigit()
-                .foregroundColor(.primary)
-                .frame(minWidth: 48, alignment: .trailing)
-            
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.trailing, 4)
+
             Text("% - " + funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
-            
-            Spacer()
+                .padding(.leading, 4)
+
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
