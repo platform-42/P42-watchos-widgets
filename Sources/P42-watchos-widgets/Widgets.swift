@@ -452,7 +452,7 @@ public struct MetricsView: View {
                     .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
-                            .fill(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.65))
+                            .fill(Color(hex: WidgetStatusColor.warning.rawValue))
                     )
                 Spacer()
             }
@@ -603,11 +603,6 @@ public struct FunnelView: View {
                 .foregroundColor(Color(hex: WidgetColor.blue))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
- //               .background(
- //                   RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
- //                       .fill(Color(hex: 0x366eff))
-//
- //               )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             ForEach(funnelItems) { item in
@@ -622,7 +617,7 @@ public struct FunnelView: View {
                     .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
-                            .fill(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.65))
+                            .fill(Color(hex: WidgetStatusColor.warning.rawValue))
                     )
                 Spacer()
             }
@@ -667,24 +662,6 @@ extension FunnelView {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
-        /*
-        .background(
-            GeometryReader { geo in
-                Color.gray.opacity(0.30)
-                    .frame(
-                        width: geo.size.width * CGFloat(funnelItem.percentage / 100),
-                        alignment: .leading
-                    )
-                    .mask(
-                        RoundedRectangle(
-                            cornerRadius: FunnelDimension.cornerRadiusRow,
-                            style: .continuous
-                        )
-                        .frame(height: geo.size.height)
-                    )
-            }
-        )
-         */
         .background(
             GeometryReader { geo in
                 funnelItem.iconColor.opacity(0.90)
@@ -724,23 +701,7 @@ extension FunnelView {
             endPoint: .trailing
         )
     }
-    /*
-    @ViewBuilder
-    private func deviceBadge1(
-        icon: Image,
-        iconColor: Color
-    ) -> some View {
-        ZStack {
-            Circle()
-                .fill(badgeBackground(iconColor: iconColor))
-                .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
-            icon
-                .foregroundColor(.white)
-                .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
-        }
-    }
-     */
-    
+
     @ViewBuilder
     private func deviceBadge(
         icon: Image,
