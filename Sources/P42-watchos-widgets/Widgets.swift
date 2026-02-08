@@ -49,7 +49,7 @@ public struct FunnelItem: Identifiable {
     public let color: Color
     public let icon: Image
     public let iconColor: Color
-
+    
     public init(
         label: String,
         percentage: Double,
@@ -507,10 +507,47 @@ extension MetricsView {
 extension MetricsView {
     
     @ViewBuilder
+    /*
+     private func statusBadge(
+     showArrow: Bool,
+     state: WidgetState,
+     latency: String?
+     ) -> some View {
+     if showArrow {
+     ZStack {
+     Circle()
+     .fill(arrowBadgeBackground(state: state))
+     .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
+     
+     Image(systemName: Widget.stateFieldImage(state))
+     .foregroundColor(Widget.stateFieldColor(state))
+     .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
+     }
+     } else if let latency {
+     VStack(spacing: 1) {
+     ZStack {
+     Circle()
+     .fill(clockBadgeBackground())
+     .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
+     
+     Image(systemName: "clock.fill")
+     .foregroundColor(Widget.stateFieldColor(state))
+     .font(.system(size: MetricsDimension.iconFontSize, weight: .semibold))
+     }
+     Text(latency)
+     .foregroundColor(Widget.stateFieldColor(state))
+     .font(.system(size: 8, weight: .bold))
+     .monospacedDigit()
+     }
+     } else {
+     Spacer()
+     .frame(width: MetricsDimension.iconSize)
+     }
+     }
+     */
     private func statusBadge(
         showArrow: Bool,
         state: WidgetState,
-        latency: String?
     ) -> some View {
         if showArrow {
             ZStack {
@@ -522,28 +559,11 @@ extension MetricsView {
                     .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
             }
-        } else if let latency {
-            VStack(spacing: 1) {
-                ZStack {
-                    Circle()
-                        .fill(clockBadgeBackground())
-                        .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
-                    
-                    Image(systemName: "clock.fill")
-                        .foregroundColor(Widget.stateFieldColor(state))
-                        .font(.system(size: MetricsDimension.iconFontSize, weight: .semibold))
-                }
-                Text(latency)
-                    .foregroundColor(Widget.stateFieldColor(state))
-                    .font(.system(size: 8, weight: .bold))
-                    .monospacedDigit()
-            }
         } else {
             Spacer()
                 .frame(width: MetricsDimension.iconSize)
         }
     }
-    
     
     private func arrowBadgeBackground(state: WidgetState) -> RadialGradient {
         RadialGradient(
@@ -658,7 +678,7 @@ extension FunnelView {
                     .foregroundColor(.secondary)
             )
             .frame(minWidth: 48, alignment: .trailing)
-
+            
             Text(funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
@@ -683,7 +703,7 @@ extension FunnelView {
         .background(baseRowGradient)
         .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
     }
-
+    
 }
 
 extension FunnelView {
@@ -713,7 +733,7 @@ extension FunnelView {
                 .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
-
+    
     private func badgeBackground(iconColor: Color) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
@@ -724,7 +744,7 @@ extension FunnelView {
             endPoint: .bottomTrailing
         )
     }
-
+    
     private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
