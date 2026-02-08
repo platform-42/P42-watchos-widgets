@@ -645,8 +645,15 @@ extension FunnelView {
         .padding(.vertical, 6)
         .background(
             GeometryReader { geo in
-                Color.blue.opacity(0.16) // very faint
-                    .frame(width: geo.size.width * CGFloat(funnelItem.percentage / 100), alignment: .leading)
+                Color.blue.opacity(0.25)
+                    .frame(
+                        width: geo.size.width * CGFloat(funnelItem.percentage / 100),
+                        alignment: .leading
+                    )
+                    .mask(
+                        RoundedRectangle(cornerRadius: 6, style: .continuous)
+                            .frame(height: geo.size.height)
+                    )
             }
         )
         .background(baseRowGradient)
