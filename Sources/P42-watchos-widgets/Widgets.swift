@@ -452,7 +452,7 @@ public struct MetricsView: View {
                     .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
-                            .fill(Color(hex: WidgetStatusColor.warning.rawValue))
+                            .fill(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.65))
                     )
                 Spacer()
             }
@@ -580,7 +580,7 @@ extension MetricsView {
 public struct FunnelView: View {
     
     public let title: String
-    public let propertyName: String   // ← NEW (mandatory)
+    public let propertyName: String
     public let funnelItems: [FunnelItem]
     public let latency: String?
     
@@ -622,7 +622,7 @@ public struct FunnelView: View {
                     .padding(.vertical, FooterDimension.vSpacing)
                     .background(
                         RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
-                            .fill(Color(hex: WidgetStatusColor.warning.rawValue))
+                            .fill(Color(hex: WidgetStatusColor.warning.rawValue).opacity(0.65))
                     )
                 Spacer()
             }
