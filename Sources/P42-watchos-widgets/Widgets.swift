@@ -14,8 +14,13 @@ enum FooterDimension {
     static let cornerRadius: CGFloat = 4
 }
 
+enum MetricsDimension {
+    static let iconSize: CGFloat = 28
+    static let iconFontSize: CGFloat = 14
+    static let valueFontSize: CGFloat = 26
+}
+
 enum FunnelDimension {
-    static let titleFontSize: CGFloat = 18
     static let iconSize: CGFloat = 28
     static let iconFontSize: CGFloat = 14
     static let valueFontSize: CGFloat = 26
@@ -459,7 +464,7 @@ extension MetricsView {
             )
             Spacer(minLength: 8)
             Text(value)
-                .font(.system(size: 26, weight: .bold))
+                .font(.system(size: MetricsDimension.valueFontSize, weight: .bold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 8)
@@ -511,22 +516,22 @@ extension MetricsView {
             ZStack {
                 Circle()
                     .fill(arrowBadgeBackground(state: state))
-                    .frame(width: 28, height: 28)
+                    .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
                 
                 Image(systemName: Widget.stateFieldImage(state))
                     .foregroundColor(Widget.stateFieldColor(state))
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
             }
         } else if let latency {
             VStack(spacing: 1) {
                 ZStack {
                     Circle()
                         .fill(clockBadgeBackground())
-                        .frame(width: 28, height: 28)
+                        .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
                     
                     Image(systemName: "clock.fill")
                         .foregroundColor(Widget.stateFieldColor(state))
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: MetricsDimension.iconFontSize, weight: .semibold))
                 }
                 Text(latency)
                     .foregroundColor(Widget.stateFieldColor(state))
@@ -535,7 +540,7 @@ extension MetricsView {
             }
         } else {
             Spacer()
-                .frame(width: 28)
+                .frame(width: MetricsDimension.iconSize)
         }
     }
     
@@ -649,7 +654,7 @@ extension FunnelView {
                 .foregroundColor(.primary)
                 +
                 Text("%")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: FunnelDimension.iconFontSize, weight: .semibold))
                     .foregroundColor(.secondary)
             )
             .frame(minWidth: 48, alignment: .trailing)
@@ -702,10 +707,10 @@ extension FunnelView {
         ZStack {
             Circle()
                 .fill(badgeBackground(iconColor: iconColor))
-                .frame(width: 28, height: 28)
+                .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
             icon
                 .foregroundColor(.white) // 👈 strong contrast
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
 
