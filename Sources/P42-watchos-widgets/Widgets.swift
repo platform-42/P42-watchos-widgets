@@ -610,6 +610,40 @@ public struct FunnelView: View {
 
 extension FunnelView {
     
+    private func dashboardRow(funnelItem: FunnelItem) -> some View {
+        HStack(spacing: 8) {
+            deviceBadge(
+                icon: funnelItem.icon,
+                iconColor: funnelItem.iconColor
+            )
+
+            (
+                Text(funnelItem.percentage
+                    .formatted(.number.precision(.fractionLength(0)))
+                )
+                .font(.system(size: 18, weight: .semibold))
+                .monospacedDigit()
+                .foregroundColor(.primary)
+                +
+                Text("%")
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.secondary)
+            )
+
+            Text(funnelItem.label)
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(.secondary)
+
+            Spacer()
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
+        .background(
+            semanticCellOverlay(iconColor: funnelItem.iconColor)
+        )
+    }
+
+    /*
     private func dashboardRow(
         funnelItem: FunnelItem
     ) -> some View {
@@ -658,6 +692,7 @@ extension FunnelView {
                 )
         )
     }
+     */
 }
 
 extension FunnelView {
@@ -690,7 +725,7 @@ extension FunnelView {
         )
     }
 
-    
+    /*
     private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
@@ -699,6 +734,18 @@ extension FunnelView {
             ]),
             startPoint: .topLeading,
             endPoint: .center
+        )
+    }
+     */
+    private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
+        LinearGradient(
+            gradient: Gradient(colors: [
+                iconColor.opacity(0.14),
+                iconColor.opacity(0.05),
+                Color.clear
+            ]),
+            startPoint: .leading,
+            endPoint: .trailing
         )
     }
     
