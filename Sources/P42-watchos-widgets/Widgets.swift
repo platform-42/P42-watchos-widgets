@@ -662,9 +662,27 @@ extension FunnelView {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
+        /*
         .background(
             GeometryReader { geo in
                 Color.gray.opacity(0.30)
+                    .frame(
+                        width: geo.size.width * CGFloat(funnelItem.percentage / 100),
+                        alignment: .leading
+                    )
+                    .mask(
+                        RoundedRectangle(
+                            cornerRadius: FunnelDimension.cornerRadiusRow,
+                            style: .continuous
+                        )
+                        .frame(height: geo.size.height)
+                    )
+            }
+        )
+         */
+        .background(
+            GeometryReader { geo in
+                funnelItem.iconColor.opacity(0.30)
                     .frame(
                         width: geo.size.width * CGFloat(funnelItem.percentage / 100),
                         alignment: .leading
