@@ -599,7 +599,6 @@ public struct FunnelView: View {
                 .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-//                        .fill(.gray.opacity(0.25))
                         .fill(Color(hex: 0x366eff))
 
                 )
@@ -631,15 +630,17 @@ extension FunnelView {
     private func dashboardRow(
         funnelItem: FunnelItem
     ) -> some View {
-        HStack(spacing: 12) { // keep original spacing for value → label
+        HStack(spacing: 12) {
             deviceBadge(
                 icon: funnelItem.icon,
                 iconColor: funnelItem.iconColor
             )
-            .padding(.trailing, 8) // ← only this adds extra space after icon
+            .padding(.trailing, 8)
+            
             (
-                Text(funnelItem.percentage
-                    .formatted(.number.precision(.fractionLength(0)))
+                Text(
+                    funnelItem.percentage
+                        .formatted(.number.precision(.fractionLength(0)))
                 )
                 .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
                 .monospacedDigit()
@@ -655,6 +656,7 @@ extension FunnelView {
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
+            
             Spacer()
         }
         .padding(.horizontal, 8)
@@ -666,17 +668,24 @@ extension FunnelView {
                         width: geo.size.width * CGFloat(funnelItem.percentage / 100),
                         alignment: .leading
                     )
-                // 6
                     .mask(
-                        RoundedRectangle(cornerRadius: FunnelDimension.cornerRadiusRow, style: .continuous)
-                            .frame(height: geo.size.height)
+                        RoundedRectangle(
+                            cornerRadius: FunnelDimension.cornerRadiusRow,
+                            style: .continuous
+                        )
+                        .frame(height: geo.size.height)
                     )
             }
         )
         .background(baseRowGradient)
         .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
+        .clipShape(
+            RoundedRectangle(
+                cornerRadius: FunnelDimension.cornerRadiusRow,
+                style: .continuous
+            )
+        )
     }
-    
 }
 
 extension FunnelView {
