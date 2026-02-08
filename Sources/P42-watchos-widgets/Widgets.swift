@@ -7,6 +7,8 @@ import Foundation
 enum HeaderDimension {
     static let fontSize: CGFloat = 18
     static let cornerRadius: CGFloat = 6
+    static let hSpacing: CGFloat = 6
+    static let vSpacing: CGFloat = 2
 }
 
 enum FooterDimension {
@@ -403,8 +405,8 @@ public struct MetricsView: View {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
+                .padding(.horizontal, HeaderDimension.hSpacing)
+                .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
                         .fill(.gray.opacity(0.25))
@@ -626,8 +628,8 @@ public struct FunnelView: View {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
+                .padding(.horizontal, HeaderDimension.hSpacing)
+                .padding(.vertical, HeaderDimension.vSpacing)
                 .background(
                     RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
                         .fill(.gray.opacity(0.25))
@@ -730,7 +732,7 @@ extension FunnelView {
                 .fill(badgeBackground(iconColor: iconColor))
                 .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
             icon
-                .foregroundColor(.white) // 👈 strong contrast
+                .foregroundColor(.white)
                 .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
