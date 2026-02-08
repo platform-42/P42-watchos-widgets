@@ -595,7 +595,7 @@ public struct FunnelView: View {
         VStack(spacing: 6) {
             Text(title)
                 .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: 0x366eff))
+                .foregroundColor(Color(hex: 0x007AFF))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
  //               .background(
