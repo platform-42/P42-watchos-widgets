@@ -4,6 +4,33 @@ import SwiftUI
 import Foundation
 
 
+enum HeaderDimension {
+    static let fontSize: CGFloat = 18
+    static let cornerRadius: CGFloat = 6
+}
+
+enum FooterDimension {
+    static let fontSize: CGFloat = 10
+    static let cornerRadius: CGFloat = 4
+}
+
+enum FunnelDimension {
+    static let titleFontSize: CGFloat = 18
+    static let iconSize: CGFloat = 28
+    static let iconFontSize: CGFloat = 14
+    static let valueFontSize: CGFloat = 26
+    static let percentFontSize: CGFloat = 14
+    static let labelFontSize: CGFloat = 12
+    static let spacingHStack: CGFloat = 12
+    static let iconToValuePadding: CGFloat = 8
+    static let rowPaddingVertical: CGFloat = 6
+    static let rowPaddingHorizontal: CGFloat = 8
+    static let cornerRadius: CGFloat = 6
+    static let funnelOverlayOpacity: CGFloat = 0.28
+    static let valueMinWidth: CGFloat = 48
+}
+
+
 public enum BadgedLabelContent {
     case text(String)
     case systemImage(name: String)
@@ -367,12 +394,12 @@ public struct MetricSummaryView: View {
         VStack(spacing: 6) {
             
             Text(title)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
                 .background(
-                    RoundedRectangle(cornerRadius: 6)
+                    RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
                         .fill(.gray.opacity(0.25))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -399,12 +426,12 @@ public struct MetricSummaryView: View {
             HStack {
                 Spacer()
                 Text(propertyName)
-                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .font(.system(size: FooterDimension.fontSize, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 4)
                     .background(
-                        RoundedRectangle(cornerRadius: 6)
+                        RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
                     )
                 Spacer()
@@ -425,15 +452,12 @@ extension MetricSummaryView {
         latency: String? = nil
     ) -> some View {
         HStack(spacing: 0) {
-            
             statusBadge(
                 showArrow: showArrow,
                 state: state,
                 latency: latency
             )
-            
             Spacer(minLength: 8)
-            
             Text(value)
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
@@ -483,7 +507,6 @@ extension MetricSummaryView {
         state: WidgetState,
         latency: String?
     ) -> some View {
-        
         if showArrow {
             ZStack {
                 Circle()
@@ -494,7 +517,6 @@ extension MetricSummaryView {
                     .foregroundColor(Widget.stateFieldColor(state))
                     .font(.system(size: 14, weight: .bold))
             }
-            
         } else if let latency {
             VStack(spacing: 1) {
                 ZStack {
@@ -575,14 +597,13 @@ public struct FunnelView: View {
     
     public var body: some View {
         VStack(spacing: 6) {
-            
             Text(title)
-                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .font(.system(size: HeaderDimension.fontSize, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .padding(.horizontal, 6)
                 .padding(.vertical, 2)
                 .background(
-                    RoundedRectangle(cornerRadius: 6)
+                    RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
                         .fill(.gray.opacity(0.25))
                 )
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -593,12 +614,12 @@ public struct FunnelView: View {
             HStack {
                 Spacer()
                 Text(propertyName)
-                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .font(.system(size: FooterDimension.fontSize, weight: .semibold, design: .rounded))
                     .foregroundColor(.black)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 4)
                     .background(
-                        RoundedRectangle(cornerRadius: 6)
+                        RoundedRectangle(cornerRadius: FooterDimension.cornerRadius)
                             .fill(Color(hex: WidgetStatusColor.warning.rawValue))
                     )
                 Spacer()
@@ -619,12 +640,11 @@ extension FunnelView {
                 iconColor: funnelItem.iconColor
             )
             .padding(.trailing, 8) // ← only this adds extra space after icon
-
             (
                 Text(funnelItem.percentage
                     .formatted(.number.precision(.fractionLength(0)))
                 )
-                .font(.system(size: 26, weight: .semibold))
+                .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
                 .monospacedDigit()
                 .foregroundColor(.primary)
                 +
@@ -635,10 +655,9 @@ extension FunnelView {
             .frame(minWidth: 48, alignment: .trailing)
 
             Text(funnelItem.label)
-                .font(.system(size: 12, weight: .bold, design: .rounded))
+                .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
-
             Spacer()
         }
         .padding(.horizontal, 8)
@@ -660,56 +679,6 @@ extension FunnelView {
         .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
     }
 
-    /*
-    private func dashboardRow(
-        funnelItem: FunnelItem
-    ) -> some View {
-        HStack(spacing: 4) {
-            deviceBadge(
-                icon: funnelItem.icon,
-                iconColor: funnelItem.iconColor
-            )
-            Text(
-                funnelItem.percentage
-                    .formatted(.number.precision(.fractionLength(0)))
-                )
-                .font(.system(size: 26, weight: .bold))
-                .monospacedDigit()
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 2)
-            
-            Text(funnelItem.label)
-                .font(.system(size: 12, weight: .bold, design: .rounded))
-                .textCase(.uppercase)
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 2)
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 6)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(
-                    LinearGradient(
-                        gradient: Gradient(colors: [
-                            Color.gray.opacity(0.28),
-                            Color.gray.opacity(0.12)
-                        ]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(
-                            semanticCellOverlay(
-                                iconColor: funnelItem.iconColor
-                            )
-                        )
-                )
-        )
-    }
-     */
 }
 
 extension FunnelView {
@@ -734,14 +703,12 @@ extension FunnelView {
             Circle()
                 .fill(badgeBackground(iconColor: iconColor))
                 .frame(width: 28, height: 28)
-
             icon
                 .foregroundColor(.white) // 👈 strong contrast
                 .font(.system(size: 14, weight: .bold))
         }
     }
 
-    
     private func badgeBackground(iconColor: Color) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
@@ -753,18 +720,6 @@ extension FunnelView {
         )
     }
 
-    /*
-    private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
-        LinearGradient(
-            gradient: Gradient(colors: [
-                iconColor.opacity(0.18),
-                Color.clear
-            ]),
-            startPoint: .topLeading,
-            endPoint: .center
-        )
-    }
-     */
     private func semanticCellOverlay(iconColor: Color) -> LinearGradient {
         LinearGradient(
             gradient: Gradient(colors: [
