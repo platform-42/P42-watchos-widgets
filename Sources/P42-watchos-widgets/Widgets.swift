@@ -620,7 +620,7 @@ extension FunnelView {
             )
             Text(
                 funnelItem.percentage
-                    .formatted(.percent.precision(.fractionLength(0)))
+                    .formatted(.number.precision(.fractionLength(0)))
                 )
                 .font(.system(size: 26, weight: .bold))
                 .monospacedDigit()
