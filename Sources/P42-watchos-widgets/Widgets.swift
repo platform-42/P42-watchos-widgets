@@ -32,6 +32,9 @@ enum FunnelDimension {
     static let valueFontSize: CGFloat = 26
     static let percentFontSize: CGFloat = 14
     static let labelFontSize: CGFloat = 12
+    static let cornerRadiusRow: CGFloat = 12
+
+//
     static let spacingHStack: CGFloat = 12
     static let iconToValuePadding: CGFloat = 8
     static let rowPaddingVertical: CGFloat = 6
@@ -663,8 +666,9 @@ extension FunnelView {
                         width: geo.size.width * CGFloat(funnelItem.percentage / 100),
                         alignment: .leading
                     )
+                // 6
                     .mask(
-                        RoundedRectangle(cornerRadius: 6, style: .continuous)
+                        RoundedRectangle(cornerRadius: FunnelDimension.cornerRadiusRow, style: .continuous)
                             .frame(height: geo.size.height)
                     )
             }
