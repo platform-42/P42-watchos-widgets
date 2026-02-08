@@ -38,8 +38,8 @@ enum FunnelDimension {
     static let percentFontSize: CGFloat = 14
     static let labelFontSize: CGFloat = 12
     static let cornerRadiusRow: CGFloat = 12
-
-//
+    
+    //
     static let spacingHStack: CGFloat = 12
     static let iconToValuePadding: CGFloat = 8
     static let rowPaddingVertical: CGFloat = 6
@@ -378,7 +378,6 @@ public struct MetricsView: View {
     
     public let averageValue: String
     public let averageLabel: String
-    public let latency: String?
     
     public init(
         title: String,
@@ -390,8 +389,7 @@ public struct MetricsView: View {
         yesterdayLabel: String = "Yesterday",
         yesterdayState: WidgetState = .neutral,
         averageValue: String,
-        averageLabel: String = "Average",
-        latency: String? = nil
+        averageLabel: String = "Average"
     ) {
         self.title = title
         self.propertyName = propertyName
@@ -403,7 +401,6 @@ public struct MetricsView: View {
         self.yesterdayState = yesterdayState
         self.averageValue = averageValue
         self.averageLabel = averageLabel
-        self.latency = latency
     }
     
     public var body: some View {
@@ -414,11 +411,6 @@ public struct MetricsView: View {
                 .foregroundColor(Color(hex: WidgetColor.blue))
                 .padding(.horizontal, HeaderDimension.hSpacing)
                 .padding(.vertical, HeaderDimension.vSpacing)
-  //              .background(
-  //                  RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-  //                      .fill(.gray.opacity(0.3))
-  //                      .fill(Color(hex: 0x366eff))
-  //              )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             dashboardRow(
@@ -437,8 +429,7 @@ public struct MetricsView: View {
                 value: averageValue,
                 label: averageLabel,
                 showArrow: false,
-                state: .neutral,
-                latency: latency
+                state: .neutral
             )
             HStack {
                 Spacer()
@@ -465,8 +456,7 @@ extension MetricsView {
         value: String,
         label: String,
         showArrow: Bool,
-        state: WidgetState,
-        latency: String? = nil
+        state: WidgetState
     ) -> some View {
         HStack(spacing: 0) {
             statusBadge(
@@ -579,18 +569,15 @@ public struct FunnelView: View {
     public let title: String
     public let propertyName: String
     public let funnelItems: [FunnelItem]
-    public let latency: String?
     
     public init(
         title: String,
         propertyName: String,
         funnelItems: [FunnelItem] = [],
-        latency: String? = nil
     ) {
         self.title = title
         self.propertyName = propertyName
         self.funnelItems = funnelItems
-        self.latency = latency
     }
     
     public var body: some View {
@@ -635,22 +622,16 @@ extension FunnelView {
             )
             .padding(.trailing, 8)
             
-            (
-                Text(
-                    funnelItem.percentage
-                        .formatted(.number.precision(.fractionLength(0)))
+            Text(
+                funnelItem.percentage
+                    .formatted(.number.precision(.fractionLength(0)))
                 )
                 .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
                 .monospacedDigit()
                 .foregroundColor(.primary)
-                +
-                Text("%")
-                    .font(.system(size: FunnelDimension.iconFontSize, weight: .semibold))
-                    .foregroundColor(.secondary)
-            )
-            .frame(minWidth: 48, alignment: .trailing)
+                .frame(minWidth: 48, alignment: .trailing)
             
-            Text(funnelItem.label)
+            Text("% - " + funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
@@ -698,7 +679,7 @@ extension FunnelView {
             endPoint: .trailing
         )
     }
-
+    
     @ViewBuilder
     private func deviceBadge(
         icon: Image,
