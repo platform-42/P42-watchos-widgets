@@ -23,6 +23,7 @@ enum MetricsDimension {
     static let iconFontSize: CGFloat = 14
     static let valueFontSize: CGFloat = 26
     static let labelFontSize: CGFloat = 12
+    static let cornerRadiusRow: CGFloat = 12
 }
 
 enum FunnelDimension {
@@ -483,7 +484,7 @@ extension MetricsView {
         .padding(.horizontal)
         .padding(.vertical, 6)
         .background(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: MetricsDimension.cornerRadiusRow)
                 .fill(
                     LinearGradient(
                         gradient: Gradient(colors: [
@@ -495,7 +496,7 @@ extension MetricsView {
                     )
                 )
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: MetricsDimension.cornerRadiusRow)
                         .fill(
                             semanticCellOverlay(
                                 state: state,
@@ -511,44 +512,6 @@ extension MetricsView {
 extension MetricsView {
     
     @ViewBuilder
-    /*
-     private func statusBadge(
-     showArrow: Bool,
-     state: WidgetState,
-     latency: String?
-     ) -> some View {
-     if showArrow {
-     ZStack {
-     Circle()
-     .fill(arrowBadgeBackground(state: state))
-     .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
-     
-     Image(systemName: Widget.stateFieldImage(state))
-     .foregroundColor(Widget.stateFieldColor(state))
-     .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
-     }
-     } else if let latency {
-     VStack(spacing: 1) {
-     ZStack {
-     Circle()
-     .fill(clockBadgeBackground())
-     .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
-     
-     Image(systemName: "clock.fill")
-     .foregroundColor(Widget.stateFieldColor(state))
-     .font(.system(size: MetricsDimension.iconFontSize, weight: .semibold))
-     }
-     Text(latency)
-     .foregroundColor(Widget.stateFieldColor(state))
-     .font(.system(size: 8, weight: .bold))
-     .monospacedDigit()
-     }
-     } else {
-     Spacer()
-     .frame(width: MetricsDimension.iconSize)
-     }
-     }
-     */
     private func statusBadge(
         showArrow: Bool,
         state: WidgetState,
