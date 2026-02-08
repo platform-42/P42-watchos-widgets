@@ -648,7 +648,7 @@ extension FunnelView {
             }
         )
         .background(baseRowGradient)
-        .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
+//        .background(semanticCellOverlay(iconColor: funnelItem.iconColor))
         .clipShape(
             RoundedRectangle(
                 cornerRadius: FunnelDimension.cornerRadiusRow,
