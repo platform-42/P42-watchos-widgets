@@ -664,7 +664,7 @@ extension FunnelView {
                 .fill(badgeBackground(iconColor: iconColor))
                 .frame(width: 28, height: 28)
             icon
-                .foregroundColor(.white)
+                .foregroundColor(iconColor)
                 .font(.system(size: 14, weight: .bold))
         }
         
