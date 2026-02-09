@@ -411,11 +411,11 @@ public struct MetricsView: View {
                     .padding(.horizontal)
                 if let latency = latency {
                     Divider()
- //                     .frame(height: 14)
-                        .background(Color.secondary.opacity(0.5))
+                        .frame(height: 14)
+                        .background(Widget.stateFieldColor(.neutral).opacity(0.5))
                     Text(latency)
                         .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Widget.stateFieldColor(.neutral))
                         .monospacedDigit()
                 }
                 Spacer()
@@ -600,11 +600,11 @@ public struct FunnelView: View {
                     .padding(.horizontal)
                 if let latency = latency {
                     Divider()
- //                     .frame(height: 14)
-                        .background(Color.secondary.opacity(0.5))
+                        .frame(height: 14)
+                        .background(Widget.stateFieldColor(.neutral).opacity(0.5))
                     Text(latency)
                         .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Widget.stateFieldColor(.neutral))
                         .monospacedDigit()
                 }
                 Spacer()
