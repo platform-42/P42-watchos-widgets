@@ -505,13 +505,15 @@ extension MetricsView {
         state: WidgetState,
     ) -> some View {
         let widgetState = showArrow ? state : .neutral
+        let widgetColor: Color = showArrow ? Widget.stateFieldColor(widgetState) : Color(hex: WidgetColor.blue)
+        let widgetImage: String = showArrow ? Widget.stateFieldImage(state) : "chart.bar.xaxis"
         ZStack {
             Circle()
                 .fill(arrowBadgeBackground(state: widgetState))
                 .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
             
-            Image(systemName: showArrow ? Widget.stateFieldImage(state) : "chart.bar.xaxis")
-                .foregroundColor(Widget.stateFieldColor(widgetState))
+            Image(systemName: widgetImage)
+                .foregroundColor(widgetColor)
                 .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
