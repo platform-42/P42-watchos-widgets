@@ -7,6 +7,7 @@ import Foundation
 enum WidgetColor {
     static let antracite: Int = 0x21262B
     static let blue: Int = 0x3A7BD5
+    static let darkBlue: Int = 0x1F4FA
 }
 
 enum HeaderDimension {
@@ -677,7 +678,7 @@ extension FunnelView {
     ) -> some View {
         ZStack {
             Circle()
-                .fill(Color(hex: WidgetColor.antracite))
+                .fill(Color(hex: WidgetColor.darkBlue))
                 .frame(width: FunnelDimension.iconSize, height: FunnelDimension.iconSize)
             icon
                 .foregroundColor(.white)
