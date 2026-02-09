@@ -580,7 +580,7 @@ public struct FunnelView: View {
         title: String,
         propertyName: String,
         funnelItems: [FunnelItem] = [],
-        latency: String
+        latency: String? = nil
     ) {
         self.title = title
         self.propertyName = propertyName
