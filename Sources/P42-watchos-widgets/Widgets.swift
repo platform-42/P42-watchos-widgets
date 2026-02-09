@@ -371,6 +371,8 @@ public struct MetricsView: View {
     public let averageValue: String
     public let averageLabel: String
     
+    public let latency: String?
+    
     public init(
         title: String,
         propertyName: String,
@@ -381,7 +383,8 @@ public struct MetricsView: View {
         yesterdayLabel: String = "Yesterday",
         yesterdayState: WidgetState = .neutral,
         averageValue: String,
-        averageLabel: String = "Average"
+        averageLabel: String = "Average",
+        latency: String? = nil
     ) {
         self.title = title
         self.propertyName = propertyName
@@ -393,18 +396,30 @@ public struct MetricsView: View {
         self.yesterdayState = yesterdayState
         self.averageValue = averageValue
         self.averageLabel = averageLabel
+        self.latency = latency
     }
     
     public var body: some View {
         VStack(spacing: 6) {
-            
-            Text(title)
-                .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: WidgetColor.blue))
-                .padding(.horizontal, HeaderDimension.hSpacing)
-                .padding(.vertical, HeaderDimension.vSpacing)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+            HStack(spacing: 4) {
+                Text(title)
+                    .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
+                    .foregroundColor(Color(hex: WidgetColor.blue))
+                    .padding(.horizontal, HeaderDimension.hSpacing)
+                    .padding(.vertical, HeaderDimension.vSpacing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                if let latency = latency {
+                    Divider()
+ //                     .frame(height: 14)
+                        .background(Color.secondary.opacity(0.5))
+                    Text(latency)
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                        .monospacedDigit()
+                }
+                Spacer()
+            }
             dashboardRow(
                 value: todayValue,
                 label: todayLabel,
