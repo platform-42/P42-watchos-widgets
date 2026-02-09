@@ -504,19 +504,15 @@ extension MetricsView {
         showArrow: Bool,
         state: WidgetState,
     ) -> some View {
-        if showArrow {
-            ZStack {
-                Circle()
-                    .fill(arrowBadgeBackground(state: state))
-                    .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
-                
-                Image(systemName: Widget.stateFieldImage(state))
-                    .foregroundColor(Widget.stateFieldColor(state))
-                    .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
-            }
-        } else {
-            Spacer()
-                .frame(width: MetricsDimension.iconSize)
+        let widgetState = showArrow ? state : .neutral
+        ZStack {
+            Circle()
+                .fill(arrowBadgeBackground(state: widgetState))
+                .frame(width: MetricsDimension.iconSize, height: MetricsDimension.iconSize)
+            
+            Image(systemName: showArrow ? Widget.stateFieldImage(state) : "chart.bar.xaxis")
+                .foregroundColor(Widget.stateFieldColor(widgetState))
+                .font(.system(size: MetricsDimension.iconFontSize, weight: .bold))
         }
     }
     
@@ -616,19 +612,19 @@ extension FunnelView {
             Text(
                 funnelItem.percentage
                     .formatted(.number.precision(.fractionLength(0)))
-                )
-                .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
-                .monospacedDigit()
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 2)
-
+            )
+            .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
+            .monospacedDigit()
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.trailing, 2)
+            
             Text("% - " + funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 2)
-
+            
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
