@@ -7,7 +7,7 @@ import Foundation
 enum WidgetColor {
     static let antracite: Int = 0x21262B
     static let blue: Int = 0x3A7BD5
-    static let darkBlue: Int = 0x1F4FA3
+    static let darkBlue: Int = 0x1E3564
 }
 
 enum HeaderDimension {
