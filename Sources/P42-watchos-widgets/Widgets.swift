@@ -410,9 +410,9 @@ public struct MetricsView: View {
                 if let latency = latency {
                     Rectangle()
                         .fill(Widget.stateFieldColor(.neutral).opacity(0.5))
-                        .frame(width: 1, height: 14)
+                        .frame(width: 1, height: HeaderDimension.fontSize)
                     Text(latency)
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.system(size: HeaderDimension.fontSize, weight: .light))
                         .foregroundStyle(Widget.stateFieldColor(.neutral))
                         .monospacedDigit()
                 }
@@ -599,9 +599,9 @@ public struct FunnelView: View {
                 if let latency = latency {
                     Rectangle()
                         .fill(Widget.stateFieldColor(.neutral).opacity(0.5))
-                        .frame(width: 1, height: 14)
+                        .frame(width: 1, height: HeaderDimension.fontSize)
                     Text(latency)
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.system(size: HeaderDimension.fontSize, weight: .light))
                         .foregroundStyle(Widget.stateFieldColor(.neutral))
                         .monospacedDigit()
                 }
