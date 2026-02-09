@@ -648,7 +648,7 @@ extension FunnelView {
             .frame(maxWidth: .infinity, alignment: .trailing)
             .padding(.trailing, 2)
             
-            Text("%" + funnelItem.label)
+            Text("% " + funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
