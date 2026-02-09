@@ -620,14 +620,14 @@ extension FunnelView {
                 .font(.system(size: FunnelDimension.valueFontSize, weight: .semibold))
                 .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.trailing, 4)
+                .padding(.trailing, 2)
 
             Text("% - " + funnelItem.label)
                 .font(.system(size: FunnelDimension.labelFontSize, weight: .bold, design: .rounded))
                 .textCase(.uppercase)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 4)
+                .padding(.leading, 2)
 
         }
         .padding(.horizontal, 8)
