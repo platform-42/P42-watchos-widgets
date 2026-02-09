@@ -574,26 +574,41 @@ public struct FunnelView: View {
     public let title: String
     public let propertyName: String
     public let funnelItems: [FunnelItem]
-    
+    public let latency: String?
+
     public init(
         title: String,
         propertyName: String,
         funnelItems: [FunnelItem] = [],
+        latency: String
     ) {
         self.title = title
         self.propertyName = propertyName
         self.funnelItems = funnelItems
+        self.latency = latency
     }
     
     public var body: some View {
         VStack(spacing: 6) {
-            Text(title)
-                .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
-                .foregroundColor(Color(hex: WidgetColor.blue))
-                .padding(.horizontal, HeaderDimension.hSpacing)
-                .padding(.vertical, HeaderDimension.vSpacing)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+            HStack(spacing: 4) {
+                Text(title)
+                    .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
+                    .foregroundColor(Color(hex: WidgetColor.blue))
+                    .padding(.horizontal, HeaderDimension.hSpacing)
+                    .padding(.vertical, HeaderDimension.vSpacing)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                if let latency = latency {
+                    Divider()
+ //                     .frame(height: 14)
+                        .background(Color.secondary.opacity(0.5))
+                    Text(latency)
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(.secondary)
+                        .monospacedDigit()
+                }
+                Spacer()
+            }
             ForEach(funnelItems) { item in
                 dashboardRow(funnelItem: item)
             }
