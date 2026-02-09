@@ -411,7 +411,7 @@ public struct MetricsView: View {
                     .padding(.horizontal)
                 if let latency = latency {
                     Divider()
-                        .frame(height: 14)
+                        .frame(width: 1, height: 14, alignment: .center)
                         .background(Widget.stateFieldColor(.neutral).opacity(0.5))
                     Text(latency)
                         .font(.system(size: 12, weight: .semibold))
@@ -600,7 +600,7 @@ public struct FunnelView: View {
                     .padding(.horizontal)
                 if let latency = latency {
                     Divider()
-                        .frame(height: 14)
+                        .frame(width: 1, height: 14, alignment: .center)
                         .background(Widget.stateFieldColor(.neutral).opacity(0.5))
                     Text(latency)
                         .font(.system(size: 12, weight: .semibold))
