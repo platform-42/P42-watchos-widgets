@@ -593,6 +593,7 @@ public struct FunnelView: View {
                 Text(title)
                     .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
                     .foregroundColor(Color(hex: WidgetColor.blue))
+                    .background(.white)
                     .padding(.horizontal, HeaderDimension.hSpacing)
                     .padding(.vertical, HeaderDimension.vSpacing)
                     .frame(maxWidth: .infinity, alignment: .leading)
