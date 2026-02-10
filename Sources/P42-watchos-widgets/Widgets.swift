@@ -595,7 +595,7 @@ public struct FunnelView: View {
                     .foregroundColor(Color(hex: WidgetColor.blue))
                     .padding(.horizontal, HeaderDimension.hSpacing)
                     .padding(.vertical, HeaderDimension.vSpacing)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
                             .fill(.white)
