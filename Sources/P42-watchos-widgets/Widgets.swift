@@ -595,11 +595,8 @@ public struct FunnelView: View {
                     .foregroundColor(Color(hex: WidgetColor.blue))
                     .padding(.horizontal, HeaderDimension.hSpacing)
                     .padding(.vertical, HeaderDimension.vSpacing)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: HeaderDimension.cornerRadius)
-                            .fill(.white)
-                    )
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
                 if let latency = latency {
                     Rectangle()
                         .fill(Widget.stateFieldColor(.neutral).opacity(0.5))
