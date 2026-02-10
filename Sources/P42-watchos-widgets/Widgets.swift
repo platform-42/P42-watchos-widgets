@@ -567,6 +567,7 @@ extension MetricsView {
     }
 }
 
+@available(watchOS 11.0, *)
 public struct FunnelView: View {
     
     public let title: String
@@ -592,6 +593,7 @@ public struct FunnelView: View {
                 Text(title)
                     .font(.system(size: HeaderDimension.fontSize, weight: .medium, design: .rounded))
                     .foregroundColor(Color(hex: WidgetColor.blue))
+                    .textOutline(color: .white, width: 1)
                     .padding(.horizontal, HeaderDimension.hSpacing)
                     .padding(.vertical, HeaderDimension.vSpacing)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -628,6 +630,7 @@ public struct FunnelView: View {
     }
 }
 
+@available(watchOS 11.0, *)
 extension FunnelView {
     
     private func dashboardRow(
@@ -684,6 +687,7 @@ extension FunnelView {
     }
 }
 
+@available(watchOS 11.0, *)
 extension FunnelView {
     
     private var baseRowGradient: LinearGradient {
@@ -712,4 +716,32 @@ extension FunnelView {
         }
     }
     
+}
+
+
+extension View {
+    @available(watchOS 11.0, *)
+    func textOutline(
+        color: Color,
+        width: CGFloat = 1
+    ) -> some View {
+        self.overlay(
+            ZStack {
+                ForEach([
+                    CGPoint(x: -width, y: 0),
+                    CGPoint(x:  width, y: 0),
+                    CGPoint(x: 0, y: -width),
+                    CGPoint(x: 0, y:  width),
+                    CGPoint(x: -width, y: -width),
+                    CGPoint(x:  width, y: -width),
+                    CGPoint(x: -width, y:  width),
+                    CGPoint(x:  width, y:  width)
+                ], id: \.self) { point in
+                    self
+                        .foregroundColor(color)
+                        .offset(x: point.x, y: point.y)
+                }
+            }
+        )
+    }
 }
