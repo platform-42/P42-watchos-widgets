@@ -1,8 +1,11 @@
 import SwiftUI
 import Foundation
 
-import P42_screenelements
 
+public enum BadgedLabelContent {
+    case text(String)
+    case systemImage(name: String)
+}
 
 enum WidgetColor {
     static let antracite: Int = 0x21262B
@@ -64,7 +67,6 @@ public struct FunnelItem: Identifiable {
 
 
 
-@available(iOS 16.0, *)
 public struct HeaderView: View {
     
     let connectionColor: Color
@@ -105,7 +107,7 @@ public struct HeaderView: View {
     }
 }
 
-@available(iOS 16.0, *)
+
 private extension HeaderView {
     
     var titleView: some View {
@@ -203,7 +205,6 @@ public struct NumberAndStatView: View {
 }
 
 
-@available(iOS 13.0, *)
 public struct NumberAndStateView: View {
     let period: String
     let periodColor: Color
@@ -269,7 +270,6 @@ public struct NumberAndStateView: View {
 }
 
 
-@available(iOS 13.0.0, *)
 public struct FooterView<LastUpdateView: View>: View {
     let topic: String
     let topicColor: Color?
@@ -517,7 +517,7 @@ extension MetricsView {
     }
 }
 
-@available(watchOS 11.0, *)
+
 public struct FunnelView: View {
     
     public let title: String
@@ -579,7 +579,7 @@ public struct FunnelView: View {
     }
 }
 
-@available(watchOS 11.0, *)
+
 extension FunnelView {
     
     private func dashboardRow(
@@ -636,7 +636,7 @@ extension FunnelView {
     }
 }
 
-@available(watchOS 11.0, *)
+
 extension FunnelView {
     
     private var baseRowGradient: LinearGradient {
@@ -667,3 +667,48 @@ extension FunnelView {
     
 }
 
+
+public struct BadgedLabel: View {
+    
+    let content: BadgedLabelContent
+    let foregroundColor: Color
+    let font: Font
+    let backgroundColor: Color
+    let padding: EdgeInsets
+    
+    public init(
+        content: BadgedLabelContent,
+        foregroundColor: Color = .white,
+        font: Font = .caption2,
+        backgroundColor: Color = .blue,
+        padding: EdgeInsets = EdgeInsets(top: 2, leading: 6, bottom: 2, trailing: 6)
+    ) {
+        self.content = content
+        self.foregroundColor = foregroundColor
+        self.font = font
+        self.backgroundColor = backgroundColor
+        self.padding = padding
+    }
+    
+    public var body: some View {
+        label
+            .padding(padding)
+            .background(backgroundColor)
+            .clipShape(Capsule())
+    }
+    
+    @ViewBuilder
+    private var label: some View {
+        switch content {
+        case .text(let value):
+            Text(value)
+                .font(font)
+                .foregroundColor(foregroundColor)
+            
+        case .systemImage(let name):
+            Image(systemName: name)
+                .font(font)
+                .foregroundColor(foregroundColor)
+        }
+    }
+}

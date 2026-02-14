@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "P42-watchos-widgets",
     platforms: [
-        .watchOS(.v10)
+        .watchOS(.v11)
     ],
     products: [
         .library(
@@ -14,8 +14,7 @@ let package = Package(
             targets: ["P42-watchos-widgets"]),
     ],
     dependencies: [
-        .package(url: "git@github.com:platform-42/P42-extensions.git", branch: "main"),
-        .package(url: "git@github.com:platform-42/P42-screenelements.git", branch: "main")
+        .package(url: "git@github.com:platform-42/P42-extensions.git", branch: "main")
     ],
     targets: [
         .target(
